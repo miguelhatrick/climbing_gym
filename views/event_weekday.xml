@@ -1,0 +1,47 @@
+<odoo>
+  <data>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="climbing_gym.event_weekday_list_action">
+      <field name="name">Event weekday</field>
+      <field name="res_model">climbing_gym.event_weekday</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="climbing_gym.list">
+      <field name="name">Event weekday list</field>
+      <field name="model">climbing_gym.event_weekday</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="day_id"/>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="climbing_gym.event_weekday_action_server">
+      <field name="name">Event weekday server</field>
+      <field name="model_id" ref="model_climbing_gym_event_weekday"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+
+
+
+  </data>
+</odoo>

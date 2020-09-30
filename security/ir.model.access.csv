@@ -1,3 +1,8 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 association_type,climbing_gym.association_type,model_climbing_gym_association_type,base.group_user,1,1,1,1
 medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,base.group_user,1,1,1,0
+event_time_range,climbing_gym.event_time_range,model_climbing_gym_event_time_range,base.group_user,1,1,1,1
+event_weekday,climbing_gym.event_weekday,model_climbing_gym_event_weekday,base.group_user,1,1,1,1
+event_week_template,climbing_gym.event_week_template,model_climbing_gym_event_week_template,base.group_user,1,1,1,1
+
+event_generator,climbing_gym.event_generator,model_climbing_gym_event_generator,base.group_user,1,1,1,1

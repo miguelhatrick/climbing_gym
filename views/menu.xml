@@ -3,24 +3,34 @@
 
     <!-- Top menu item -->
 
-    <menuitem name="climbing_gym" id="climbing_gym.menu_root"/>
+    <menuitem name="Climbing Gym" id="climbing_gym.menu_root"/>
 
     <!-- menu categories -->
 
-    <menuitem name="Menu 1" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
-    <menuitem name="Menu 2" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
+    <menuitem name="Members" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
+        <menuitem name="Medical Certificate" id="climbing_gym.medical_cert" parent="climbing_gym.menu_1"
+                  action="medical_certificate_list_action"/>
+        <menuitem name="Association Type" id="climbing_gym.association_type" parent="climbing_gym.menu_1"
+                  action="association_type_list_action"/>
+
+    <menuitem name="Reserves" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
+        <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2"
+                  action="event_generator_list_action"/>
+
+        <menuitem name="Time Range" id="climbing_gym.event_time_range" parent="climbing_gym.menu_2"
+                  action="event_time_range_list_action"/>
+        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"
+                  action="event_weekday_list_action"/>
+        <menuitem name="Event Week Template" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
+                  action="event_week_template_list_action"/>
 
     <!-- actions -->
 
-    <menuitem name="List" id="climbing_gym.menu_1_list" parent="climbing_gym.menu_1"
-              action="climbing_gym.action_window"/>
 
 
-    <menuitem name="Server to list" id="climbing_gym" parent="climbing_gym.menu_2"
-              action="climbing_gym.action_server"/>
 
-    <menuitem name="Medical Certificate" id="climbing_gym.medical_cert" parent="climbing_gym.menu_2"
-              action="medical_certificate_list_action"/>
+
+
 <!--
               ir.actions.view,1172
 

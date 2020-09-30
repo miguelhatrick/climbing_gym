@@ -1,5 +1,16 @@
 <odoo>
   <data>
+
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="climbing_gym.association_type_list_action">
+      <field name="name">Association Type</field>
+      <field name="res_model">climbing_gym.association_type</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
     <!-- explicit list view definition -->
     <record model="ir.ui.view" id="climbing_gym.list">
       <field name="name">AssociationType list</field>
@@ -12,12 +23,6 @@
     </record>
 
 
-    <!-- actions opening views on models -->
-    <record model="ir.actions.act_window" id="climbing_gym.action_window">
-      <field name="name">Association Type</field>
-      <field name="res_model">climbing_gym.association_type</field>
-      <field name="view_mode">tree,form</field>
-    </record>
 
 
     <!-- server action to the one above -->

@@ -66,14 +66,14 @@
             </field>
         </record>
 
-        <record model="ir.ui.view" id="medical_certificate_tree_small_view">
-            <field name="name">medical_certificate.tree_small</field>
+        <record model="ir.ui.view" id="medical_certificate_tree_view_reduced">
+            <field name="name">medical_certificate.tree</field>
             <field name="model">climbing_gym.medical_certificate</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="issue_date"/>
                     <field name="due_date"/>
-                    <field name="doctor_name"/>
-                    <field name="doctor_license"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -96,19 +96,6 @@
                 </search>
             </field>
         </record>
-
-
-
-
-
-
-
-
-
-
-
-        <!--  -->
-
 
     </data>
 </odoo>

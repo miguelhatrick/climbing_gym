@@ -28,10 +28,14 @@
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/templates.xml',
-        'views/res_partner.xml',
+        'views/association_type.xml',
+        'views/event_generator.xml',
+        'views/event_time_range.xml',
+        'views/event_weekday.xml',
+        'views/event_week_template.xml',
         'views/medical_certificate.xml',
-        'views/views.xml',
+        'views/res_partner.xml',
+        'views/website_sale_address_b2b.xml',
         'views/menu.xml',
     ],
     # only loaded in demonstration mode
