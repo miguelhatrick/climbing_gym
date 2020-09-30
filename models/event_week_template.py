@@ -6,7 +6,7 @@ from dateutil.relativedelta import relativedelta
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from odoo.tools import image_resize_images, image_resize_image, base64
-
+import pytz
 
 class EventWeekTemplate(models.Model):
     """Week template for event creation"""
@@ -34,6 +34,9 @@ class EventWeekTemplate(models.Model):
                                    column2='etr_id',
                                    string='Time ranges', required=True)
 
+    date_tz = fields.Selection('_tz_get', string='Timezone', required=True,
+                               default=lambda self: self.env.user.tz or 'UTC')
+
     ticket_product = fields.Many2one('product.product', string='Ticket product', required=True)
 
     seats_availability = fields.Integer("Maximum Attendees", required=True)
@@ -48,4 +51,6 @@ class EventWeekTemplate(models.Model):
     def action_cancel(self):
         self.write({'state': 'cancel'})
 
-
+    @api.model
+    def _tz_get(self):
+        return [(x, x) for x in pytz.all_timezones]

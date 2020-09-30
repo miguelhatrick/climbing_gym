@@ -33,15 +33,13 @@
                                     <field name="location"/>
                                     <field name="organizer"/>
                                     <field name="responsible"/>
-                                    <field name="weekdays" widget="many2many_tags"/>
-                                    <field name="time_ranges" widget="many2many_tags"/>
-
-                                     <field name="ticket_product"/>
+                                    <field name="ticket_product"/>
                                     <field name="seats_availability"/>
-
-
                                 </group>
                                 <group colspan="4">
+                                    <field name="weekdays" widget="many2many_tags"/>
+                                    <field name="time_ranges" widget="many2many_tags"/>
+                                    <field name="date_tz"/>
                                      <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
                                 </group>
                             </page>

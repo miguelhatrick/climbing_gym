@@ -2,7 +2,8 @@
 import datetime
 import pdb
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class EventTimeRange(models.Model):
@@ -31,3 +32,9 @@ class EventTimeRange(models.Model):
     def _generate_name(self):
         # pdb.set_trace()
         self.name = str(datetime.timedelta(hours=self.time_start)).rsplit(':', 1)[0] + ' - ' + str(datetime.timedelta(hours=self.time_end)).rsplit(':', 1)[0]
+
+    @api.one
+    @api.constrains('time_start', 'time_end')
+    def _check_closing_date(self):
+        if self.time_end < self.time_start:
+            raise ValidationError('The closing date cannot be earlier than the beginning date.')
