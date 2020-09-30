@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+    <!-- Top menu item -->
+
+    <menuitem name="climbing_gym" id="climbing_gym.menu_root"/>
+
+    <!-- menu categories -->
+
+    <menuitem name="Menu 1" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
+    <menuitem name="Menu 2" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
+
+    <!-- actions -->
+
+    <menuitem name="List" id="climbing_gym.menu_1_list" parent="climbing_gym.menu_1"
+              action="climbing_gym.action_window"/>
+
+
+    <menuitem name="Server to list" id="climbing_gym" parent="climbing_gym.menu_2"
+              action="climbing_gym.action_server"/>
+
+    <menuitem name="Medical Certificate" id="climbing_gym.medical_cert" parent="climbing_gym.menu_2"
+              action="medical_certificate_list_action"/>
+<!--
+              ir.actions.view,1172
+
+              DELETE FROM public.ir_ui_menu WHERE id = 242
+-->
+
+
+
+
+
+
+
+    </data>
+</odoo>

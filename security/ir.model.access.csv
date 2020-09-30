@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+association_type,climbing_gym.association_type,model_climbing_gym_association_type,base.group_user,1,1,1,1
+medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,base.group_user,1,1,1,0

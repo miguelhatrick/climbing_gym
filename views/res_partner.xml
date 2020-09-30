@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
+     Copyright 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. -->
+
+<odoo>
+    <record id="contact_view_extend" model="ir.ui.view">
+        <field name="name">res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='internal_notes']" position="after">
+                <page name="test" string="Climbing gym data">
+                    <group name="container_row_2">
+                        <group string="Personal information" name="personal-info" priority="1">
+                            <!--fields here-->
+                            <field name='birthdate_date'/>
+                            <field name='climbing_gym_association_date'/>
+                            <field name='climbing_gym_association_type'/>
+                            <field name='climbing_gym_association_id'/>
+                            <field name='climbing_gym_medical_certificate_due_date'/>
+                            <field name='climbing_gym_medical_certificate_valid' />
+
+                        </group>
+                        <group string="Medical Certificates"  name="medical-certificates" priority="2">
+                            <field name='climbing_gym_medical_certificates'  nolabel="1"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
