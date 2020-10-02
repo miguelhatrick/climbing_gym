@@ -17,7 +17,7 @@ class MemberAccessPackage(models.Model):
                         ('cancel', "Cancelled")]
 
     # name = fields.Char('Name', required=True)
-    member = fields.Many2one('res.partner', string='Member')
+    partner_id = fields.Many2one('res.partner', string='Member')
 
     obs = fields.Text('Observations')
 
@@ -152,7 +152,7 @@ class MemberAccessPackage(models.Model):
 
         # search maps active
         _map_arr = self.env['climbing_gym.member_access_package'].search(
-            [('state', '=', "active"), ('member', '=', _member.id)]).filtered(
+            [('state', '=', "active"), ('partner_id', '=', _member.id)]).filtered(
             lambda r, x=_location: x in r.locations)
 
         for _map in _map_arr:
@@ -161,7 +161,7 @@ class MemberAccessPackage(models.Model):
 
         # search maps pending if not found
         _map_arr = self.env['climbing_gym.member_access_package'].search(
-            [('state', '=', "pending"), ('member', '=', _member.id)]).filtered(
+            [('state', '=', "pending"), ('partner_id', '=', _member.id)]).filtered(
             lambda r, x=_location: x in r.locations)
 
         for _map in _map_arr:

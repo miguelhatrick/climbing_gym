@@ -13,7 +13,7 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        pdb.set_trace()
+        # pdb.set_trace()
         self.create_access_package()
 
         return super(SaleOrder, self).action_confirm()
@@ -22,7 +22,7 @@ class SaleOrder(models.Model):
     def create_access_package(self):
         """Creates a new MAP based on the products"""
 
-        pdb.set_trace()
+        # pdb.set_trace()
 
         aps = self.env['climbing_gym.access_package'].search([('state', '=', "confirmed")])
 
@@ -42,7 +42,7 @@ class SaleOrder(models.Model):
             _logger.info('Creating MAM ... -> %s' % x)
 
             myevent = self.env['climbing_gym.member_access_package'].create({
-                'member': sale_order_line.order_id.partner_id.id,
+                'partner_id': sale_order_line.order_id.partner_id.id,
                 'obs': "Qty item %s/%s\r\n Created automatically after order confirmation" % (x + 1, _map_qty),
                 'access_credits': access_package.access_credits,
                 'remaining_credits': access_package.access_credits,

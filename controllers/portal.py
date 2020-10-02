@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
-
+import pdb
 from datetime import date
 from odoo import fields, http, _
 from odoo.exceptions import AccessError, MissingError
@@ -14,17 +14,19 @@ class CustomerPortal(CustomerPortal):
 
     def _prepare_portal_layout_values(self):
         values = super(CustomerPortal, self)._prepare_portal_layout_values()
-        partner = request.env.user.partner_id
+        _partner = request.env.user.partner_id
 
         event_registration = request.env['event.registration']
         event_registration_count = event_registration.search_count([
-            ('partner_id', 'in', [partner.id]),
+            ('partner_id', 'in', [_partner.id]),
             # ('state', 'in', ['sent', 'cancel'])
         ])
 
+        # pdb.set_trace()
+
         member_access_package = request.env['climbing_gym.member_access_package']
         member_access_package_count = member_access_package.search_count([
-            ('member', 'in', [partner.id]),
+            ('partner_id', 'in', [_partner.id]),
             # ('state', 'in', ['sale', 'done'])
         ])
 
@@ -98,7 +100,7 @@ class CustomerPortal(CustomerPortal):
         MemberAccessPackages = request.env['climbing_gym.member_access_package']
 
         domain = [
-            ('member', 'in', [partner.id]),
+            ('partner_id', 'in', [partner.id]),
         ]
 
         searchbar_sortings = {

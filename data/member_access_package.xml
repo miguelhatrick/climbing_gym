@@ -1,5 +1,5 @@
 <odoo>
-    <data>
+    <data noupdate="1">
         <record id="member_access_package_update_status" model="ir.cron">
             <field name="name">Update package status</field>
             <field name="model_id" ref="model_climbing_gym_member_access_package"/>

@@ -32,7 +32,7 @@
                     </header>
                     <sheet>
                         <h1>
-                            <field name="member"/>
+                            <field name="partner_id"/>
                         </h1>
                         <notebook>
                             <page string="Data">
@@ -71,7 +71,7 @@
             <field name="arch" type="xml">
                 <tree string="Member packages">
                     <field name="create_date"/>
-                    <field name="member"/>
+                    <field name="partner_id"/>
                     <field name="access_package"/>
                     <field name="activated_date"/>
                     <field name="completed_date"/>
@@ -91,7 +91,7 @@
             <field name="model">climbing_gym.member_access_package</field>
             <field name="arch" type="xml">
                 <search>
-                    <field name="member"/>
+                    <field name="partner_id"/>
                     <field name="state"/>
                     <filter string='Confirmed' name='filter_active' domain="[('state','=','pending')]"/>
                     <group expand="0" string="Group By">

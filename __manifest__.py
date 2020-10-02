@@ -26,9 +26,10 @@
 
     # always loaded
     'data': [
+        'data/user_groups.xml',
+        'data/data_weekday.xml',
         'security/ir.model.access.csv',
         'data/member_access_package.xml',
-        'data/user_groups.xml',
         'views/access_package.xml',
         'views/association_type.xml',
         'views/custom_portal.xml',
