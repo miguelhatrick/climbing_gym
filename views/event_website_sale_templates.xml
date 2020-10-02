@@ -1,0 +1,62 @@
+<odoo>
+    <data>
+
+<template id="registration_attendee_details" name="Registration Attendee Details" >
+    <div role="dialog" id="modal_attendees_registration" class="modal fade" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <form id="attendee_registration" t-attf-action="/event/#{slug(event)}/registration/confirm" method="post" class="js_website_submit_form">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel"><strong>Confirm reservation</strong></h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">x</button>
+                    </header>
+                    <main class="modal-body">
+                        <div class="container">
+                            <t t-set="counter_type" t-value="1"/>
+                            <t t-set="counter" t-value="0"/>
+                            <t t-foreach="tickets" t-as="ticket" t-if="availability_check">
+                                <h4 class="o_page_header mt16">
+                                    <strong>
+                                        Ticket Type #<t t-raw="counter_type"/>: <t t-esc="ticket['name']"/>
+                                        <t t-if="ticket['price'] == 0">(Free)</t>
+                                    </strong>
+                                </h4>
+                                <div class="row">
+                                    <div class="col-lg-4"><strong>Name</strong></div>
+                                    <div class="col-lg-5"><strong>Email</strong></div>
+                                    <div class="col-lg-3"><strong>Phone</strong></div>
+                                </div>
+                                <t t-foreach="range(1, ticket['quantity'] + 1)" t-as="att_counter" name="attendee_loop">
+                                    <t t-set="counter" t-value="counter + 1"/>
+                                    <div class="row mb4">
+                                        <t t-set="attendee_placeholder">Attendee #%s</t>
+                                        <div class="col-lg-4"><input class='form-control' type='text' t-attf-name="#{counter}-name" required="This field is required" t-att-placeholder="attendee_placeholder %counter" t-attf-value="#{member.name}"  readonly="True"/></div>
+                                        <div class="col-lg-5"><input class='form-control' type='email' t-attf-name="#{counter}-email" required="This field is required" t-attf-value="#{member.email}"  readonly="True"/></div>
+                                        <div class="col-lg-3"><input class='form-control' type='tel' t-attf-name="#{counter}-phone" t-attf-value="#{member.phone}"  readonly="True"/></div>
+                                        <input class='d-none' type='text' t-attf-name="#{counter}-ticket_id" t-attf-value="#{ticket['id']}"/>
+                                    </div>
+                                </t>
+                                <t t-set="counter_type" t-value="counter_type + 1"/>
+                            </t>
+                            <t t-else="">
+                                <strong> You ordered more tickets than available seats</strong>
+                            </t>
+                        </div>
+                    </main>
+                    <footer class="modal-footer">
+                        <div class="float-left">
+                            <button type="submit" t-if="availability_check" class="btn btn-primary">Confirm</button>
+                            <button type="button" class="btn btn-secondary js_goto_event" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </footer>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+
+
+    </data>
+</odoo>

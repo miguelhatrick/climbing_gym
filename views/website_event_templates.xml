@@ -23,4 +23,53 @@
         </div>
     </template>
 
+
+    <template id="modal_attendees_registration_credits_required" name="Credits Required">
+        <div id="modal_attendees_registration_credits_required" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title">Credits required</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            You don't have any spare credits to use. Please visit the shop and purchase some.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a t-attf-href="/shop" class="btn btn-primary">Shop</a>
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <template id="modal_attendees_registration_already_registered" name="Already enrolled">
+        <div id="modal_attendees_registration_already_registered" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+                        <h4 class="modal-title">Credits required</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            You are already enrolled.
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn btn-default" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+
+
+
 </odoo>
