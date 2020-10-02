@@ -31,9 +31,9 @@
                                     <t t-set="counter" t-value="counter + 1"/>
                                     <div class="row mb4">
                                         <t t-set="attendee_placeholder">Attendee #%s</t>
-                                        <div class="col-lg-4"><input class='form-control' type='text' t-attf-name="#{counter}-name" required="This field is required" t-att-placeholder="attendee_placeholder %counter" t-attf-value="#{member.name}"  readonly="True"/></div>
-                                        <div class="col-lg-5"><input class='form-control' type='email' t-attf-name="#{counter}-email" required="This field is required" t-attf-value="#{member.email}"  readonly="True"/></div>
-                                        <div class="col-lg-3"><input class='form-control' type='tel' t-attf-name="#{counter}-phone" t-attf-value="#{member.phone}"  readonly="True"/></div>
+                                        <div class="col-lg-4"><input class='form-control' type='text' t-attf-name="#{counter}-name" required="This field is required" t-att-placeholder="attendee_placeholder %counter" t-attf-value="#{mymember.name}"  readonly="True"/></div>
+                                        <div class="col-lg-5"><input class='form-control' type='email' t-attf-name="#{counter}-email" required="This field is required" t-attf-value="#{mymember.email}"  readonly="True"/></div>
+                                        <div class="col-lg-3"><input class='form-control' type='tel' t-attf-name="#{counter}-phone" t-attf-value="#{mymember.phone}"  readonly="True"/></div>
                                         <input class='d-none' type='text' t-attf-name="#{counter}-ticket_id" t-attf-value="#{ticket['id']}"/>
                                     </div>
                                 </t>

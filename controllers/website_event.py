@@ -66,7 +66,7 @@ class RequireLoginToRegister(WebsiteEventController):
                 return request.env['ir.ui.view'].render_template("climbing_gym.registration_attendee_details",
                                                                  {'tickets': [tickets[0]], 'event': event,
                                                                   'availability_check': event.seats_available >= 1,
-                                                                  'member': _member})
+                                                                  'mymember': _member})
 
         return super(
             RequireLoginToRegister, self).registration_new(event, **post)
