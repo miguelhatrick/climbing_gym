@@ -19,9 +19,9 @@
         <!--   </dl> -->
         <!-- </template> -->
 
-         <template id="address" inherit_id="website_sale.address_b2b" name="Address Management">
-            <xpath expr="//input[@name='company_name']/.." position="replace"/>
-        </template>
+<!--         <template id="address" inherit_id="website_sale.address_b2b" name="Address Management">-->
+<!--            <xpath expr="//input[@name='company_name']/.." position="replace"/>-->
+<!--        </template>-->
 
 
     </data>

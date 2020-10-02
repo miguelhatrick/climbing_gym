@@ -8,6 +8,7 @@ from odoo.exceptions import ValidationError
 from odoo.tools import image_resize_images, image_resize_image, base64
 import pytz
 
+
 class EventWeekTemplate(models.Model):
     """Week template for event creation"""
     _name = 'climbing_gym.event_week_template'
@@ -16,6 +17,12 @@ class EventWeekTemplate(models.Model):
     description = fields.Text()
 
     status_selection = [('active', "Active"), ('cancel', "Disabled")]
+
+    website = fields.Many2one(
+        'website', string='Website', readonly=False, required=True)
+
+    event_type_id = fields.Many2one(
+        'event.type', string='Event type', readonly=False, required=True )
 
     location = fields.Many2one(
         'res.partner', string='Event location', readonly=False, required=True)

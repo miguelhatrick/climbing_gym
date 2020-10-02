@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.module.category" id="climbing_gym.cg_module_management">
+            <field name="name">Climbing gym security</field>
+            <field name="description">User access level for this module</field>
+            <field name="sequence">4</field>
+        </record>
+
+
+        <record id="group_user" model="res.groups">
+            <field name="name">Climbing gym employee</field>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            <field name="category_id" ref="climbing_gym.cg_module_management"/>
+        </record>
+
+        <record id="group_manager" model="res.groups">
+            <field name="name">Climbing gym Manager</field>
+            <field name="implied_ids" eval="[(4, ref('climbing_gym.group_user'))]"/>
+            <field name="category_id" ref="climbing_gym.cg_module_management"/>
+        </record>
+
+        <record id="group_superadmin" model="res.groups">
+            <field name="name">Super Administrator</field>
+            <field name="implied_ids" eval="[(4, ref('climbing_gym.group_manager'))]"/>
+            <field name="category_id" ref="climbing_gym.cg_module_management"/>
+        </record>
+
+    </data>
+</odoo>

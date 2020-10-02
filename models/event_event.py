@@ -6,6 +6,8 @@ from odoo import fields, models
 class EventEvent(models.Model):
     _inherit = 'event.event'
 
+    event_generator_id = fields.Many2one('climbing_gym.event_generator', string='Climbing generator')
+
     website_require_login = fields.Boolean(
         string='Require login for website registrations',
         help='If set, a user must be logged in to be able to register '

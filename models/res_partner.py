@@ -22,6 +22,10 @@ class ResPartner(models.Model):
         'climbing_gym.medical_certificate', inverse_name='partner_id', string='Medical Certificates',
         readonly=False, track_visibility="onchange")
 
+    member_access_packages = fields.One2many(
+        'climbing_gym.member_access_package', inverse_name='member', string='Access Packages',
+        readonly=True, track_visibility="onchange")
+
     climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date', compute='update_certificate_due_date', store=True,)
     climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid', compute='update_certificate_status', store=True,)
 

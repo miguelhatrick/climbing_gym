@@ -30,6 +30,8 @@
                             <page string="Data">
                                 <group col="4" colspan="4">
                                     <field name="description"/>
+                                    <field name="website"/>
+                                    <field name="event_type_id"/>
                                     <field name="location"/>
                                     <field name="organizer"/>
                                     <field name="responsible"/>

@@ -8,8 +8,8 @@
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//page[@name='internal_notes']" position="after">
-                <page name="test" string="Climbing gym data">
+            <xpath expr="//page[@name='internal_notes']" position="before">
+                <page name="climbing_gym_data" string="Climbing gym data">
                     <group name="container_row_2">
                         <group string="Personal information" name="personal-info" priority="1">
                             <!--fields here-->
@@ -21,11 +21,22 @@
                             <field name='climbing_gym_medical_certificate_valid' />
 
                         </group>
-                        <group string="Medical Certificates"  name="medical-certificates" priority="2">
+                        <group string="Medical Certificates"  name="medical-certificates" priority="2" col="4">
                             <field name='climbing_gym_medical_certificates'  nolabel="1"/>
                         </group>
                     </group>
                 </page>
+                 <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">
+
+                    <group string="Access Packages"  name="medical-certificates" priority="2" col="4">
+                        <field name='member_access_packages'  nolabel="1"/>
+                    </group>
+
+                </page>
+
+
+
+
             </xpath>
         </field>
     </record>

@@ -13,6 +13,12 @@
         <menuitem name="Association Type" id="climbing_gym.association_type" parent="climbing_gym.menu_1"
                   action="association_type_list_action"/>
 
+
+         <menuitem name="Member access package" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
+                  action="member_access_package_list_action"/>
+
+
+
     <menuitem name="Reserves" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
         <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2"
                   action="event_generator_list_action"/>
@@ -23,6 +29,11 @@
                   action="event_weekday_list_action"/>
         <menuitem name="Event Week Template" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
                   action="event_week_template_list_action"/>
+
+         <menuitem name="Access Package" id="climbing_gym.access_package" parent="climbing_gym.menu_2"
+                  action="access_package_list_action"/>
+
+
 
     <!-- actions -->
 

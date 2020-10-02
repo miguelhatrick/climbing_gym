@@ -18,9 +18,10 @@
             <field name="arch" type="xml">
                 <form string="Event generator form">
                     <header>
-                        <field name="state" widget="statusbar" statusbar_visible="confirmed,pending,cancel" statusbar_colors='{"confirmed":"blue", "cancel":"red"}'/>
-                        <button name="action_cancel" string="Cancel" states='confirmed,pending' type="object" class="oe_highlight" />
-                        <button name="action_confirm" string="Confirm" states='pending' type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="pending,generate,confirmed,cancel"/>
+                        <button name="action_cancel" string="Cancel" states='confirmed,pending,generate' type="object" class="oe_highlight" confirm="Are you sure you want to do this?" groups="climbing_gym.group_superadmin"/>
+                        <button name="action_generate" string="Generate" states='pending' type="object" class="oe_highlight" groups="climbing_gym.group_superadmin"/>
+                        <button name="action_confirm" string="Confirm" states='generate' type="object" class="oe_highlight" />
                         <button name="action_pending" string="Revive" states='cancel' type="object" class="oe_highlight" />
                     </header>
                     <sheet>
@@ -35,6 +36,7 @@
                                     <field name="templates" widget="many2many_tags"/>
                                 </group>
                                 <group colspan="4">
+                                    <field name="events"/>
                                      <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
                                 </group>
                             </page>

@@ -22,18 +22,24 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts', 'website_event', 'website_event_snippet_calendar', 'website_event_sale',
-                'website_event_require_login', 'event_registration_partner_unique'],
+    'depends': ['base', 'contacts', 'website_event', 'website_event_snippet_calendar',
+                'website_event_require_login', 'event_registration_partner_unique', 'portal'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'data/member_access_package.xml',
+        'data/user_groups.xml',
+        'views/access_package.xml',
         'views/association_type.xml',
+        'views/custom_portal.xml',
         'views/event_generator.xml',
+        'views/event_templates.xml',
         'views/event_time_range.xml',
         'views/event_weekday.xml',
         'views/event_week_template.xml',
         'views/medical_certificate.xml',
+        'views/member_access_package.xml',
         'views/res_partner.xml',
         'views/website_sale_address_b2b.xml',
         'views/menu.xml',
