@@ -83,7 +83,7 @@ class MemberAccessPackage(models.Model):
     @api.multi
     def update_status_cron(self):
         """Cron job to keep everything tidy"""
-        arr: List[MemberAccessPackage] = self.env['climbing_gym.member_access_package'].search(
+        arr = self.env['climbing_gym.member_access_package'].search(
             [('state', '=', "active")])
         _today = datetime.now().date()
 
