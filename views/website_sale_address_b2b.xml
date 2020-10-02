@@ -24,5 +24,26 @@
 <!--        </template>-->
 
 
+<!--         <template id="view_order_form_button" inherit_id="sale.view_order_form" name="new button">-->
+<!--            <xpath expr="//field[@name='authorized_transaction_ids']" position="after"/>-->
+<!--                <button name="action_quotation_send" string="Generate MAP"  type="object" class="oe_highlight"/>-->
+
+<!--        </template>-->
+
+        <record id="sale_view_order_form2" model="ir.ui.view">
+            <field name="name">sale_view_order_form2</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='authorized_transaction_ids']" position="after">
+                        <button name="create_access_package" states='sale,done' string="Generate MAP" type="object" class="oe_highlight" groups="climbing_gym.group_superadmin" confirm="Are you sure you want to do this?"/>
+                    </xpath>
+
+                </data>
+            </field>
+        </record>
+
+
     </data>
 </odoo>

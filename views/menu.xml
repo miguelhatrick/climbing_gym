@@ -14,7 +14,7 @@
                   action="association_type_list_action"/>
 
 
-         <menuitem name="Member access package" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
+        <menuitem name="Member access package" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
                   action="member_access_package_list_action"/>
 
 

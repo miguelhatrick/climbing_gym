@@ -2,8 +2,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 from datetime import datetime
 import pdb
-
+import logging
 from odoo import fields, models, api
+
+_logger = logging.getLogger(__name__)
 
 
 class SaleOrder(models.Model):
@@ -11,9 +13,20 @@ class SaleOrder(models.Model):
 
     @api.multi
     def action_confirm(self):
-        # pdb.set_trace()
+        pdb.set_trace()
+        self.create_access_package()
+
+        return super(SaleOrder, self).action_confirm()
+
+    @api.multi
+    def create_access_package(self):
+        """Creates a new MAP based on the products"""
+
+        pdb.set_trace()
 
         aps = self.env['climbing_gym.access_package'].search([('state', '=', "confirmed")])
+
+        _logger.info('Begin MAM creation ... ')
 
         for order in self:
             for line in order.order_line:
@@ -21,13 +34,12 @@ class SaleOrder(models.Model):
                     if line.product_id in _access_package.products:
                         self._create_access_package(line, _access_package)
 
-        return super(SaleOrder, self).action_confirm()
-
     @api.one
     def _create_access_package(self, sale_order_line, access_package):
         # pdb.set_trace()
         _map_qty = int(sale_order_line.product_uom_qty)
         for x in range(0, _map_qty):
+            _logger.info('Creating MAM ... -> %s' % x)
 
             myevent = self.env['climbing_gym.member_access_package'].create({
                 'member': sale_order_line.order_id.partner_id.id,
