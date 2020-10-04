@@ -48,7 +48,7 @@ class MemberAccessPackage(models.Model):
             _map.date_start = False
             _map.date_finish = False
             _map.completed_date = False
-            _map.obs = _map.obs if not False else '' + "\r\n Revived on %s by %s" % (datetime.now(), str(self.env.user.name))
+            _map.obs = "%s\r\n Revived on %s by %s" % (_map.obs if _map.obs else '', datetime.now(), str(self.env.user.name))
             _map.state = 'pending'
 
     @api.multi
