@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-02 11:36+0000\n"
-"PO-Revision-Date: 2020-10-02 09:05-0300\n"
+"POT-Creation-Date: 2020-10-05 01:04+0000\n"
+"PO-Revision-Date: 2020-10-04 22:07-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: \n"
-"Language: es_AR\n"
+"Language: es\n"
 "X-Generator: Poedit 2.4.1\n"
 
 #. module: climbing_gym
@@ -73,7 +73,7 @@ msgstr "<strong>Confirmar reserva</strong>"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
 msgid "<strong>Email</strong>"
-msgstr "<strong>Email</strong>"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
@@ -139,6 +139,11 @@ msgid "Active"
 msgstr "Activo"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
+msgid "Already enrolled"
+msgstr "Ya inscrito"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__access_credits
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__access_credits
 msgid "Amount of access credits"
@@ -152,6 +157,7 @@ msgstr "Abril"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
 msgid "Are you sure you want to do this?"
 msgstr "Está seguro que desea hacer esto?"
 
@@ -182,6 +188,11 @@ msgstr "Asistente #%s"
 #: selection:climbing_gym.event_generator,month:0
 msgid "August"
 msgstr "Agosto"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_template
+msgid "Available seats:"
+msgstr "Lugares disponibles:"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__birthdate_date
@@ -226,33 +237,32 @@ msgstr "Tipo de asociación al Club de escalada"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_event_event__event_generator_id
 msgid "Climbing generator"
-msgstr "Climbing generator"
+msgstr ""
 
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_manager
 msgid "Climbing gym Manager"
-msgstr "Climbing gym Manager"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Climbing gym data"
-msgstr "Climbing gym data"
+msgstr ""
 
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_user
 msgid "Climbing gym employee"
-msgstr "Climbing gym employee"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__partner_id
 msgid "Climbing gym member"
-msgstr "Climbing gym member"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.module.category,name:climbing_gym.cg_module_management
-#: model:ir.module.category,name:climbing_gym.module_management
 msgid "Climbing gym security"
-msgstr "Climbing gym security"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
@@ -322,13 +332,12 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:105
+#: code:addons/climbing_gym/controllers/portal.py:107
 #, python-format
 msgid "Creation date"
 msgstr "Fecha de creación"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
 #: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
 msgid "Credits required"
 msgstr "Se precisan créditos"
@@ -447,7 +456,7 @@ msgid "Event Week Template"
 msgstr "Plantilla semanal de eventos"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:52
+#: code:addons/climbing_gym/controllers/portal.py:54
 #, python-format
 msgid "Event date"
 msgstr "Fecha del evento"
@@ -516,6 +525,11 @@ msgstr "General"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 msgid "Generate"
 msgstr "Generar"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
+msgid "Generate MAP"
+msgstr "Generar MAP"
 
 #. module: climbing_gym
 #: selection:climbing_gym.event_generator,state:0
@@ -696,10 +710,10 @@ msgstr ""
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_medical_certificate_valid
 #: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_medical_certificate_valid
 msgid "Medical certificate valid"
-msgstr ""
+msgstr "Certificado medico válido"
 
 #. module: climbing_gym
-#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__member
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__partner_id
 msgid "Member"
 msgstr "Miembro"
 
@@ -717,16 +731,18 @@ msgstr "Paquete de acceso de miembro"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 msgid "Member access package form"
 msgstr ""
+"Formulario \n"
+"Paquete de acceso de miembro"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_event_registration__member_access_package_id
 msgid "Member access package linked"
-msgstr ""
+msgstr "Paquete de acceso de miembro vinculado"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.member_access_package_list_action
 msgid "Member access package list"
-msgstr ""
+msgstr "Lista Paquete de acceso de miembro"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
@@ -776,7 +792,7 @@ msgstr "Noviembre"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__obs
 msgid "Obs"
-msgstr "Obs"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__obs
@@ -839,6 +855,11 @@ msgid "Products linked"
 msgstr "Productos vinculados"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_template
+msgid "Register Now"
+msgstr "Registrar Ahora"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__remaining_credits
 msgid "Remaining access credits"
 msgstr "Créditos de acceso restantes"
@@ -854,7 +875,7 @@ msgid "Reservations"
 msgstr "Reservas"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:53
+#: code:addons/climbing_gym/controllers/portal.py:55
 #, python-format
 msgid "Reserve Date"
 msgstr "Fecha de reserva"
@@ -905,11 +926,11 @@ msgid "Shop"
 msgstr "Tienda"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:54
-#: code:addons/climbing_gym/controllers/portal.py:106
+#: code:addons/climbing_gym/controllers/portal.py:56
+#: code:addons/climbing_gym/controllers/portal.py:108
 #, python-format
 msgid "Stage"
-msgstr "Etapa"
+msgstr "Estado"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_time_range__time_start
@@ -936,7 +957,7 @@ msgstr "Estado"
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_superadmin
 msgid "Super Administrator"
-msgstr "Super Administrator"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_generator__templates
@@ -992,7 +1013,6 @@ msgstr "Actualizar estado del paquete"
 
 #. module: climbing_gym
 #: model:ir.module.category,description:climbing_gym.cg_module_management
-#: model:ir.module.category,description:climbing_gym.module_management
 msgid "User access level for this module"
 msgstr "Nivel de acceso de usuario para este módulo"
 

@@ -20,18 +20,7 @@ attribute's filter.
 
 TODO
 =============
-Instalar
-
-
-Template ID: website_event.event_description_full
-POner qty : 1 siempre para los eventos de turnos
-
-registration -> new -> confirm
-
-Verificar si tiene Creditos para hacer la reserva
-
-Descontar un credito al hacer la reserva
-agregar un registro de vinculo de la reserva
+* change calendar to show available seats
 
 
 

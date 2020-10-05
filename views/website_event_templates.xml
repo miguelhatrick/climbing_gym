@@ -69,6 +69,25 @@
     </template>
 
 
+    <!-- Registration Templates -->
+    <template id="registration_template" inherit_id="website_event.registration_template">
+        <xpath expr="//div[@class='card-footer']" position="replace">
+            <div class="row">
+                <div class="col-lg-4 offset-lg-8 col-xl-3 offset-xl-9">
+                    Available seats:
+                        <t t-esc="event.seats_available"/>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block a-submit" t-attf-id="#{event.id}">
+                        Register Now
+                    </button>
+                </div>
+            </div>
+
+
+        </xpath>
+    </template>
+
+
+
 
 
 
