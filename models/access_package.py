@@ -11,6 +11,7 @@ from odoo.tools import image_resize_images, image_resize_image, base64
 class AccessPackage(models.Model):
     """Access packages for members"""
     _name = 'climbing_gym.access_package'
+    _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('confirmed', "Confirmed"), ('cancel', "Cancelled")]
 

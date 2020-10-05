@@ -12,6 +12,7 @@ _logger = logging.getLogger(__name__)
 class MemberAccessPackage(models.Model):
     """Member Access package"""
     _name = 'climbing_gym.member_access_package'
+    _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('completed', "Completed"),
                         ('cancel', "Cancelled")]
@@ -152,52 +153,55 @@ class MemberAccessPackage(models.Model):
         _logger.info('Looking for the first available member access package for ... -> %s' % _member.name)
 
         # search maps active
-        _map_arr = self.env['climbing_gym.member_access_package'].search(
+        _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
             [('state', '=', "active"), ('partner_id', '=', _member.id)]).filtered(
             lambda r, x=_location: x in r.locations)
 
         for _map in _map_arr:
             if _map.calculate_remaining_credits():
+                _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
                 return _map
 
         # search maps pending if not found
-        _map_arr = self.env['climbing_gym.member_access_package'].search(
+        _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
             [('state', '=', "pending"), ('partner_id', '=', _member.id)]).filtered(
             lambda r, x=_location: x in r.locations)
 
         for _map in _map_arr:
             if _map.calculate_remaining_credits():
+                _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
                 return _map;
 
+        _logger.info('NONE FOUND!')
         return False
 
-    # @api.constrains('driver_id')
-    # def _check_driver(self):
-    #     FleetVehicle = self.env['fleet.vehicle']
-    #     for record in self:
-    #         if record.driver_id in self:
-    #             vehicle_count = FleetVehicle.search_count(['driver_id', '=', record.driver_id])
-    #             if vehicle_count > 0:
-    #                 raise ValidationError("Driver already has a vehicle assigned")
-    #
+# @api.constrains('driver_id')
+# def _check_driver(self):
+#     FleetVehicle = self.env['fleet.vehicle']
+#     for record in self:
+#         if record.driver_id in self:
+#             vehicle_count = FleetVehicle.search_count(['driver_id', '=', record.driver_id])
+#             if vehicle_count > 0:
+#                 raise ValidationError("Driver already has a vehicle assigned")
+#
 
-    #
-    # @api.one
-    # def link_event_reservation(self, event_reservation):
-    #     # controlar si ya esta vinculado con otro map
-    #
-    #
-    #     _map = self.env['climbing_gym.member_access_package'].search([('event_registration_id', '=', "event_reservation")])
-    #
-    #
-    #     # recalcular creditos , ojo con los event.registration cancelados
-    #
-    #     # controlar que tenga creditos disponibles
-    #     if self.days_duration <= 0:
-    #         raise ValidationError('At least one duration must be > 0')
-    #     elif self.access_credits <= 0:
-    #         raise ValidationError('Credits must be > 0')
-    #
-    #
-    #     # agregar el vinculo
-    #     # actualizar los creditos
+#
+# @api.one
+# def link_event_reservation(self, event_reservation):
+#     # controlar si ya esta vinculado con otro map
+#
+#
+#     _map = self.env['climbing_gym.member_access_package'].search([('event_registration_id', '=', "event_reservation")])
+#
+#
+#     # recalcular creditos , ojo con los event.registration cancelados
+#
+#     # controlar que tenga creditos disponibles
+#     if self.days_duration <= 0:
+#         raise ValidationError('At least one duration must be > 0')
+#     elif self.access_credits <= 0:
+#         raise ValidationError('Credits must be > 0')
+#
+#
+#     # agregar el vinculo
+#     # actualizar los creditos
