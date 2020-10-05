@@ -150,27 +150,35 @@ class MemberAccessPackage(models.Model):
         if not len(_member) or not len(_location):
             raise ValidationError('Partner or Location null in creation (get_first_available)')
 
-        _logger.info('Looking for the first available member access package for ... -> %s' % _member.name)
+        try:
+            _logger.info('Looking for the first available member access package for %s, %s location:' % (_member.name, _location.id))
 
-        # search maps active
-        _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
-            [('state', '=', "active"), ('partner_id', '=', _member.id)]).filtered(
-            lambda r, x=_location: x in r.locations)
+            # search maps active
+            _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
+                [('state', '=', "active"), ('partner_id', '=', _member.id)]).filtered(
+                lambda r, x=_location: x in r.locations)
 
-        for _map in _map_arr:
-            if _map.calculate_remaining_credits():
-                _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
-                return _map
+            for _map in _map_arr:
+                if _map.calculate_remaining_credits():
+                    _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
+                    return _map
 
-        # search maps pending if not found
-        _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
-            [('state', '=', "pending"), ('partner_id', '=', _member.id)]).filtered(
-            lambda r, x=_location: x in r.locations)
+            _logger.info('No active packages found.. looking for pending ...')
 
-        for _map in _map_arr:
-            if _map.calculate_remaining_credits():
-                _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
-                return _map;
+            # search maps pending if not found
+            _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
+                [('state', '=', "pending"), ('partner_id', '=', _member.id)]).filtered(
+                lambda r, x=_location: x in r.locations)
+
+            for _map in _map_arr:
+                if _map.calculate_remaining_credits():
+                    _logger.info('Found ... -> ID: %d Credits: %d' % (_map.id, _map.remaining_credits))
+                    return _map
+
+        except Exception as e:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(e).__name__, e.args)
+            _logger.info('Exception On  get_first_available : %s' % message)
 
         _logger.info('NONE FOUND!')
         return False
