@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 class MemberAccessPackage(models.Model):
     """Member Access package"""
     _name = 'climbing_gym.member_access_package'
-    _inherit = ['mail.thread']
+    # _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('completed', "Completed"),
                         ('cancel', "Cancelled")]
