@@ -20,7 +20,7 @@
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Administration',
-    'version': '0.3',
+    'version': '0.4',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'contacts', 'website_event', 'website_event_snippet_calendar', 'event_registration_partner_unique', 'portal'],
