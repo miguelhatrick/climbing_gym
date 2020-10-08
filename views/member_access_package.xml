@@ -19,7 +19,7 @@
                 <form string="Member access package form">
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="pending,active,completed,cancel"
-                               statusbar_colors='{"confirmed":"blue", "cancel":"red"}'/>
+                              />
                         <button name="action_cancel" string="Cancel" states='active,pending' type="object"
                                 class="oe_highlight" confirm="Are you sure you want to do this?"/>
                         <button name="action_completed" string="Set completed" states='active' type="object"

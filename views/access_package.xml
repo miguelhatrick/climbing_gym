@@ -18,10 +18,9 @@
             <field name="arch" type="xml">
                 <form string="Access package form">
                     <header>
-                        <field name="state" widget="statusbar" statusbar_visible="confirmed,pending,cancel"
-                               statusbar_colors='{"confirmed":"blue", "cancel":"red"}'/>
+                        <field name="state" widget="statusbar" statusbar_visible="confirmed,pending,cancel"/>
                         <button name="action_cancel" string="Cancel" states='confirmed,pending' type="object"
-                                class="oe_highlight"/>
+                                class="oe_highlight" confirm="Are you sure you want to do this?"/>
                         <button name="action_confirm" string="Confirm" states='pending' type="object"
                                 class="oe_highlight"/>
                         <button name="action_pending" string="Revive" states='cancel' type="object"
@@ -34,6 +33,7 @@
                         <notebook>
                             <page string="Data">
                                 <group col="4" colspan="4">
+                                    <field name="package_qty"/>
                                     <field name="access_credits"/>
                                     <field name="days_duration"/>
                                     <field name="locations" widget="many2many_tags"/>
@@ -46,10 +46,10 @@
                             </page>
                         </notebook>
                     </sheet>
-<!--                    <div class="oe_chatter">-->
-<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
-<!--                        <field name="message_ids" widget="mail_thread"/>-->
-<!--                    </div>-->
+                    <!--                    <div class="oe_chatter">-->
+                    <!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+                    <!--                        <field name="message_ids" widget="mail_thread"/>-->
+                    <!--                    </div>-->
                 </form>
             </field>
         </record>
@@ -60,6 +60,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="package_qty"/>
                     <field name="access_credits"/>
                     <field name="days_duration"/>
                     <field name="state"/>

@@ -94,7 +94,6 @@ class EventGenerator(models.Model):
         # 'website_published': false,
         # 'active': '0',
 
-
     def create_event(self, day, template):
         for hourpair in template.time_ranges:
             _tz = pytz.timezone(template.date_tz)
@@ -103,8 +102,9 @@ class EventGenerator(models.Model):
             date_to = _tz.localize(datetime.combine(day, datetime.min.time()) + timedelta(hours=hourpair.time_end))
 
             # DESCRIPTION? Location + Date + from -> to?
-            event_name = '%s %s %s' %(template.location.name, str(timedelta(hours=hourpair.time_start)), str(timedelta(hours=hourpair.time_end)))
-            # ticket_sale_deadline = day.replace(tzinfo=_tz)
+            event_name = '%s %s %s' %(template.title,
+                                      ':'.join(str(timedelta(hours=hourpair.time_start)).split(':')[:2]),
+                                      ':'.join(str(timedelta(hours=hourpair.time_end)).split(':')[:2]))
 
             myevent = self.env['event.event'].create({
                 'is_online': False,

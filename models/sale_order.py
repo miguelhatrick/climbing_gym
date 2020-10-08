@@ -37,9 +37,12 @@ class SaleOrder(models.Model):
     @api.one
     def _create_access_package(self, sale_order_line, access_package):
         # pdb.set_trace()
-        _map_qty = int(sale_order_line.product_uom_qty)
+
+        # Access package can have its own multiplier.
+        _map_qty = int(sale_order_line.product_uom_qty) * access_package.package_qty
+
         for x in range(0, _map_qty):
-            _logger.info('Creating MAM ... -> %s' % x)
+            _logger.info('Creating MAM ... -> %s' % (x + 1))
 
             myevent = self.env['climbing_gym.member_access_package'].create({
                 'partner_id': sale_order_line.order_id.partner_id.id,

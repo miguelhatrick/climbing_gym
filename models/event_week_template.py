@@ -14,7 +14,8 @@ class EventWeekTemplate(models.Model):
     _name = 'climbing_gym.event_week_template'
 
     name = fields.Char("Name", required=True)
-    description = fields.Text()
+    title = fields.Char(string='Title for the event', required=True, default='')
+    description = fields.Text(string='Description of the current template')
 
     status_selection = [('active', "Active"), ('cancel', "Disabled")]
 

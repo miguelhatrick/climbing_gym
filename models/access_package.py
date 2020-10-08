@@ -20,6 +20,8 @@ class AccessPackage(models.Model):
     access_credits = fields.Integer('Amount of access credits', default=0, required=True)
     days_duration = fields.Integer('Package duration (Days)', default=0, required=True)
     locations = fields.Many2many('res.partner', string='Access Locations', readonly=False, required=True)
+
+    package_qty = fields.Integer(string='Package multiplier', required=True, default=1)
     products = fields.Many2many('product.product', string='Products affected', required=True)
 
     state = fields.Selection(status_selection, 'Status', default='pending')
@@ -36,11 +38,13 @@ class AccessPackage(models.Model):
     def action_cancel(self):
         self.write({'state': 'cancel'})
 
-    @api.constrains('days_duration' ,'access_credits')
+    @api.constrains('days_duration', 'access_credits', 'product_qty')
     def _data_check_date(self):
         if self.days_duration <= 0:
             raise ValidationError('At least one duration must be > 0')
         elif self.access_credits <= 0:
             raise ValidationError('Credits must be > 0')
+        elif self.package_qty <= 0:
+            raise ValidationError('Package qty multiplier must be > 0')
         else:
             pass

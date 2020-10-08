@@ -25,8 +25,8 @@
 
         <menuitem name="Time Range" id="climbing_gym.event_time_range" parent="climbing_gym.menu_2"
                   action="event_time_range_list_action"/>
-        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"
-                  action="event_weekday_list_action"/>
+<!--        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"-->
+<!--                  action="event_weekday_list_action"/>-->
         <menuitem name="Event Week Template" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
                   action="event_week_template_list_action"/>
 

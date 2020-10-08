@@ -18,8 +18,8 @@
             <field name="arch" type="xml">
                 <form string="Week event template form">
                     <header>
-                        <field name="state" widget="statusbar" statusbar_visible="active,cancel" statusbar_colors='{"confirmed":"blue", "cancel":"red"}'/>
-                        <button name="action_cancel" string="Cancel" states='active' type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="active,cancel"/>
+                        <button name="action_cancel" string="Cancel" states='active' type="object" class="oe_highlight" confirm="Are you sure you want to do this?"/>
                         <button name="action_active" string="Activate" states='cancel' type="object" class="oe_highlight" />
                     </header>
                     <sheet>
@@ -29,6 +29,7 @@
                         <notebook>
                             <page string="Data">
                                 <group col="4" colspan="4">
+                                    <field name="title"/>
                                     <field name="description"/>
                                     <field name="website"/>
                                     <field name="event_type_id"/>
@@ -57,6 +58,7 @@
             <field name="arch" type="xml">
                 <tree>
                     <field name="name"/>
+                    <field name="title"/>
                     <field name="location"/>
                     <field name="seats_availability"/>
                     <field name="state"/>
@@ -70,6 +72,7 @@
             <field name="arch" type="xml">
                 <search>
                     <field name="name"/>
+                    <field name="title"/>
                     <field name="location"/>
                     <field name="state"/>
                     <filter string='Confirmed' name='filter_active' domain="[('state','=','active')]"/>

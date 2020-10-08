@@ -18,8 +18,8 @@
             <field name="arch" type="xml">
                 <form string="Medical certificate form">
                     <header>
-                        <field name="state" widget="statusbar" statusbar_visible="confirmed,pending,cancel" statusbar_colors='{"confirmed":"blue", "cancel":"red"}'/>
-                        <button name="action_cancel" string="Cancel" states='confirmed,pending' type="object" class="oe_highlight" />
+                        <field name="state" widget="statusbar" statusbar_visible="confirmed,pending,cancel"/>
+                        <button name="action_cancel" string="Cancel" states='confirmed,pending' type="object" class="oe_highlight"  confirm="Are you sure you want to do this?"/>
                         <button name="action_confirm" string="Confirm" states='pending' type="object" class="oe_highlight" />
                         <button name="action_pending" string="Revive" states='cancel' type="object" class="oe_highlight" />
                     </header>

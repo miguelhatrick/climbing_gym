@@ -23,7 +23,7 @@
     'version': '0.4',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'contacts', 'website_event', 'website_event_snippet_calendar', 'event_registration_partner_unique', 'portal'],
+    'depends': ['base', 'mail', 'contacts', 'website_event', 'website_event_snippet_calendar', 'event_registration_partner_unique', 'portal'],
 
     # always loaded
     'data': [
