@@ -4,6 +4,7 @@ from odoo import fields, models
 
 
 class EventEvent(models.Model):
+    """Extension of the class Event"""
     _inherit = 'event.event'
 
     event_generator_id = fields.Many2one('climbing_gym.event_generator', string='Climbing generator')

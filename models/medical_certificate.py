@@ -11,9 +11,9 @@ from odoo.tools import image_resize_images, image_resize_image, base64
 class MedicalCertificate(models.Model):
     """Medical certificates of each climbing gym member"""
     _name = 'climbing_gym.medical_certificate'
+    _description = 'Medical certificates of each climbing gym member'
 
     status_selection = [('pending', "Pending"), ('confirmed', "Confirmed"), ('cancel', "Cancelled")]
-
 
     partner_id = fields.Many2one(
         'res.partner', string='Climbing gym member', readonly=False, required=True)

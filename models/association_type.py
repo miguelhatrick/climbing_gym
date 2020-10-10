@@ -5,8 +5,9 @@ from odoo import models, fields, api
 
 
 class AssociationType(models.Model):
-    """Kind of association a partner has to the climbing gym."""
+    """Type of association a partner has to the climbing gym."""
     _name = 'climbing_gym.association_type'
+    _description = "Type of association"
 
     name = fields.Char()
     description = fields.Text()

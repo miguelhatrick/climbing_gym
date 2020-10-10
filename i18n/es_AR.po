@@ -1,21 +1,19 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* climbing_gym
+#	* climbing_gym
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-05 01:04+0000\n"
-"PO-Revision-Date: 2020-10-04 22:07-0300\n"
+"POT-Creation-Date: 2020-10-08 21:12+0000\n"
+"PO-Revision-Date: 2020-10-08 21:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
+"Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
-"Language: es\n"
-"X-Generator: Poedit 2.4.1\n"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
@@ -155,7 +153,10 @@ msgid "April"
 msgstr "Abril"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.event_week_template_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
 msgid "Are you sure you want to do this?"
@@ -376,11 +377,15 @@ msgstr "Diciembre"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__description
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_association_type__description
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_generator__description
-#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__description
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
 msgid "Description"
 msgstr "Descripción"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__description
+msgid "Description of the current template"
+msgstr ""
 
 #. module: climbing_gym
 #: selection:climbing_gym.event_time_range,state:0
@@ -519,7 +524,7 @@ msgstr "Febrero"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
@@ -730,8 +735,7 @@ msgstr "Paquete de acceso de miembro"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 msgid "Member access package form"
-msgstr ""
-"Formulario \n"
+msgstr "Formulario \n"
 "Paquete de acceso de miembro"
 
 #. module: climbing_gym
@@ -819,6 +823,11 @@ msgstr "Duración del paquete (días)"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__date_finish
 msgid "Package finish date"
 msgstr "Fecha de fin del paquete"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__package_qty
+msgid "Package multiplier"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__date_start
@@ -930,7 +939,7 @@ msgstr "Tienda"
 #: code:addons/climbing_gym/controllers/portal.py:108
 #, python-format
 msgid "Stage"
-msgstr "Estado"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_time_range__time_start
@@ -1000,6 +1009,11 @@ msgid "Timezone"
 msgstr "Zona horaria"
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__title
+msgid "Title for the event"
+msgstr ""
+
+#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
 msgid "Total credits/Available credits"
 msgstr "Créditos totales/Disponibles"
@@ -1030,11 +1044,6 @@ msgstr ""
 #: model:ir.actions.act_window,name:climbing_gym.event_week_template_list_action
 msgid "Week event template list"
 msgstr ""
-
-#. module: climbing_gym
-#: model:ir.ui.menu,name:climbing_gym.event_weekday
-msgid "Weekday"
-msgstr "Dia de la semana"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_weekday__name
@@ -1115,3 +1124,4 @@ msgstr ""
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__responsible
 msgid "responsible"
 msgstr "responsable"
+

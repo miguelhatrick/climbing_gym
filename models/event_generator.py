@@ -9,8 +9,9 @@ from odoo import models, fields, api
 
 
 class EventGenerator(models.Model):
-    """Event generator using templates"""
+    """Event generator that uses templates"""
     _name = 'climbing_gym.event_generator'
+    _description = 'Event generator that uses templates'
     # _inherit = ['mail.thread']
 
     name = fields.Char("Name", required=True)

@@ -5,6 +5,7 @@ from odoo.exceptions import ValidationError
 
 
 class EventRegistration(models.Model):
+    """Extension of the event registration, checks for member credits in order to allow registration"""
     _inherit = 'event.registration'
 
     member_access_package_id = fields.Many2one('climbing_gym.member_access_package',

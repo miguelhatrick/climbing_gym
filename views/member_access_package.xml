@@ -52,7 +52,7 @@
                                 </group>
                                 <group col="4" colspan="2" string="Access package">
                                     <field name="access_package"
-                                           options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     <field name="access_credits"/>
                                     <field name="days_duration"/>
                                     <field name="locations" widget="many2many_tags"

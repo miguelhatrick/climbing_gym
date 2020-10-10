@@ -12,6 +12,7 @@ import pytz
 class EventWeekTemplate(models.Model):
     """Week template for event creation"""
     _name = 'climbing_gym.event_week_template'
+    _description = 'Week template for event creation'
 
     name = fields.Char("Name", required=True)
     title = fields.Char(string='Title for the event', required=True, default='')

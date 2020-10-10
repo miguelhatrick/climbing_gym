@@ -8,14 +8,17 @@
     <!-- menu categories -->
 
     <menuitem name="Members" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
-        <menuitem name="Medical Certificate" id="climbing_gym.medical_cert" parent="climbing_gym.menu_1"
+        <menuitem name="Medical certificates" id="climbing_gym.medical_cert" parent="climbing_gym.menu_1"
                   action="medical_certificate_list_action"/>
-        <menuitem name="Association Type" id="climbing_gym.association_type" parent="climbing_gym.menu_1"
+        <menuitem name="Association types" id="climbing_gym.association_type" parent="climbing_gym.menu_1"
                   action="association_type_list_action"/>
-
-
-        <menuitem name="Member access package" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
+        <menuitem name="Member access packages" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
                   action="member_access_package_list_action"/>
+
+         <menuitem name="Memberships" id="climbing_gym.membership" parent="climbing_gym.menu_1"
+                  action="membership_list_action"/>
+        <menuitem name="Members" id="climbing_gym.member_membership" parent="climbing_gym.menu_1"
+                  action="member_membership_list_action"/>
 
 
 
@@ -23,35 +26,15 @@
         <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2"
                   action="event_generator_list_action"/>
 
-        <menuitem name="Time Range" id="climbing_gym.event_time_range" parent="climbing_gym.menu_2"
+        <menuitem name="Time ranges" id="climbing_gym.event_time_range" parent="climbing_gym.menu_2"
                   action="event_time_range_list_action"/>
 <!--        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"-->
 <!--                  action="event_weekday_list_action"/>-->
-        <menuitem name="Event Week Template" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
+        <menuitem name="Event week templates" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
                   action="event_week_template_list_action"/>
 
-         <menuitem name="Access Package" id="climbing_gym.access_package" parent="climbing_gym.menu_2"
+         <menuitem name="Access packages" id="climbing_gym.access_package" parent="climbing_gym.menu_2"
                   action="access_package_list_action"/>
-
-
-
-    <!-- actions -->
-
-
-
-
-
-
-<!--
-              ir.actions.view,1172
-
-              DELETE FROM public.ir_ui_menu WHERE id = 242
--->
-
-
-
-
-
 
 
     </data>

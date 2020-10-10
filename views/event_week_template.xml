@@ -40,7 +40,7 @@
                                     <field name="seats_availability"/>
                                 </group>
                                 <group colspan="4">
-                                    <field name="weekdays" widget="many2many_tags"/>
+                                    <field name="weekdays" widget="many2many_tags" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
                                     <field name="time_ranges" widget="many2many_tags"/>
                                     <field name="date_tz"/>
                                      <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->

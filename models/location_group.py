@@ -4,7 +4,9 @@ from odoo import models, fields, api
 
 
 class location_group(models.Model):
+    """I think i don't use this....."""
     _name = 'climbing_gym.location_group'
+    _description = 'I think i don\'t use this.....'
 
     name = fields.Char()
     description = fields.Text()

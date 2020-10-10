@@ -7,8 +7,9 @@ from odoo.exceptions import ValidationError
 
 
 class EventTimeRange(models.Model):
-    """Weekdays used for auto populating the event table"""
+    """Time ranges used for auto populating the event table"""
     _name = 'climbing_gym.event_time_range'
+    _description = 'Time ranges used for auto populating the event table'
 
     status_selection = [('active', "Active"), ('cancel', "Disabled")]
 
