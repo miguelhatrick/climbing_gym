@@ -51,11 +51,15 @@ class MemberMembershipPackage(models.Model):
             _map.activated_date = datetime.now()
             _map.state = 'active'
 
+            # recalculate member membership status
+            _map.member_membership_id.calculate_due_date()
+
     @api.multi
     def action_cancel(self):
         for _map in self:
             _map.state = 'cancel'
             _map.cancelled_date = datetime.now()
+            _map.member_membership_id.calculate_due_date()
 
     def _generate_name(self):
         # pdb.set_trace()

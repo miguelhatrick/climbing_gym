@@ -18,7 +18,7 @@
             <field name="arch" type="xml">
                 <form string="Member membership">
                     <header>
-                        <field name="state" widget="statusbar" statusbar_visible="pending,active,completed,cancel"
+                        <field name="state" widget="statusbar" statusbar_visible="pending,active,overdue,cancel"
                         />
                         <button name="action_cancel" string="Cancel" states='active,pending' type="object"
                                 class="oe_highlight" confirm="Are you sure you want to do this?"/>
@@ -58,6 +58,9 @@
                                 <group col="4" colspan="2" string="Membership packages">
                                     <field name="mmp_ids" nolabel="1"/>
                                 </group>
+                                <group col="4" colspan="2" string="Medical Certificates">
+                                    <field name="partner_id" nolabel="1"/>
+                                </group>
                             </page>
                         </notebook>
                     </sheet>
@@ -93,6 +96,7 @@
                     <field name="membership_id"/>
                     <field name="state"/>
                     <filter string='Active' name='filter_active' domain="[('state','=','active')]"/>
+                    <filter string='Overdue' name='filter_overdue' domain="[('state','=','overdue')]"/>
                     <group expand="0" string="Group By">
                         <filter name="group_status" string="Status" context="{'group_by':'state'}"/>
                         <filter name="group_membership" string="Membership" context="{'group_by':'membership_id'}"/>

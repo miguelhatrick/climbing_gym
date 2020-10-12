@@ -3,8 +3,11 @@ import pdb
 from datetime import datetime
 
 import odoo
+from addons_custom.climbing_gym.models.member_membership_package import MemberMembershipPackage
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+from datetime import *
+from dateutil.relativedelta import *
 
 
 class MemberMembership(models.Model):
@@ -53,8 +56,6 @@ class MemberMembership(models.Model):
                                           self.member_internal_id,
                                           self.partner_id.name)
 
-
-
     @api.onchange('membership_id')
     def _get_last_membership_id(self):
         """Retrieves the last ID from the DB and does a + 1"""
@@ -76,6 +77,11 @@ class MemberMembership(models.Model):
             _map.state = 'pending'
 
     @api.multi
+    def action_overdue(self):
+        for _map in self:
+            _map.state = 'overdue'
+
+    @api.multi
     def action_active(self):
         for _map in self:
             # Check that we can activate it
@@ -88,10 +94,12 @@ class MemberMembership(models.Model):
 
             if not _map.initial_due_date:
                 _map.initial_due_date = today
-
-            # TODO: Calculate due date
+                _map.current_due_date = today
 
             _map.state = 'active'
+
+            # recalculate just in case
+            _map.calculate_due_date()
 
     @api.multi
     def action_cancel(self):
@@ -100,21 +108,34 @@ class MemberMembership(models.Model):
             _map.canceled_date = today
             _map.state = 'cancel'
 
+    def calculate_status_due_date(self):
+        # pdb.set_trace()
+        if self.current_due_date < datetime.now().date() and self.state == 'active':
+            self.action_overdue()
+        elif self.current_due_date >= datetime.now().date() and self.state == 'overdue':
+            self.action_active()
+
+    @api.onchange('initial_due_date')
+    def _onchange_initial_due_date(self):
+        self.calculate_due_date()
+
     @api.onchange('membership_id', 'partner_id', 'state')
     def onchange_identity_ids(self):
-        """This disallows two active memberships of the same kind to be active"""
-        if not self.membership_id or not self.partner_id:
-            return
+        # TODO: FIX THIS, it doesnt filter the current member!
+        for _mp in self:
+            """This disallows two active memberships of the same kind to be active"""
+            if not _mp.membership_id or not _mp.partner_id:
+                return
 
-        _id = -1 if type(self.id) == odoo.models.NewId else self.id
-        _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
-            ('state', 'in', ['active', 'overdue']),
-            ('partner_id', 'in', self.partner_id.ids),
-            ('membership_id', 'in', self.membership_id.ids),
-            ('id', '!=', _id)])
+            _id = -1 if type(_mp.id) == odoo.models.NewId else _mp.id
+            _member_ids = _mp.sudo().env['climbing_gym.member_membership'].search([
+                ('state', 'in', ['active', 'overdue']),
+                ('partner_id', 'in', _mp.partner_id.ids),
+                ('membership_id', 'in', _mp.membership_id.ids),
+                ('id', '!=', _id)])
 
-        if len(_member_ids) > 0:
-            raise ValidationError("That contact is already an active member!")
+            if len(_member_ids) > 0:
+                raise ValidationError("That contact is already an active member!")
 
     @api.onchange('member_internal_id', 'membership_id')
     def onchange_member_internal_id(self):
@@ -131,22 +152,43 @@ class MemberMembership(models.Model):
         if len(_member_ids) > 0:
             raise ValidationError("That internal ID has been used already!")
 
-    # TODO : CALCULATE MEMBERSHIP DUE DATE
-
-    # TODO : UPDATE DUE STATUS
-
     @api.multi
-    def write(self, values):
-        """Ensure that we have an updated name"""
+    def calculate_due_date(self):
+        """Calculates the due date of the membership and updates the corresponding fields"""
+        _mm: MemberMembership
+        for _mm in self:
+            _mm._calculate_due_date()
 
-        return super(MemberMembership, self).write(values)
+    @api.one
+    def _calculate_due_date(self):
+        _due_date = self.initial_due_date
 
+        _mmp: MemberMembershipPackage
+        for _mmp in self.mmp_ids.filtered(lambda r: r.state == 'active'):
+            _years = _mmp.interval_length if _mmp.interval_unit == 'years' else 0
+            _months = _mmp.interval_length if _mmp.interval_unit == 'months' else 0
+            _days = _mmp.interval_length if _mmp.interval_unit == 'days' else 0
 
-    # @api.constrains('interval_length', 'package_qty')
-    # def _data_check_date(self):
-    #     if self.interval_length <= 0:
-    #         raise ValidationError('Interval must be > 0')
-    #     elif self.package_qty <= 0:
-    #         raise ValidationError('Package quantity must be > 0')
-    #     else:
-    #         pass
+            _due_date = _due_date + relativedelta(years=_years,
+                                                  months=_months,
+                                                  days=_days)
+
+        self.current_due_date = _due_date
+        self.calculate_status_due_date()
+
+        @api.multi
+        def write(self, values):
+            """Ensure that we have an updated name"""
+
+            return super(MemberMembership, self).write(values)
+
+        # @api.constrains('interval_length', 'package_qty')
+        # def _data_check_date(self):
+        #     if self.interval_length <= 0:
+        #         raise ValidationError('Interval must be > 0')
+        #     elif self.package_qty <= 0:
+        #         raise ValidationError('Package quantity must be > 0')
+        #     else:
+        #         pass
+
+    # TODO: Cron function to process all due memberships
