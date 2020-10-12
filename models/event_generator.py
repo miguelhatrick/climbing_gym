@@ -12,7 +12,7 @@ class EventGenerator(models.Model):
     """Event generator that uses templates"""
     _name = 'climbing_gym.event_generator'
     _description = 'Event generator that uses templates'
-    # _inherit = ['mail.thread']
+    _inherit = ['mail.thread']
 
     name = fields.Char("Name", required=True)
     description = fields.Text()
@@ -37,7 +37,7 @@ class EventGenerator(models.Model):
                                  column1='eg_id',
                                  column2='ewt_id',
                                  string='Templates', required=True)
-    state = fields.Selection(status_selection, 'Status', default='pending')
+    state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     events = fields.One2many(
         'event.event', inverse_name='event_generator_id', string='Events generated',

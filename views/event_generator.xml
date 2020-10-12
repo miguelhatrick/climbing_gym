@@ -5,8 +5,8 @@
             <field name="res_model">climbing_gym.event_generator</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
-            <field name="context">{'search_default_filter_confirmed': 1}</field>
-         <!--   <field name="search_view_id" ref="event_generator_search_view"/> -->
+            <field name="context">{'search_default_filter_process': 1}</field>
+            <!--   <field name="search_view_id" ref="event_generator_search_view"/> -->
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">No records yet!</p>
             </field>
@@ -19,10 +19,15 @@
                 <form string="Event generator form">
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="pending,generate,confirmed,cancel"/>
-                        <button name="action_cancel" string="Cancel" states='confirmed,pending,generate' type="object" class="oe_highlight" confirm="Are you sure you want to do this?" groups="climbing_gym.group_superadmin"/>
-                        <button name="action_generate" string="Generate" states='pending' type="object" class="oe_highlight" groups="climbing_gym.group_superadmin"/>
-                        <button name="action_confirm" string="Confirm" states='generate' type="object" class="oe_highlight" />
-                        <button name="action_pending" string="Revive" states='cancel' type="object" class="oe_highlight" />
+                        <button name="action_cancel" string="Cancel" states='confirmed,pending,generate' type="object"
+                                class="oe_highlight" confirm="Are you sure you want to do this?"
+                                groups="climbing_gym.group_superadmin"/>
+                        <button name="action_generate" string="Generate" states='pending' type="object"
+                                class="oe_highlight" groups="climbing_gym.group_superadmin"/>
+                        <button name="action_confirm" string="Confirm" states='generate' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_pending" string="Revive" states='cancel' type="object"
+                                class="oe_highlight"/>
                     </header>
                     <sheet>
                         <h1>
@@ -30,22 +35,25 @@
                         </h1>
                         <notebook>
                             <page string="Data">
-                                <group col="4" colspan="4">
-                                    <field name="month"/>
-                                    <field name="year"/>
-                                    <field name="templates" widget="many2many_tags"/>
+                                <group>
+                                    <group string="General">
+                                        <field name="month"/>
+                                        <field name="year"/>
+                                        <field name="templates" widget="many2many_tags"/>
+                                    </group>
+
                                 </group>
-                                <group colspan="4">
-                                    <field name="events"/>
-                                     <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
-                                </group>
+                                 <group string="Events">
+                                        <field name="events" nolabel="1"/>
+                                        <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
+                                    </group>
                             </page>
                         </notebook>
                     </sheet>
-<!--                     <div class="oe_chatter">-->
-<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
-<!--                        <field name="message_ids" widget="mail_thread"/>-->
-<!--                    </div>-->
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
@@ -55,6 +63,7 @@
             <field name="model">climbing_gym.event_generator</field>
             <field name="arch" type="xml">
                 <tree>
+                    <field name="id"/>
                     <field name="name"/>
                     <field name="month"/>
                     <field name="year"/>
@@ -68,13 +77,15 @@
             <field name="model">climbing_gym.event_generator</field>
             <field name="arch" type="xml">
                 <search>
+                    <field name="id"/>
                     <field name="name"/>
                     <field name="month"/>
                     <field name="year"/>
                     <field name="state"/>
-                    <filter string='Confirmed' name='filter_active' domain="[('state','=','pending')]"/>
+                    <filter string='In process' name='filter_process' domain="[('state','in',['pending','generate'])]"/>
+                    <filter string='Confirmed' name='filter_active' domain="[('state','in',['confirmed'])]"/>
                     <group expand="0" string="Group By">
-                        <filter name="group_confirmed" string="Status" context="{'group_by':'state'}"/>
+                        <filter name="group_status" string="Status" context="{'group_by':'state'}"/>
                     </group>
                 </search>
             </field>
