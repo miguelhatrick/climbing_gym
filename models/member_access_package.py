@@ -3,6 +3,8 @@ import logging
 import pdb
 from datetime import datetime, timedelta, date, timezone
 from typing import List
+
+import odoo
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -13,27 +15,28 @@ class MemberAccessPackage(models.Model):
     """Member Access package"""
     _name = 'climbing_gym.member_access_package'
     _description = 'Member Access package'
-    # _inherit = ['mail.thread']
+    _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('completed', "Completed"),
                         ('cancel', "Cancelled")]
 
-    # name = fields.Char('Name', required=True)
-    partner_id = fields.Many2one('res.partner', string='Member')
+    name = fields.Char('Name', compute='_generate_name')
+    partner_id = fields.Many2one('res.partner', string='Member', track_visibility=True)
 
     obs = fields.Text('Observations')
 
-    access_credits = fields.Integer('Amount of access credits', default=0, required=True)
-    remaining_credits = fields.Integer('Remaining access credits', default=0, required=True)
+    access_credits = fields.Integer('Amount of access credits', default=0, required=True, track_visibility=True)
+    remaining_credits = fields.Integer('Remaining access credits', default=0, required=True, readonly=True)
 
     activated_date = fields.Datetime('Activation date', readonly=True)
     completed_date = fields.Datetime('Completed date', readonly=True)
 
-    date_start = fields.Date('Package start date')
-    date_finish = fields.Date('Package finish date')
+    date_start = fields.Date('Package start date', track_visibility=True)
+    date_finish = fields.Date('Package finish date', track_visibility=True)
 
-    days_duration = fields.Integer('Package duration (Days)', default=0, required=True)
-    locations = fields.Many2many('res.partner', string='Access Locations', readonly=False, required=True)
+    days_duration = fields.Integer('Package duration (Days)', default=0, required=True, track_visibility=True)
+    locations = fields.Many2many('res.partner', string='Access Locations', readonly=False, required=True,
+                                 track_visibility=True)
     product = fields.Many2one('product.product', string='Products linked')
     sale_order_line = fields.Many2one('sale.order.line', string='Linked Sale order line')
     access_package = fields.Many2one('climbing_gym.access_package', string='Linked access package', required=True)
@@ -41,7 +44,7 @@ class MemberAccessPackage(models.Model):
     event_registrations = fields.One2many('event.registration', inverse_name='member_access_package_id',
                                           string='Events attended', readonly=True)
 
-    state = fields.Selection(status_selection, 'Status', default='pending')
+    state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
     def action_revive(self):
@@ -68,18 +71,18 @@ class MemberAccessPackage(models.Model):
         for _map in self:
             _map.completed_date = datetime.now()
             _map.state = 'completed'
-        # self.write({'state': 'completed'})
 
     @api.multi
     def action_cancel(self):
-        self.write({'state': 'cancel'})
+        for _map in self:
+            _map.state = 'cancel'
 
     @api.constrains('days_duration', 'access_credits')
     def _data_check_date(self):
         if self.days_duration <= 0:
-            raise ValidationError('Duration must be > 0')
+            raise ValidationError('%s must be > 0' % 'Duration')
         elif self.access_credits <= 0:
-            raise ValidationError('Credits must be > 0')
+            raise ValidationError('%s must be > 0' % 'Credits')
         else:
             pass
 
@@ -95,10 +98,19 @@ class MemberAccessPackage(models.Model):
             if _map.date_finish < _today or _map.remaining_credits <= 0:
                 _map.action_completed()
 
+    def _generate_name(self):
+        # pdb.set_trace()
+        for _map in self:
+            _map.name = "MAP-%s" % (_map.id if _map.id else '')
+
     def calculate_remaining_credits(self):
+        # fix for creation of a new record
+        if self.access_credits == 0 and type(self.id) == odoo.models.NewId:
+            return 0
+
+        # pdb.set_trace()
         # check for only confirmed or assisted by state
-        self.remaining_credits = self.access_credits - len(
-            self.event_registrations.filtered(lambda r: r.state == 'open' or r.state == 'done'))
+        self.remaining_credits = self.access_credits - len(self.event_registrations.filtered(lambda r: r.state == 'open' or r.state == 'done'))
 
         if self.state == 'pending' and self.remaining_credits != self.access_credits:
             self.action_active()
@@ -152,7 +164,8 @@ class MemberAccessPackage(models.Model):
             raise ValidationError('Partner or Location null in creation (get_first_available)')
 
         try:
-            _logger.info('Looking for the first available member access package for %s, %s location:' % (_member.name, _location.id))
+            _logger.info('Looking for the first available member access package for %s, %s location:' % (
+            _member.name, _location.id))
 
             # search maps active
             _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(

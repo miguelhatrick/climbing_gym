@@ -1,0 +1,91 @@
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="membership_package_list_action">
+            <field name="name">Membership package list</field>
+            <field name="res_model">climbing_gym.membership_package</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'search_default_filter_active': 1}</field>
+            <!--   <field name="search_view_id" ref="membership_package_search_view"/> -->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">No records yet!</p>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="membership_package_form_view">
+            <field name="name">membership_package.form</field>
+            <field name="model">climbing_gym.membership_package</field>
+            <field name="arch" type="xml">
+                <form string="Member membership">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="pending,active,cancel"/>
+                        <button name="action_cancel" string="Cancel" states='active,pending' type="object"
+                                class="oe_highlight" confirm="Are you sure you want to do this?"/>
+                        <button name="action_active" string="Activate" states='pending' type="object"
+                                class="oe_highlight"/>
+                        <button name="action_revive" string="Revive" states='cancel' type="object"
+                                class="oe_highlight" confirm="Are you sure you want to do this?"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                        <notebook>
+                            <page string="Data">
+                                <group col="4" colspan="2" string='General'>
+                                    <field name="membership_id" options="{'no_quick_create':True,'no_create_edit':True}"
+                                    domain="[('state','in',['active'])]"/>
+                                    <field name="description"/>
+                                </group>
+                                <group col="4" colspan="2" string="Duration interval">
+                                    <field name="interval_length"/>
+                                    <field name="interval_unit"/>
+                                </group>
+                                <group col="4" colspan="2" string="Affected products">
+                                    <field name="package_qty"/>
+                                    <field name="products" widget="many2many_tags" options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="membership_package_tree_view">
+            <field name="name">membership_package.tree</field>
+            <field name="model">climbing_gym.membership_package</field>
+            <field name="arch" type="xml">
+                <tree string="Member packages">
+                    <field name="name"/>
+                    <field name="membership_id"/>
+                    <field name="interval_length"/>
+                    <field name="interval_unit"/>
+                    <field name="package_qty"/>
+                    <field name="products" widget="many2many_tags" />
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="membership_package_search_view">
+            <field name="name">membership_package.search</field>
+            <field name="model">climbing_gym.membership_package</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="products"/>
+                    <field name="membership_id"/>
+                    <field name="state"/>
+                    <filter string='Active' name='filter_active' domain="[('state','=','active')]"/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_status" string="Status" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

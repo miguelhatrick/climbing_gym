@@ -1,41 +1,49 @@
 <odoo>
     <data>
 
-    <!-- Top menu item -->
+        <!-- Top menu item -->
 
-    <menuitem name="Climbing Gym" id="climbing_gym.menu_root"/>
+        <menuitem name="Climbing Gym" id="climbing_gym.menu_root"/>
 
-    <!-- menu categories -->
+        <!-- menu categories -->
 
-    <menuitem name="Members" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
-        <menuitem name="Medical certificates" id="climbing_gym.medical_cert" parent="climbing_gym.menu_1"
-                  action="medical_certificate_list_action"/>
-        <menuitem name="Association types" id="climbing_gym.association_type" parent="climbing_gym.menu_1"
-                  action="association_type_list_action"/>
-        <menuitem name="Member access packages" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
-                  action="member_access_package_list_action"/>
-
-         <menuitem name="Memberships" id="climbing_gym.membership" parent="climbing_gym.menu_1"
-                  action="membership_list_action"/>
-        <menuitem name="Members" id="climbing_gym.member_membership" parent="climbing_gym.menu_1"
-                  action="member_membership_list_action"/>
+        <menuitem name="Members" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
+            <menuitem name="Members" id="climbing_gym.member_membership" parent="climbing_gym.menu_1"
+                      action="member_membership_list_action"
+                      sequence="1"/>
+            <menuitem name="Medical certificates" id="climbing_gym.medical_cert" parent="climbing_gym.menu_1"
+                      action="medical_certificate_list_action" sequence="3"/>
+            <menuitem name="Member access packages" id="climbing_gym.member_access_package" parent="climbing_gym.menu_1"
+                      action="member_access_package_list_action" sequence="2"/>
+            <menuitem name="Member membership packages" id="climbing_gym.member_membership_package" parent="climbing_gym.menu_1"
+                      action="member_membership_package_list_action" sequence="2"/>
 
 
-
-    <menuitem name="Reserves" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
-        <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2"
-                  action="event_generator_list_action"/>
-
-        <menuitem name="Time ranges" id="climbing_gym.event_time_range" parent="climbing_gym.menu_2"
-                  action="event_time_range_list_action"/>
-<!--        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"-->
-<!--                  action="event_weekday_list_action"/>-->
-        <menuitem name="Event week templates" id="climbing_gym.event_week_template" parent="climbing_gym.menu_2"
-                  action="event_week_template_list_action"/>
-
-         <menuitem name="Access packages" id="climbing_gym.access_package" parent="climbing_gym.menu_2"
-                  action="access_package_list_action"/>
+        <menuitem name="Reserves" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
+            <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2"
+                      action="event_generator_list_action"/>
 
 
+        <menuitem name="Configuration" id="climbing_gym.menu_3" parent="climbing_gym.menu_root"
+                  groups="climbing_gym.group_manager"/>
+            <menuitem name="Membership" id="climbing_gym.membership_menu" parent="climbing_gym.menu_3"/>
+                <menuitem name="Memberships" id="climbing_gym.membership" parent="climbing_gym.membership_menu"
+                          action="membership_list_action"/>
+                <menuitem name="Membership packages" id="climbing_gym.membership_packages" parent="climbing_gym.membership_menu"
+                  action="membership_package_list_action"/>
+                <menuitem name="(VOID) Association types" id="climbing_gym.association_type" parent="climbing_gym.membership_menu"
+                          action="association_type_list_action"/>
+
+
+            <menuitem name="Event" id="climbing_gym.event_menu" parent="climbing_gym.menu_3"/>
+                <menuitem name="Time ranges" id="climbing_gym.event_time_range" parent="climbing_gym.event_menu"
+                          action="event_time_range_list_action"/>
+                <!--        <menuitem name="Weekday" id="climbing_gym.event_weekday" parent="climbing_gym.menu_2"-->
+                <!--                  action="event_weekday_list_action"/>-->
+                <menuitem name="Event week templates" id="climbing_gym.event_week_template" parent="climbing_gym.event_menu"
+                          action="event_week_template_list_action"/>
+
+                <menuitem name="Access packages" id="climbing_gym.access_package" parent="climbing_gym.event_menu"
+                          action="access_package_list_action"/>
     </data>
 </odoo>

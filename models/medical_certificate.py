@@ -12,13 +12,16 @@ class MedicalCertificate(models.Model):
     """Medical certificates of each climbing gym member"""
     _name = 'climbing_gym.medical_certificate'
     _description = 'Medical certificates of each climbing gym member'
+    _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('confirmed', "Confirmed"), ('cancel', "Cancelled")]
 
-    partner_id = fields.Many2one(
-        'res.partner', string='Climbing gym member', readonly=False, required=True)
+    name = fields.Char('Name', compute='_generate_name')
 
-    issue_date = fields.Date("Issue date", required=True)
+    partner_id = fields.Many2one(
+        'res.partner', string='Climbing gym member', readonly=False, required=True, track_visibility=True)
+
+    issue_date = fields.Date("Issue date", required=True, track_visibility=True)
     due_date = fields.Date("Due date", compute='_get_due_date', store=True, readonly=True)
 
     doctor_name = fields.Char(required=True)
@@ -32,7 +35,7 @@ class MedicalCertificate(models.Model):
 
     obs = fields.Text()
 
-    state = fields.Selection(status_selection, 'Status', default='pending')
+    state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
     def action_pending(self):
@@ -76,3 +79,8 @@ class MedicalCertificate(models.Model):
         # Update
         self.partner_id.update_certificate_due_date()
         return result
+
+    def _generate_name(self):
+        # pdb.set_trace()
+        for _map in self:
+            _map.name = "MC-%s" % (_map.id if _map.id else '')

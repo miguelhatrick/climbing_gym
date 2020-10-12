@@ -42,17 +42,25 @@
                         </h1>
                         <notebook>
                             <page string="Data">
-                                <group col="4" colspan="2" string="">
+                                <group col="2" colspan="2" string="">
                                     <field name='code'/>
                                     <field name='description'/>
                                 </group>
-                               <group col="4" colspan="2" string="Members">
-                                   <field name='member_membership_ids' nolabel="1"/>
+                                <group col="2" colspan="2" string="Automatic cancel subscription">
+                                    <field name='cancel_interval_length'/>
+                                    <field name='cancel_interval_unit'/>
+                                </group>
+                                <group col="4" colspan="2" string="Members">
+                                    <field name='member_membership_ids' nolabel="1"/>
                                 </group>
 
                             </page>
                         </notebook>
                     </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
                 </form>
             </field>
         </record>
