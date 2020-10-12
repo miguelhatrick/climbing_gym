@@ -55,9 +55,11 @@ class EventRegistration(models.Model):
     def write(self, vals):
         result = super(EventRegistration, self).write(vals)
 
-        # If linked and cancelled we want to recalculate the credits on the linked
-        if len(self.member_access_package_id):
-            if self.member_access_package_id.check_remaining_credits(self) <= 0:
-                raise ValidationError('The member package has no more credits (EventRegistration)')
+        # Fix for a bug when trying to update user id=16099
+        for _map in self:
+            # If linked and cancelled we want to recalculate the credits on the linked
+            if len(_map.member_access_package_id):
+                if _map.member_access_package_id.check_remaining_credits(_map) <= 0:
+                    raise ValidationError('The member package has no more credits (EventRegistration)')
 
         return result
