@@ -76,7 +76,8 @@ class CustomerPortal(CustomerPortal):
             step=self._items_per_page
         )
         # search the count to display, according to the pager data
-        reservations = EventReservation.search(domain, order=sort_order, limit=self._items_per_page, offset=pager['offset'])
+        reservations = EventReservation.search(domain, order=sort_order, limit=self._items_per_page,
+                                               offset=pager['offset'])
         request.session['my_reservations_history'] = reservations.ids[:100]
 
         values.update({
@@ -91,9 +92,8 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("climbing_gym.portal_my_reservations", values)
 
-
-
-    @http.route(['/my/memberaccesspackages', '/my/memberaccesspackages/page/<int:page>'], type='http', auth="user", website=True)
+    @http.route(['/my/memberaccesspackages', '/my/memberaccesspackages/page/<int:page>'], type='http', auth="user",
+                website=True)
     def portal_my_memberaccesspackages(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
         values = self._prepare_portal_layout_values()
         partner = request.env.user.partner_id
@@ -128,7 +128,8 @@ class CustomerPortal(CustomerPortal):
             step=self._items_per_page
         )
         # search the count to display, according to the pager data
-        member_access_packages = MemberAccessPackages.search(domain, order=sort_order, limit=self._items_per_page, offset=pager['offset'])
+        member_access_packages = MemberAccessPackages.search(domain, order=sort_order, limit=self._items_per_page,
+                                                             offset=pager['offset'])
         request.session['my_memberaccesspackages_history'] = member_access_packages.ids[:100]
 
         values.update({
@@ -143,19 +144,11 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("climbing_gym.portal_my_member_access_packages", values)
 
+    # TODO: ADD MEMBERSHIP STATUS
 
-
-
-
-
-
-
-
-
+    # TODO: ADD MEDICAL CERTIFICATE STATUS
 
     #
-
-
 
     # @http.route(['/my/orders', '/my/orders/page/<int:page>'], type='http', auth="user", website=True)
     # def portal_my_orders(self, page=1, date_begin=None, date_end=None, sortby=None, **kw):
