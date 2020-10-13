@@ -29,10 +29,11 @@
     'data': [
         'data/user_groups.xml',
         'data/data_weekday.xml',
+        'data/message_group.xml',
         'security/ir.model.access.csv',
         'data/member_access_package.xml',
         'views/access_package.xml',
-        'views/association_type.xml',
+        # 'views/association_type.xml',
         'views/custom_portal.xml',
         'views/event_event_views.xml',
         'views/event_generator.xml',

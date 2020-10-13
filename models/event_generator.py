@@ -41,7 +41,7 @@ class EventGenerator(models.Model):
 
     events = fields.One2many(
         'event.event', inverse_name='event_generator_id', string='Events generated',
-        readonly=True, track_visibility="onchange")
+        readonly=True, track_visibility=True)
 
     @api.multi
     def action_pending(self):

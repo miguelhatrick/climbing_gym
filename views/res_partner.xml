@@ -15,7 +15,7 @@
                             <!--fields here-->
                             <field name='birthdate_date'/>
                             <field name='climbing_gym_association_date'/>
-                            <field name='climbing_gym_association_type'/>
+<!--                            <field name='climbing_gym_association_type'/>-->
                             <field name='climbing_gym_association_id'/>
                             <field name='climbing_gym_medical_certificate_due_date'/>
                             <field name='climbing_gym_medical_certificate_valid' />
@@ -24,6 +24,9 @@
                         <group string="Medical Certificates"  name="medical-certificates" priority="2" col="4">
                             <field name='climbing_gym_medical_certificates'  nolabel="1"/>
                         </group>
+                         <group string="Memberships"  name="member_memberships" priority="2" col="4">
+                            <field name='climbing_gym_member_membership_ids'  nolabel="1"/>
+                         </group>
                     </group>
                 </page>
                  <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">

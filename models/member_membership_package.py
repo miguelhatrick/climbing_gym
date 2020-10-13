@@ -66,7 +66,7 @@ class MemberMembershipPackage(models.Model):
         for _map in self:
             _map.name = "MMP-%s" % (_map.id if _map.id else '')
 
-    @api.constrains('interval_length', 'package_qty')
+    @api.constrains('interval_length')
     def _data_check_date(self):
         if self.interval_length <= 0:
             raise ValidationError('%s must be > 0' % 'Interval')

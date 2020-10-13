@@ -38,6 +38,7 @@
                 <data>
                     <xpath expr="//field[@name='authorized_transaction_ids']" position="after">
                         <button name="create_access_package" states='sale,done' string="Generate MAP" type="object" class="oe_highlight" groups="climbing_gym.group_manager" confirm="Are you sure you want to do this?"/>
+                        <button name="create_membership_package" states='sale,done' string="Generate MMP" type="object" class="oe_highlight" groups="climbing_gym.group_manager" confirm="Are you sure you want to do this?"/>
                     </xpath>
 
                 </data>

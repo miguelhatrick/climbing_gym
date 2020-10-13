@@ -60,7 +60,10 @@ class MemberMembership(models.Model):
     def _get_last_membership_id(self):
         """Retrieves the last ID from the DB and does a + 1"""
 
-        if type(self.id) != odoo.models.NewId:
+        if isinstance(self.id, models.NewId):
+            if self._origin.id:
+                return
+        elif self.id:
             return
 
         _membership_ids = self.sudo().env['climbing_gym.member_membership'].search(
@@ -110,10 +113,11 @@ class MemberMembership(models.Model):
 
     def calculate_status_due_date(self):
         # pdb.set_trace()
-        if self.current_due_date < datetime.now().date() and self.state == 'active':
-            self.action_overdue()
-        elif self.current_due_date >= datetime.now().date() and self.state == 'overdue':
-            self.action_active()
+        if self.current_due_date:
+            if self.current_due_date < datetime.now().date() and self.state == 'active':
+                self.action_overdue()
+            elif self.current_due_date >= datetime.now().date() and self.state == 'overdue':
+                self.action_active()
 
     @api.onchange('initial_due_date')
     def _onchange_initial_due_date(self):
@@ -121,21 +125,24 @@ class MemberMembership(models.Model):
 
     @api.onchange('membership_id', 'partner_id', 'state')
     def onchange_identity_ids(self):
-        # TODO: FIX THIS, it doesnt filter the current member!
-        for _mp in self:
-            """This disallows two active memberships of the same kind to be active"""
-            if not _mp.membership_id or not _mp.partner_id:
-                return
+        """This disallows two active memberships of the same kind to be active"""
+        if not self.membership_id or not self.partner_id:
+            return
 
-            _id = -1 if type(_mp.id) == odoo.models.NewId else _mp.id
-            _member_ids = _mp.sudo().env['climbing_gym.member_membership'].search([
-                ('state', 'in', ['active', 'overdue']),
-                ('partner_id', 'in', _mp.partner_id.ids),
-                ('membership_id', 'in', _mp.membership_id.ids),
-                ('id', '!=', _id)])
+        pdb.set_trace()
 
-            if len(_member_ids) > 0:
-                raise ValidationError("That contact is already an active member!")
+        _id = self.id
+        if isinstance(self.id, models.NewId):
+            _id = -1 if not self._origin.id else self._origin.id
+
+        _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
+            ('state', 'in', ['active', 'overdue']),
+            ('partner_id', 'in', self.partner_id.ids),
+            ('membership_id', 'in', self.membership_id.ids),
+            ('id', '!=', _id)])
+
+        if len(_member_ids) > 0:
+            raise ValidationError("That contact is already an active member!")
 
     @api.onchange('member_internal_id', 'membership_id')
     def onchange_member_internal_id(self):
@@ -143,7 +150,10 @@ class MemberMembership(models.Model):
         if not self.membership_id or not self.member_internal_id:
             return
 
-        _id = -1 if type(self.id) == odoo.models.NewId else self.id
+        _id = self.id
+        if isinstance(self.id, models.NewId):
+            _id = -1 if not self._origin.id else self._origin.id
+
         _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
             ('membership_id', 'in', self.membership_id.ids),
             ('id', '!=', _id),

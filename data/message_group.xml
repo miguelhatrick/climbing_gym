@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record model="mail.channel" id="channel_climbing_gym_group">
+            <field name="name">Climbing gym users</field>
+            <field name="group_ids" eval="[(4, ref('climbing_gym.group_manager')),(4, ref('climbing_gym.group_user')),(4, ref('climbing_gym.group_superadmin'))]"/>
+            <field name="description">Message Notifications.</field>
+        </record>
+    </data>
+</odoo>
