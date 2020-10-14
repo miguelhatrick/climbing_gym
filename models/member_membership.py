@@ -170,7 +170,6 @@ class MemberMembership(models.Model):
     @api.multi
     def calculate_due_date(self):
         """Calculates the due date of the membership and updates the corresponding fields"""
-        _mm: MemberMembership
         for _mm in self:
             _mm._calculate_due_date()
 
@@ -251,7 +250,6 @@ class MemberMembership(models.Model):
             # _overdue_member_ids.action_cancel
             # _overdue_member_ids.cancelled_reason += '\r\nCancelled automatically due to long overdue'
 
-            _mm: MemberMembership
             for _mm in _overdue_member_ids:
 
                 #pdb.set_trace()
