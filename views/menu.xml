@@ -31,8 +31,8 @@
                           action="membership_list_action"/>
                 <menuitem name="Membership packages" id="climbing_gym.membership_packages" parent="climbing_gym.membership_menu"
                   action="membership_package_list_action"/>
-                <menuitem name="(VOID) Association types" id="climbing_gym.association_type" parent="climbing_gym.membership_menu"
-                          action="association_type_list_action"/>
+<!--                <menuitem name="(VOID) Association types" id="climbing_gym.association_type" parent="climbing_gym.membership_menu"-->
+<!--                          action="association_type_list_action"/>-->
 
 
             <menuitem name="Event" id="climbing_gym.event_menu" parent="climbing_gym.menu_3"/>

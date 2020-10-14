@@ -14,8 +14,15 @@
                         <group string="Personal information" name="personal-info" priority="1">
                             <!--fields here-->
                             <field name='birthdate_date'/>
-                            <field name='climbing_gym_association_date'/>
+<!--                            <field name='climbing_gym_association_date'/>-->
 <!--                            <field name='climbing_gym_association_type'/>-->
+
+                            <field name="climbing_gym_main_member_membership_id"
+                                   options="{'no_quick_create':True,'no_create_edit':True}"
+                                   domain="[('partner_id','=',id),]"/>
+
+
+<!--                            <field name='climbing_gym_main_membership_id'/>-->
                             <field name='climbing_gym_association_id'/>
                             <field name='climbing_gym_medical_certificate_due_date'/>
                             <field name='climbing_gym_medical_certificate_valid' />

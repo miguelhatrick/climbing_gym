@@ -20,13 +20,16 @@
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="pending,active,overdue,cancel"
                         />
-                        <button name="action_cancel" string="Cancel" states='active,pending' type="object"
+                        <button name="action_cancel" string="Cancel" states='active,pending,overdue' type="object"
                                 class="oe_highlight" confirm="Are you sure you want to do this?"/>
                         <button name="action_active" string="Activate" states='pending' type="object"
                                 class="oe_highlight"/>
                         <button name="action_revive" string="Revive" states='cancel' type="object"
                                 class="oe_highlight" confirm="Are you sure you want to do this?"
                                 groups="climbing_gym.group_manager"/>
+                        <button name="calculate_due_date" string="Recalculate due date" states='active,overdue' type="object"
+                                class="oe_highlight"/>
+
                     </header>
                     <sheet>
                         <h1>

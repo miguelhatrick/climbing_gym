@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from dateutil.relativedelta import relativedelta
 
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
@@ -23,7 +24,8 @@ class Membership(models.Model):
                                             string='Member memberships', readonly=True)
 
     cancel_interval_length = fields.Integer(string='Interval length', default=1, required=True, track_visibility=True)
-    cancel_interval_unit = fields.Selection(interval_selection, string='Interval unit', required=True, default='years', track_visibility=True)
+    cancel_interval_unit = fields.Selection(interval_selection, string='Interval unit', required=True, default='years',
+                                            track_visibility=True)
 
     state = fields.Selection(status_selection, string='Status', default='active', track_visibility=True)
 
@@ -35,7 +37,6 @@ class Membership(models.Model):
         elif self.cancel_interval_length < 1:
             raise ValidationError('%s must be > 0.' % 'Interval length')
 
-
     @api.multi
     def action_active(self):
         for _map in self:
@@ -46,6 +47,12 @@ class Membership(models.Model):
         for _map in self:
             _map.state = 'cancel'
 
+    def get_cancellation_delta(self):
+        _interval = {'days': 0, 'years': 0, 'months': 0, self.cancel_interval_unit: self.cancel_interval_length}
+
+        return relativedelta(years=_interval['years'],
+                             months=_interval['months'],
+                             days=_interval['days'])
 
     # TODO ADD CALCULATED FIELDS: MEMBERS, DUE MEMBERS, CANCELLED MEMBERS
 

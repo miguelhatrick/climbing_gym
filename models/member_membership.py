@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import logging
 import pdb
 from datetime import datetime
 
@@ -8,6 +9,8 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import *
 from dateutil.relativedelta import *
+
+_logger = logging.getLogger(__name__)
 
 
 class MemberMembership(models.Model):
@@ -101,6 +104,9 @@ class MemberMembership(models.Model):
 
             _map.state = 'active'
 
+            #Set the current as main membership for the contact
+            _map.partner_id.climbing_gym_main_member_membership_id = _map
+
             # recalculate just in case
             _map.calculate_due_date()
 
@@ -129,7 +135,7 @@ class MemberMembership(models.Model):
         if not self.membership_id or not self.partner_id:
             return
 
-        pdb.set_trace()
+        # pdb.set_trace()
 
         _id = self.id
         if isinstance(self.id, models.NewId):
@@ -175,22 +181,17 @@ class MemberMembership(models.Model):
 
         _mmp: MemberMembershipPackage
         for _mmp in self.mmp_ids.filtered(lambda r: r.state == 'active'):
-            _years = _mmp.interval_length if _mmp.interval_unit == 'years' else 0
-            _months = _mmp.interval_length if _mmp.interval_unit == 'months' else 0
-            _days = _mmp.interval_length if _mmp.interval_unit == 'days' else 0
-
-            _due_date = _due_date + relativedelta(years=_years,
-                                                  months=_months,
-                                                  days=_days)
+            _due_date = _due_date + _mmp.get_interval_delta()
 
         self.current_due_date = _due_date
         self.calculate_status_due_date()
 
-        @api.multi
-        def write(self, values):
-            """Ensure that we have an updated name"""
+    @api.multi
+    def write(self, vals):
+        _result = super(MemberMembership, self).write(vals)
 
-            return super(MemberMembership, self).write(values)
+        return _result
+
 
         # @api.constrains('interval_length', 'package_qty')
         # def _data_check_date(self):
@@ -201,7 +202,67 @@ class MemberMembership(models.Model):
         #     else:
         #         pass
 
-    # TODO: Cron function to process all due memberships
+    def cron_due_date(self):
+        """Calculates the due date of the membership and updates the corresponding fields"""
+
+        _logger.info('Begin cron_due_date Cron Job ... ')
+        _now = datetime.now()
+
+        _due_member_ids = self.sudo().env['climbing_gym.member_membership'].search([
+            ('state', 'in', ['active']),
+            ('current_due_date', '<', _now)])
+
+        _logger.info('Found %d memberships due, processing ... ' % (len(_due_member_ids)))
+
+        _due_member_ids.calculate_due_date()
+
+
+    def cron_due_date_update_all(self):
+        """Calculates the due date of the membership and updates the corresponding fields / All / Used once a day"""
+
+        _logger.info('Begin cron_due_date Cron Job ... ')
+        _now = datetime.now()
+
+        _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
+            ('state', 'in', ['active', 'overdue'])])
+
+        _logger.info('Found %d memberships, processing ... ' % (len(_member_ids)))
+
+        _member_ids.calculate_due_date()
+
+    def cron_auto_cancel(self):
+        """Calculates the auto cancel for the old memberships"""
+
+        _logger.info('Begin cron_due_date Cron Job ... ')
+        _now = datetime.now()
+
+        _membership_ids = self.sudo().env['climbing_gym.membership'].search([
+            ('state', 'in', ['active'])])
+
+        for _m in _membership_ids:
+            _logger.info('Processing membership type: %s ' % _m.name)
+
+            _kill_date = datetime.now() - _m.get_cancellation_delta()
+
+            _overdue_member_ids = self.sudo().env['climbing_gym.member_membership'].search([
+                ('state', 'in', ['overdue']),
+                ('current_due_date', '<', _kill_date)])
+
+            _logger.info('Found %d memberships that need to be cancelled, processing ... ' % (len(_overdue_member_ids)))
+
+            # _overdue_member_ids.action_cancel
+            # _overdue_member_ids.cancelled_reason += '\r\nCancelled automatically due to long overdue'
+
+            _mm: MemberMembership
+            for _mm in _overdue_member_ids:
+
+                #pdb.set_trace()
+
+                _mm.action_cancel()
+                _mm.cancelled_reason = '%s\r\nCancelled automatically due to long overdue' % (_mm.cancelled_reason if _mm.cancelled_reason else '')
+
+
+
 
     # TODO: Mass email overdue members
     #

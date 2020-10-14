@@ -27,11 +27,11 @@
 
     # always loaded
     'data': [
-        'data/user_groups.xml',
+        'data/cron_jobs.xml',
         'data/data_weekday.xml',
         'data/message_group.xml',
+        'data/user_groups.xml',
         'security/ir.model.access.csv',
-        'data/member_access_package.xml',
         'views/access_package.xml',
         # 'views/association_type.xml',
         'views/custom_portal.xml',

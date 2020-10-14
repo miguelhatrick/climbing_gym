@@ -12,11 +12,12 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     birthdate_date = fields.Date("Birthdate")
-    climbing_gym_association_date = fields.Date("Association Date")
+    # climbing_gym_association_date = fields.Date("Association Date")
     climbing_gym_association_id = fields.Char("Association ID")
-    # climbing_gym_association_type = fields.Many2one(
-    #     'climbing_gym.association_type', string='',
-    #     readonly=False, track_visibility="onchange")
+
+    climbing_gym_main_member_membership_id = fields.Many2one(
+        'climbing_gym.member_membership', string='Main membership',
+        readonly=False, track_visibility="onchange")
 
     climbing_gym_medical_certificates = fields.One2many(
         'climbing_gym.medical_certificate', inverse_name='partner_id', string='Medical Certificates',

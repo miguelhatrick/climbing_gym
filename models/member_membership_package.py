@@ -3,6 +3,9 @@ import logging
 import pdb
 from datetime import datetime, timedelta, date, timezone
 from typing import List
+
+from dateutil.relativedelta import relativedelta
+
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
@@ -94,3 +97,11 @@ class MemberMembershipPackage(models.Model):
                 _mmp.interval_length = _mmp.membership_package.interval_length
             else:
                 _mmp.interval_length = -1
+
+
+    def get_interval_delta(self):
+        _interval = {'days': 0, 'years': 0, 'months': 0, self.interval_unit: self.interval_length}
+
+        return relativedelta(years=_interval['years'],
+                             months=_interval['months'],
+                             days=_interval['days'])
