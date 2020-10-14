@@ -4,7 +4,6 @@ from datetime import datetime
 import pdb
 import logging
 
-from addons_custom.climbing_gym.models.membership_package import MembershipPackage
 from odoo import fields, models, api
 
 _logger = logging.getLogger(__name__)
@@ -75,7 +74,7 @@ class SaleOrder(models.Model):
                         self._create_membership_package(line, _membership_package)
 
     @api.one
-    def _create_membership_package(self, sale_order_line, _membership_package: MembershipPackage):
+    def _create_membership_package(self, sale_order_line, _membership_package):
         # pdb.set_trace()
 
         # Access package can have its own multiplier.

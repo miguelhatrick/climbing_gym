@@ -4,7 +4,6 @@ import pdb
 from datetime import datetime
 
 import odoo
-from addons_custom.climbing_gym.models.member_membership_package import MemberMembershipPackage
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 from datetime import *
@@ -179,7 +178,6 @@ class MemberMembership(models.Model):
     def _calculate_due_date(self):
         _due_date = self.initial_due_date
 
-        _mmp: MemberMembershipPackage
         for _mmp in self.mmp_ids.filtered(lambda r: r.state == 'active'):
             _due_date = _due_date + _mmp.get_interval_delta()
 
