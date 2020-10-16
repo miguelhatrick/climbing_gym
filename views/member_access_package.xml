@@ -50,7 +50,7 @@
                                     </group>
                                     <group string="Sale order">
                                         <field name='sale_order_line'
-                                               options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+                                               options="{'no_quick_create':True,'no_create_edit':True}"/>
                                         <field name='product'/>
                                     </group>
 
