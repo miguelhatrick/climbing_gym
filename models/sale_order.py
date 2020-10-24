@@ -68,9 +68,7 @@ class SaleOrder(models.Model):
         so_ids = self.sudo().env['sale.order'].search([('state', 'in', [
             "to invoice",
             "invoiced",
-            "to invoice",
             "sale",
-            'sent',
             "done"
         ])])
 
