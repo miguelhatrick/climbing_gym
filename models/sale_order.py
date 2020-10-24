@@ -61,6 +61,26 @@ class SaleOrder(models.Model):
             })
 
     @api.multi
+    def create_all_membership_package(self):
+        """Creates all MMP based of all orders"""
+
+
+        so_ids = self.sudo().env['sale.order'].search([('state', 'in', [
+            "to invoice",
+            "invoiced",
+            "to invoice",
+            "sale",
+            'sent',
+            "done"
+        ])])
+
+        for so in so_ids:
+            so.create_membership_package()
+
+
+
+
+    @api.multi
     def create_membership_package(self):
         """Creates a new MMP based on the products"""
         mp_ids = self.sudo().env['climbing_gym.membership_package'].search([('state', '=', "active")])
