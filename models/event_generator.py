@@ -101,14 +101,14 @@ class EventGenerator(models.Model):
 
             date_from = _tz.localize(datetime.combine(day, datetime.min.time()) + timedelta(hours=hourpair.time_start))
             date_to = _tz.localize(datetime.combine(day, datetime.min.time()) + timedelta(hours=hourpair.time_end))
+            time_from = ':'.join(str(timedelta(hours=hourpair.time_start)).split(':')[:2])
+            time_to = ':'.join(str(timedelta(hours=hourpair.time_end)).split(':')[:2])
 
             # DESCRIPTION? Location + Date + from -> to?
-            event_name = '%s %s %s' %(template.title,
-                                      ':'.join(str(timedelta(hours=hourpair.time_start)).split(':')[:2]),
-                                      ':'.join(str(timedelta(hours=hourpair.time_end)).split(':')[:2]))
+            event_name = '%s %s %s' % (template.title, time_from.zfill(5), time_to.zfill(5))
 
             myevent = self.env['event.event'].create({
-                'is_online': False,
+               'is_online': False,
                 'website_published': False,
                 'forbid_duplicates': True,
                 'seats_availability': 'limited',
