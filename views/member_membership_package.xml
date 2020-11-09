@@ -37,19 +37,24 @@
                                 <group>
                                     <group string='General'>
                                         <field name="member_membership_id"
-                                   options="{'no_quick_create':True,'no_create_edit':True}"
-                                   domain="[('state','in',['active','overdue'])]"
-                            />
+                                               options="{'no_quick_create':True,'no_create_edit':True}"
+                                               domain="[('state','in',['active','overdue'])]"
+                                        />
                                         <field name="create_date" attrs="{'readonly':True}"/>
                                         <field name="activated_date" attrs="{'readonly':True}"/>
                                         <field name="cancelled_date" attrs="{'readonly':True}"/>
                                         <field name="obs"/>
                                     </group>
+                                    <group string="POS order">
+                                        <field name='pos_order'/>
+                                        <field name='pos_order_line'
+                                               options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    </group>
+
                                     <group string="Sale order">
+                                        <field name='sale_order'/>
                                         <field name='sale_order_line'
-                                               options="{'no_quick_create':True,'no_create_edit':True}"
-                                        />
-                                        <field name='product'/>
+                                               options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     </group>
                                     <group string="Membership package">
                                         <field name="membership_package"
@@ -82,7 +87,9 @@
                     <field name="member_membership_id"/>
                     <field name="membership_package"/>
                     <field name="activated_date"/>
-                    <field name="cancelled_date"/>
+                    <!--  <field name="cancelled_date"/>-->
+                    <field name="sale_order"/>
+                    <field name="pos_order"/>
                     <field name="interval_length"/>
                     <field name="interval_unit"/>
                     <field name="state"/>
@@ -103,8 +110,10 @@
                             domain="[('state','!=','pending'),('state','!=','cancel')]"/>
                     <group expand="0" string="Group By">
                         <filter name="group_confirmed" string="Status" context="{'group_by':'state'}"/>
-                        <filter name="group_member_membership_id" string="Member" context="{'group_by':'member_membership_id'}"/>
-                        <filter name="group_membership_package" string="Membership package" context="{'group_by':'membership_package'}"/>
+                        <filter name="group_member_membership_id" string="Member"
+                                context="{'group_by':'member_membership_id'}"/>
+                        <filter name="group_membership_package" string="Membership package"
+                                context="{'group_by':'membership_package'}"/>
                     </group>
                 </search>
             </field>

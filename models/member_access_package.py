@@ -32,8 +32,8 @@ class MemberAccessPackage(models.Model):
     access_credits = fields.Integer('Amount of access credits', default=0, required=True, track_visibility=True)
     remaining_credits = fields.Integer('Remaining access credits', default=0, required=True, readonly=True)
 
-    activated_date = fields.Datetime('Activation date', readonly=True)
-    completed_date = fields.Datetime('Completed date', readonly=True)
+    activated_date = fields.Datetime('Activation date', readonly=True, track_visibility=True)
+    completed_date = fields.Datetime('Completed date', readonly=True, track_visibility=True)
 
     date_start = fields.Date('Package start date', track_visibility=True)
     date_finish = fields.Date('Package finish date', track_visibility=True)
@@ -43,10 +43,10 @@ class MemberAccessPackage(models.Model):
                                  track_visibility=True)
     product = fields.Many2one('product.product', string='Products linked')
 
-    sale_order = fields.Many2one('sale.order', compute='_get_sale_order')
+    sale_order = fields.Many2one('sale.order', compute='_get_sale_order', store=True)
     sale_order_line = fields.Many2one('sale.order.line', string='Linked Sale order line')
 
-    pos_order = fields.Many2one('pos.order', compute='_get_pos_order')
+    pos_order = fields.Many2one('pos.order', string='POS order', compute='_get_pos_order', store=True)
     pos_order_line = fields.Many2one('pos.order.line', string='Linked POS order line')
 
     access_package = fields.Many2one('climbing_gym.access_package', string='Linked access package', required=True)

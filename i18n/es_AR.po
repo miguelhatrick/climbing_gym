@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-14 05:54+0000\n"
-"PO-Revision-Date: 2020-10-16 04:00-0300\n"
+"POT-Creation-Date: 2020-11-09 06:47+0000\n"
+"PO-Revision-Date: 2020-11-09 03:51-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -318,27 +318,27 @@ msgstr ""
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_manager
 msgid "Climbing gym Manager"
-msgstr "Gerente de club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Climbing gym data"
-msgstr "Información del club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_user
 msgid "Climbing gym employee"
-msgstr "Empleado club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__partner_id
 msgid "Climbing gym member"
-msgstr "Miembro club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.module.category,name:climbing_gym.cg_module_management
 msgid "Climbing gym security"
-msgstr "Seguridad club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:mail.channel,name:climbing_gym.channel_climbing_gym_group
@@ -631,7 +631,7 @@ msgstr "Tipo de evento"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_week_template
 msgid "Event week templates"
-msgstr "Plantillas semanales de eventos"
+msgstr "Plantillas de eventos semanales"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_weekday_list_action
@@ -667,11 +667,6 @@ msgstr "Febrero"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
 msgid "Files"
 msgstr "Archivos"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
-msgid "Finish date"
-msgstr "Fecha finalización"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__message_follower_ids
@@ -714,12 +709,17 @@ msgstr "Seguidores (Empresas)"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 msgid "Generate"
 msgstr "Generar"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
+msgid "Generate ALL MMP"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
@@ -907,6 +907,12 @@ msgid "Last Updated on"
 msgstr "Última actualización el"
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__pos_order_line
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__pos_order_line
+msgid "Linked POS order line"
+msgstr "Línea de order de venta PDV vinculada"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__sale_order_line
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__sale_order_line
 msgid "Linked Sale order line"
@@ -920,7 +926,7 @@ msgstr "Paquete de acceso vinculado"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__membership_package
 msgid "Linked membership package"
-msgstr ""
+msgstr "Paquete de membresía vinculado"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
@@ -1118,7 +1124,7 @@ msgstr "Miembros"
 #: model:ir.ui.menu,name:climbing_gym.membership_menu
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 msgid "Membership"
-msgstr "Membresía"
+msgstr "Miembro"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__member_internal_id
@@ -1315,12 +1321,20 @@ msgstr "Octubre"
 #: selection:climbing_gym.member_membership,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 msgid "Overdue"
-msgstr "Vencido"
+msgstr "Vencimiento"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__certificate_pdf_file
 msgid "PDF file"
 msgstr "Archivo PDF"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__pos_order
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__pos_order
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+msgid "POS order"
+msgstr "Orden PDV"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__days_duration
@@ -1366,6 +1380,16 @@ msgstr "Pendiente"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Personal information"
 msgstr "Información personal"
+
+#. module: climbing_gym
+#: model:ir.model,name:climbing_gym.model_pos_order
+msgid "Point of Sale Orders"
+msgstr "Pedidos del TPV"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
+msgid "Product"
+msgstr "Producto"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__products
@@ -1433,6 +1457,8 @@ msgstr "Revivir"
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_sale_order
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__sale_order
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__sale_order
 msgid "Sale Order"
 msgstr "Pedido de venta"
 
@@ -1469,7 +1495,7 @@ msgstr "Tienda"
 #: code:addons/climbing_gym/controllers/portal.py:108
 #, python-format
 msgid "Stage"
-msgstr ""
+msgstr "Etapa"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
