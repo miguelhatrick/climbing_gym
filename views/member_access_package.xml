@@ -28,7 +28,8 @@
                         <button name="action_active" string="Activate" states='pending' type="object"
                                 class="oe_highlight"/>
                         <button name="action_revive" string="Revive" states='cancel,completed' type="object"
-                                class="oe_highlight" confirm="Are you sure you want to do this?" groups="climbing_gym.group_manager"/>
+                                class="oe_highlight" confirm="Are you sure you want to do this?"
+                                groups="climbing_gym.group_manager"/>
                     </header>
                     <sheet>
                         <h1>
@@ -48,10 +49,21 @@
                                         <field name="remaining_credits"/>
                                         <field name="obs"/>
                                     </group>
+
+                                     <group string="Product">
+                                        <field name='product'/>
+                                    </group>
+
+                                    <group string="POS order">
+                                        <field name='pos_order'/>
+                                        <field name='pos_order_line'
+                                               options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    </group>
+
                                     <group string="Sale order">
+                                        <field name='sale_order'/>
                                         <field name='sale_order_line'
                                                options="{'no_quick_create':True,'no_create_edit':True}"/>
-                                        <field name='product'/>
                                     </group>
 
                                     <group string="Access package">
@@ -88,13 +100,15 @@
                     <field name="name"/>
                     <field name="partner_id"/>
                     <field name="access_package"/>
-<!--                    <field name="activated_date"/>-->
-<!--                    <field name="completed_date"/>-->
+                    <!--                    <field name="activated_date"/>-->
+                    <!--                    <field name="completed_date"/>-->
                     <field name="access_credits" string="Access credits"/>
                     <field name="remaining_credits" string="Remaining credits"/>
                     <field name="date_start" string="Start date"/>
-                    <field name="date_finish" string="Finish date"/>
+<!--                    <field name="date_finish" string="Finish date"/>-->
                     <field name="days_duration" string="Duration (days)"/>
+                    <field name="sale_order"/>
+                    <field name="pos_order"/>
                     <field name="state"/>
                 </tree>
             </field>

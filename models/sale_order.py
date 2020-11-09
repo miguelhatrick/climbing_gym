@@ -4,6 +4,7 @@ from datetime import datetime
 import pdb
 import logging
 
+from addons_custom.climbing_gym.models.member_access_package import MemberAccessPackage
 from odoo import fields, models, api
 
 _logger = logging.getLogger(__name__)
@@ -31,34 +32,10 @@ class SaleOrder(models.Model):
             for line in order.order_line:
                 for _access_package in ap_ids:
                     if line.product_id in _access_package.products:
-                        self._create_access_package(line, _access_package)
+                        MemberAccessPackage.create_access_package(self, line, _access_package )
+                        # self._create_access_package(line, _access_package)
 
 
-
-
-
-    @api.one
-    def _create_access_package(self, sale_order_line, access_package):
-        # pdb.set_trace()
-
-        # Access package can have its own multiplier.
-        _map_qty = int(sale_order_line.product_uom_qty) * access_package.package_qty
-
-        for x in range(0, _map_qty):
-            _logger.info('Creating MAP ... -> %s' % (x + 1))
-
-            _my_map = self.env['climbing_gym.member_access_package'].create({
-                'partner_id': sale_order_line.order_id.partner_id.id,
-                'obs': "Qty item %s/%s\r\n Created automatically after order confirmation" % (x + 1, _map_qty),
-                'access_credits': access_package.access_credits,
-                'remaining_credits': access_package.access_credits,
-                'days_duration': access_package.days_duration,
-                'locations': [(6, 0, access_package.locations.ids)],
-                'product': sale_order_line.product_id.id,
-                'sale_order_line': sale_order_line.id,
-                'access_package': access_package.id,
-                'state': 'pending',
-            })
 
     @api.multi
     def create_all_membership_package(self):

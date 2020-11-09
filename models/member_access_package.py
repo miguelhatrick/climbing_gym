@@ -5,8 +5,12 @@ from datetime import datetime, timedelta, date, timezone
 from typing import List
 
 import odoo
+from addons.point_of_sale.models.pos_order import PosOrderLine
+from addons.sale.models.sale import SaleOrderLine
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
+
+
 
 _logger = logging.getLogger(__name__)
 
@@ -38,7 +42,13 @@ class MemberAccessPackage(models.Model):
     locations = fields.Many2many('res.partner', string='Access Locations', readonly=False, required=True,
                                  track_visibility=True)
     product = fields.Many2one('product.product', string='Products linked')
+
+    sale_order = fields.Many2one('sale.order', compute='_get_sale_order')
     sale_order_line = fields.Many2one('sale.order.line', string='Linked Sale order line')
+
+    pos_order = fields.Many2one('pos.order', compute='_get_pos_order')
+    pos_order_line = fields.Many2one('pos.order.line', string='Linked POS order line')
+
     access_package = fields.Many2one('climbing_gym.access_package', string='Linked access package', required=True)
 
     event_registrations = fields.One2many('event.registration', inverse_name='member_access_package_id',
@@ -103,6 +113,14 @@ class MemberAccessPackage(models.Model):
         for _map in self:
             _map.name = "MAP-%s" % (_map.id if _map.id else '')
 
+    def _get_sale_order(self):
+        for _map in self:
+            _map.sale_order = _map.sale_order_line.order_id if _map.sale_order_line is not False else False
+
+    def _get_pos_order(self):
+        for _map in self:
+            _map.pos_order = _map.pos_order_line.order_id if _map.pos_order_line is not False else False
+
     def calculate_remaining_credits(self):
         # fix for creation of a new record
         if self.access_credits == 0 and type(self.id) == odoo.models.NewId:
@@ -164,8 +182,7 @@ class MemberAccessPackage(models.Model):
             raise ValidationError('Partner or Location null in creation (get_first_available)')
 
         try:
-            _logger.info('Looking for the first available member access package for %s, %s location:' % (
-            _member.name, _location.id))
+            _logger.info('Looking for the first available member access package for %s, %s location:' % (_member.name, _location.id))
 
             # search maps active
             _map_arr = self.sudo().env['climbing_gym.member_access_package'].search(
@@ -196,6 +213,57 @@ class MemberAccessPackage(models.Model):
 
         _logger.info('NONE FOUND!')
         return False
+
+    @staticmethod
+    def create_access_package(self, sale_line, access_package):
+        # pdb.set_trace()
+
+        sale_order_line = False
+        pos_order_line = False
+        partner_id = False
+        product_id = False
+        product_qty = 0
+
+        if isinstance(sale_line, type(self.sudo().env['sale.order.line'])):
+            _logger.info('ORIGIN: Sale Order Line %d' % (sale_line.id))
+            sale_order_line = sale_line
+            pos_order_line = False
+            partner_id = sale_line.order_id.partner_id
+            product_id = sale_line.product_id
+            product_qty = sale_line.product_uom_qty
+
+        if isinstance(sale_line, type(self.sudo().env['pos.order.line'])):
+            _logger.info('ORIGIN: POS Order Line %d' % (sale_line.id))
+            sale_order_line = False
+            pos_order_line = sale_line
+            partner_id = sale_line.order_id.partner_id
+            product_id = sale_line.product_id
+            product_qty = sale_line.qty
+
+        # Access package can have its own multiplier.
+        _map_qty = int(product_qty) * access_package.package_qty
+
+        for x in range(0, _map_qty):
+            _logger.info('Creating MAP -> %d / %d' % (x + 1, _map_qty))
+
+            _my_map = self.sudo().env['climbing_gym.member_access_package'].create({
+                'partner_id': partner_id.id,
+                'obs': "Qty item %s/%s\r\n Created automatically after order confirmation" % (x + 1, _map_qty),
+                'access_credits': access_package.access_credits,
+                'remaining_credits': access_package.access_credits,
+                'days_duration': access_package.days_duration,
+                'locations': [(6, 0, access_package.locations.ids)],
+                'product': product_id.id,
+                'sale_order_line': sale_order_line.id if sale_order_line is not False else False,
+                'pos_order_line': pos_order_line.id if pos_order_line is not False else False,
+                'access_package': access_package.id,
+                'state': 'pending',
+            })
+
+            _logger.info('Created MAP %d' % (_my_map.id))
+
+
+
 
 # @api.constrains('driver_id')
 # def _check_driver(self):
