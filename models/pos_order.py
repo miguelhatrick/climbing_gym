@@ -3,9 +3,6 @@
 from datetime import datetime
 import pdb
 import logging
-
-from addons_custom.climbing_gym.models.member_access_package import MemberAccessPackage
-from addons_custom.climbing_gym.models.member_membership_package import MemberMembershipPackage
 from odoo import fields, models, api
 
 _logger = logging.getLogger(__name__)
@@ -58,8 +55,7 @@ class PosOrder(models.Model):
             for line in order.lines:
                 for _access_package in ap_ids:
                     if line.product_id in _access_package.products:
-                        MemberAccessPackage.create_access_package(self, line, _access_package)
-                        # self._create_access_package(line, _access_package)
+                        self.sudo().env['climbing_gym.member_access_package'].create_access_package(self, line, _access_package)
 
     @api.multi
     def create_membership_package(self):
@@ -72,4 +68,4 @@ class PosOrder(models.Model):
             for line in order.lines:
                 for _membership_package in mp_ids:
                     if line.product_id in _membership_package.products:
-                        MemberMembershipPackage.create_membership_package(self, line, _membership_package)
+                        self.sudo().env['climbing_gym.member_membership_package'].create_membership_package(self, line, _membership_package)

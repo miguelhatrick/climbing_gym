@@ -5,8 +5,6 @@ from datetime import datetime, timedelta, date, timezone
 from typing import List
 
 import odoo
-from addons.point_of_sale.models.pos_order import PosOrderLine
-from addons.sale.models.sale import SaleOrderLine
 from odoo import models, fields, api
 from odoo.exceptions import ValidationError
 
