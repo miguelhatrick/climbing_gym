@@ -20,7 +20,7 @@
                     <t t-set="count" t-value="medical_certificate_count"/>
                 </t>
                  <t t-call="portal.portal_docs_entry">
-                    <t t-set="title">Membership</t>
+                    <t t-set="title">Memberships</t>
                     <t t-set="url" t-value="'/my/membermemberships'"/>
                     <t t-set="count" t-value="member_membership_count"/>
                 </t>
