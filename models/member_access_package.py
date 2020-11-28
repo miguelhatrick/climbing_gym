@@ -55,6 +55,21 @@ class MemberAccessPackage(models.Model):
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
+    def action_revive_for_users(self):
+        for _map in self:
+            # check if we have credits
+
+            # check if the cancelled reserve is on the future
+
+            _map.activated_date = False
+            _map.date_start = False
+            _map.date_finish = False
+            _map.completed_date = False
+
+            _map.obs = "%s\r\n Revived on %s by %s" % (str(_map.obs or ''), datetime.now(), str(self.env.user.name))
+            _map.state = 'pending'
+
+    @api.multi
     def action_revive(self):
         for _map in self:
             _map.activated_date = False

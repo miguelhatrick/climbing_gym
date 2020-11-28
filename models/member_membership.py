@@ -157,7 +157,7 @@ class MemberMembership(models.Model):
 
         _id = self.id
         if isinstance(self.id, models.NewId):
-            _id = -1 if not self._origin.id else self._origin.id
+            _id = -1 if not hasattr(self, '_origin_id') or not self._origin.id else self._origin.id
 
         _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
             ('membership_id', 'in', self.membership_id.ids),
@@ -189,16 +189,6 @@ class MemberMembership(models.Model):
 
         return _result
 
-
-        # @api.constrains('interval_length', 'package_qty')
-        # def _data_check_date(self):
-        #     if self.interval_length <= 0:
-        #         raise ValidationError('Interval must be > 0')
-        #     elif self.package_qty <= 0:
-        #         raise ValidationError('Package quantity must be > 0')
-        #     else:
-        #         pass
-
     def cron_due_date(self):
         """Calculates the due date of the membership and updates the corresponding fields"""
 
@@ -212,7 +202,6 @@ class MemberMembership(models.Model):
         _logger.info('Found %d memberships due, processing ... ' % (len(_due_member_ids)))
 
         _due_member_ids.calculate_due_date()
-
 
     def cron_due_date_update_all(self):
         """Calculates the due date of the membership and updates the corresponding fields / All / Used once a day"""

@@ -10,31 +10,6 @@ _logger = logging.getLogger(__name__)
 
 class PosOrder(models.Model):
     _inherit = 'pos.order'
-    #
-    # state = fields.Selection(
-    #     [('draft', 'New'), ('cancel', 'Cancelled'), ('paid', 'Paid'), ('done', 'Posted'), ('invoiced', 'Invoiced')],
-    #     'Status', readonly=True, copy=False, default='draft')
-
-    # lines = fields.One2many('pos.order.line', 'order_id', string='Order Lines', states={'draft': [('readonly', False)]},
-    #                         readonly=True, copy=True)
-    #
-    # def action_pos_order_paid(self):
-    #     if not self.test_paid():
-    #         raise UserError(_("Order is not paid."))
-    #     self.write({'state': 'paid'})
-    #     return self.create_picking()
-
-    # def action_pos_order_invoice(self):
-    #     Invoice = self.env['account.invoice']
-    #     for order in self:
-    #         Invoice |= order._create_invoice()
-
-    # def action_pos_order_done(self):
-    #     return self._create_account_move_line()
-
-
-
-
 
     @api.multi
     def action_pos_order_paid(self):
