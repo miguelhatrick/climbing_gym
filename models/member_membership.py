@@ -137,6 +137,10 @@ class MemberMembership(models.Model):
         # pdb.set_trace()
 
         _id = 0
+        _logger.info('*******')
+        _logger.info('onchange_identity_ids -> ID: %s' % self.id)
+        _logger.info('*******')
+        
         if isinstance(self.id, models.NewId):
             _id = -1 if not self._origin.id else self._origin.id
         else:
