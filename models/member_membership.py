@@ -140,8 +140,11 @@ class MemberMembership(models.Model):
         _logger.info('*******')
         _logger.info('onchange_identity_ids -> ID: %s' % self.id)
         _logger.info('*******')
-        
+
         if isinstance(self.id, models.NewId):
+            if not self._origin:
+                return
+            
             _id = -1 if not self._origin.id else self._origin.id
         else:
             _id = self.id
