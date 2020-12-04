@@ -1,6 +1,5 @@
 <odoo>
     <data>
-
         <template id="portal_my_home_sale2" name="Portal My Home : sales entries" inherit_id="portal.portal_my_home"
                   priority="20">
             <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
@@ -167,12 +166,6 @@
                 </t>
             </t>
         </template>
-
-
-
-
-
-
 
         <template id="portal_my_member_memberships" name="My member memberships">
             <t t-call="portal.portal_layout">

@@ -136,9 +136,11 @@ class MemberMembership(models.Model):
 
         # pdb.set_trace()
 
-        _id = self.id
+        _id = 0
         if isinstance(self.id, models.NewId):
             _id = -1 if not self._origin.id else self._origin.id
+        else:
+            _id = self.id
 
         _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
             ('state', 'in', ['active', 'overdue']),
