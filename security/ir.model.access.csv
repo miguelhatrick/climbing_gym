@@ -11,9 +11,10 @@ superadmin_membership,climbing_gym.membership,model_climbing_gym_membership,clim
 superadmin_member_membership,climbing_gym.member_membership,model_climbing_gym_member_membership,climbing_gym.group_superadmin,1,1,1,1
 superadmin_member_membership_package,climbing_gym.member_membership_package,model_climbing_gym_member_membership_package,climbing_gym.group_superadmin,1,1,1,1
 superadmin_membership_package,climbing_gym.membership_package,model_climbing_gym_membership_package,climbing_gym.group_superadmin,1,1,1,1
-,,,,,,,
-,,,,,,,
-,,,,,,,
+superadmin_event_monthly,climbing_gym.event_monthly,model_climbing_gym_event_monthly,climbing_gym.group_superadmin,1,1,1,1
+superadmin_event_monthly_content,climbing_gym.event_monthly_content,model_climbing_gym_event_monthly_content,climbing_gym.group_superadmin,1,1,1,1
+superadmin_event_monthly_group,climbing_gym.event_monthly_group,model_climbing_gym_event_monthly_group,climbing_gym.group_superadmin,1,1,1,1
+
 manager_association_type,climbing_gym.association_type,model_climbing_gym_association_type,climbing_gym.group_manager,1,1,1,0
 manager_medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,climbing_gym.group_manager,1,1,1,0
 manager_event_time_range,climbing_gym.event_time_range,model_climbing_gym_event_time_range,climbing_gym.group_manager,1,1,1,0
@@ -25,7 +26,6 @@ manager_member_access_package,climbing_gym.member_access_package,model_climbing_
 manager_member_membership,climbing_gym.membership,model_climbing_gym_membership,climbing_gym.group_manager,1,0,0,0
 manager_member_member_membership,climbing_gym.member_membership,model_climbing_gym_member_membership,climbing_gym.group_manager,1,1,1,0
 manager_member_membership_package,climbing_gym.member_membership_package,model_climbing_gym_member_membership_package,climbing_gym.group_manager,1,1,1,0
-,,,,,,,
 user_association_type,climbing_gym.association_type,model_climbing_gym_association_type,climbing_gym.group_user,1,0,0,0
 user_medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,climbing_gym.group_user,1,1,1,0
 user_event_time_range,climbing_gym.event_time_range,model_climbing_gym_event_time_range,climbing_gym.group_user,1,0,0,0
@@ -37,7 +37,6 @@ user_member_access_package,climbing_gym.member_access_package,model_climbing_gym
 user_member_member_membership,climbing_gym.member_membership,model_climbing_gym_member_membership,climbing_gym.group_user,1,1,1,0
 user_member_membership,climbing_gym.membership,model_climbing_gym_membership,climbing_gym.group_user,1,0,0,0
 user_member_membership_package,climbing_gym.member_membership_package,model_climbing_gym_member_membership_package,climbing_gym.group_user,1,0,0,0
-,,,,,,,
 global_user_member_member_membership,climbing_gym.member_membership,model_climbing_gym_member_membership,base.group_portal,1,0,0,0
-global_user_medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,base.group_portal,1,0,0,0
+global_user_medical_certificate,climbing_gym.medical_certificate,model_climbing_gym_medical_certificate,base.group_portal,1,0,1,0
 global_user_member_access_package,climbing_gym.member_access_package,model_climbing_gym_member_access_package,base.group_portal,1,0,0,0

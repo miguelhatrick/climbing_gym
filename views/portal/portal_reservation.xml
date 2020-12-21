@@ -1,0 +1,52 @@
+<odoo>
+    <data>
+        <template id="portal_my_reservations" name="My Reservations">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Reservations</t>
+                </t>
+                <t t-if="not reservations">
+                    <p>There are currently no event reservations.</p>
+                </t>
+                <t t-if="reservations" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Location</th>
+                            <th class="text-right">Description</th>
+                            <th class="text-right">Date start</th>
+                            <th class="text-right">Date end</th>
+                            <th class="text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="reservations" t-as="reservation">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="reservation.event_id.address_id.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="reservation.event_id.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="reservation.event_id.date_begin"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="reservation.event_id.date_end"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-if="reservation.state == 'cancel'" class="badge badge-pill badge-secondary">
+                                    <i class="fa fa-fw fa-remove"/>
+                                    Cancelled
+                                </span>
+                            </td>
+
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

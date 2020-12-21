@@ -37,11 +37,29 @@ class EventGenerator(models.Model):
                                  column1='eg_id',
                                  column2='ewt_id',
                                  string='Templates', required=True)
+
+    # This is for the monthly events that can only be reserved once a month
+    generate_monthly_reservation = fields.Boolean(string='Create monthly reservation', required=True, default=False)
+
+    event_monthly_group_id = fields.Many2one(
+        comodel_name='climbing_gym.event_monthly_group',
+        string='Monthly reservation group',
+        track_visibility=True)
+
+    require_active_membership = fields.Boolean(string="Require active membership", required=True, default=True)
+    require_active_medical_certificate = fields.Boolean(string="Require active medical certificate", required=True,
+                                                        default=True)
+
+    require_tags = fields.Many2many('res.partner.category', string='Required tags')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     events = fields.One2many(
-        'event.event', inverse_name='event_generator_id', string='Events generated',
-        readonly=True, track_visibility=True)
+        'event.event',
+        inverse_name='event_generator_id',
+        string='Events generated',
+        readonly=True,
+        track_visibility=True)
 
     @api.multi
     def action_pending(self):
@@ -51,18 +69,7 @@ class EventGenerator(models.Model):
     def action_generate(self):
         self.write({'state': 'generate'})
 
-        temps = self.templates
-        num_days = calendar.monthrange(self.year, self.month)[1]
-        days = [date(self.year, self.month, day) for day in range(1, num_days + 1)]
-
-        for _day in days:
-            for template in temps:
-                weekdays = []
-                for wd in template.weekdays:
-                    weekdays.append(wd.day_id)
-
-                if _day.weekday() in weekdays:
-                    self.create_event(_day, template)
+        self._generate()
 
     @api.multi
     def action_confirm(self):
@@ -74,28 +81,68 @@ class EventGenerator(models.Model):
         # 'website_published': True,
         # 'active': '1',
 
-
     @api.multi
     def action_cancel(self):
         self.write({'state': 'cancel'})
 
+        # Unlink Events
         ids = []
         for ev in self.events:
             ids.append(ev.id)
 
-        # unlink all
-        # self.events = [(5)]
+        for _my_id in ids:
+            self.events = [(2, _my_id)]
+            self.env["event.event"].search([('id', '=', _my_id)]).unlink()
 
-        for myid in ids:
-            self.events = [(2, myid)]
-            self.env["event.event"].search([('id', '=', myid)]).unlink()
+        # Unlink event_month
+        ids = []
+        if self.event_monthly_group_id:
+            for ev in self.event_monthly_group_id.event_monthly_ids:
+                ids.append(ev.id)
 
+            for _my_id in ids:
+                self.event_monthly_group_id.event_monthly_ids = [(2, _my_id)]
+                self.env["climbing_gym.event_monthly"].search([('id', '=', _my_id)]).unlink()
 
-        # foreach event
-        # 'website_published': false,
-        # 'active': '0',
+            _my_id = self.event_monthly_group_id.id
+            self.event_monthly_group_id = [(2, _my_id)]
+            self.env["climbing_gym.event_monthly_group"].search([('id', '=', _my_id)]).unlink()
 
-    def create_event(self, day, template):
+    def _generate(self):
+        temps = self.templates
+        num_days = calendar.monthrange(self.year, self.month)[1]
+        days = [date(self.year, self.month, day) for day in range(1, num_days + 1)]
+
+        if self.generate_monthly_reservation:
+            _emg_name = '%s  %s/%s' % (
+                self.name,
+                self.year,
+                self.month)
+
+            self.event_monthly_group_id = self.env['climbing_gym.event_monthly_group'].create({
+                'name': _emg_name,
+                'title': _emg_name,
+                'description': '',
+                'month': self.month,
+                'year': self.year,
+                'require_active_membership': self.require_active_membership,
+                'require_active_medical_certificate': self.require_active_medical_certificate,
+                'require_tags': self.require_tags
+            })
+
+        for _day in days:
+            for template in temps:
+                weekdays = []
+                for wd in template.weekdays:
+                    weekdays.append(wd.day_id)
+
+                if _day.weekday() in weekdays:
+                    self._create_event(_day, template)
+
+    def _create_event(self, day, template):
+
+        _weekday = self.env['climbing_gym.event_weekday'].search([('day_id', '=', day.weekday())])
+
         for hourpair in template.time_ranges:
             _tz = pytz.timezone(template.date_tz)
 
@@ -108,7 +155,7 @@ class EventGenerator(models.Model):
             event_name = '%s %s %s' % (template.title, time_from.zfill(5), time_to.zfill(5))
 
             myevent = self.env['event.event'].create({
-               'is_online': False,
+                'is_online': False,
                 'website_published': False,
                 'forbid_duplicates': True,
                 'seats_availability': 'limited',
@@ -131,7 +178,6 @@ class EventGenerator(models.Model):
             })
 
             self.events = [(4, myevent.id)]
-            # pdb.set_trace()
 
             event_ticket_id = self.env['event.event.ticket'].create({
                 'event_type_id': None,
@@ -149,5 +195,43 @@ class EventGenerator(models.Model):
                 'seats_available': template.seats_availability,
 
             })
-            #pdb.set_trace()
-            #  'event_tickets_ids':
+
+            # if create event monthly is set
+            if self.generate_monthly_reservation:
+
+                _em = -1
+                _event_monthly = self.sudo().env['climbing_gym.event_monthly']
+                _events = _event_monthly.search([
+                    ('event_monthly_group_id', '=', self.event_monthly_group_id.id),
+                    ('year', '=', self.year),
+                    ('month', '=', self.month),
+                    ('weekday', '=', _weekday.id),
+                    ('time_range', '=', hourpair.id),
+                    ('location', '=', template.location.id)
+                    ])
+
+                if len(_events) > 0:
+                    _em = _events[0]
+                else:
+                    _em_name = '%s %s %s %s' % (
+                        template.title,
+                        day.strftime('%A'),
+                        time_from.zfill(5),
+                        time_to.zfill(5))
+
+                    _em = self.env['climbing_gym.event_monthly'].create({
+                        'name': _em_name,
+                        'title': _em_name,
+                        'description': '',
+                        'event_monthly_group_id': self.event_monthly_group_id.id,
+                        'location': template.location.id,
+                        'month': self.month,
+                        'year': self.year,
+                        'weekday': _weekday.id,
+                        'time_range': hourpair.id,
+                        'date_tz': template.date_tz,
+                        'seats_availability': template.seats_availability,
+                    })
+
+                # add the event
+                _em.event_ids = [(4, myevent.id)]

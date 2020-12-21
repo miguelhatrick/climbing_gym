@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+        <template id="portal_my_member_memberships" name="My member memberships">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Memberships</t>
+                </t>
+                <t t-if="not member_memberships">
+                    <p>There are currently no memberships.</p>
+                </t>
+
+                <t t-if="member_memberships" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-right">ID</th>
+                            <th class="text-right">Membership</th>
+                            <th class="text-right">Membership due date start</th>
+                            <th class="text-right">Membership due date</th>
+                            <th class="text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="member_memberships" t-as="mm">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="mm.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="mm.membership_id.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="mm.initial_due_date"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="mm.current_due_date"/>
+                            </td>
+                            <td class="text-center">
+                               <span t-field="mm.state"/>
+                            </td>
+
+                        </tr>
+                    </t>
+                </t>
+
+            </t>
+        </template>
+
+
+    </data>
+</odoo>

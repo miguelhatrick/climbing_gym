@@ -18,8 +18,7 @@ class MedicalCertificate(models.Model):
 
     name = fields.Char('Name', compute='_generate_name')
 
-    partner_id = fields.Many2one(
-        'res.partner', string='Climbing gym member', readonly=False, required=True, track_visibility=True)
+    partner_id = fields.Many2one('res.partner', string='Climbing gym member', readonly=False, required=True, track_visibility=True)
 
     issue_date = fields.Date("Issue date", required=True, track_visibility=True)
     due_date = fields.Date("Due date", compute='_get_due_date', store=True, readonly=True)
@@ -27,11 +26,7 @@ class MedicalCertificate(models.Model):
     doctor_name = fields.Char(required=True)
     doctor_license = fields.Char(required=True)
 
-    certificate_image = fields.Binary("Medical Certificate (Image)", help="Select image here")
-    certificate_image_medium = fields.Binary("Medical Certificate (Image) Medium", help="Select image here")
-    certificate_image_small = fields.Binary("Medical Certificate (Image) Small", help="Select image here")
-    certificate_pdf_file = fields.Binary(string='PDF file', attachment=True)
-    pdf_filename = fields.Char()
+    attachment_ids= fields.Many2many('ir.attachment', 'medical_certificates_rel', 'medical_certificate_id', 'attachment_id', 'Attachments')
 
     obs = fields.Text()
 
@@ -55,18 +50,8 @@ class MedicalCertificate(models.Model):
         if False != self.issue_date:
             self.due_date = self.issue_date + relativedelta(years=1)
 
-    @api.constrains('certificate_pdf_file', 'pdf_filename')
-    def get_data(self):
-        if not self.pdf_filename: # No upload
-            return
-        if not self.pdf_filename.endswith('.pdf'):  # check if file pdf
-            raise ValidationError('Cannot upload file different from .pdf file')
-        else:
-            pass
-
     @api.model
     def create(self, vals):
-        image_resize_images(vals, big_name='certificate_image', medium_name='certificate_image_medium', small_name='certificate_image_small')
         result = super(MedicalCertificate, self).create(vals)
         # Update
         self.partner_id.update_certificate_due_date()
@@ -74,7 +59,6 @@ class MedicalCertificate(models.Model):
 
     @api.multi
     def write(self, vals):
-        image_resize_images(vals, big_name='certificate_image', medium_name='certificate_image_medium', small_name='certificate_image_small')
         result = super(MedicalCertificate, self).write(vals)
         # Update
         self.partner_id.update_certificate_due_date()

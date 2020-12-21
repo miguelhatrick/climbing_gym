@@ -9,6 +9,9 @@ class EventEvent(models.Model):
 
     event_generator_id = fields.Many2one('climbing_gym.event_generator', string='Climbing generator')
 
+    event_monthly_id = fields.Many2one('climbing_gym.event_monthly',
+                                       string='Monthly event linked')
+
     website_require_login = fields.Boolean(
         string='Require login for website registrations',
         help='If set, a user must be logged in to be able to register '

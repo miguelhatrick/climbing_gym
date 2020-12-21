@@ -1,0 +1,127 @@
+<odoo>
+    <data>
+        <template id="portal_my_medical_certificates" name="My medical certificates">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Medical certificates</t>
+                </t>
+
+                <form id="medical_certificate_create" t-attf-action="/my/medicalcertificates/create" method="post"
+                      class="js_website_submit_form">
+                    <div class="float-left">
+                        <button type="submit" class="btn btn-primary">Add medical certificate</button>
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    </div>
+                </form>
+
+
+                <t t-if="not medical_certificates">
+                    <p>There are currently no certificates.</p>
+                </t>
+                <t t-if="medical_certificates" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Id</th>
+                            <th class="text-right">Doctor</th>
+                            <th class="text-right">Date issue</th>
+                            <th class="text-right">Date due</th>
+                            <th class="text-right">Status</th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="medical_certificates" t-as="medical_certificate">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="medical_certificate.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="medical_certificate.doctor_name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="medical_certificate.issue_date"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="medical_certificate.due_date"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="medical_certificate.state"/>
+                            </td>
+
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <template id="portal_my_medical_certificate_form" name="My medical certificate form">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-set="additional_title">Add medical certificate</t>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Add medical certificate</t>
+                </t>
+
+
+                <form action="/website_form/"
+                      method="post"
+                      data-model_name="climbing_gym.medical_certificate"
+                      data-success_page="/my/medicalcertificates"
+                      data-force_action="shop.climbing_gym.medical_certificate"
+                      class="s_website_form form-horizontal container-fluid mt32"
+                      enctype="multipart/form-data">
+
+                    <h2>Add medical certificate</h2>
+                    <div class="form-group form-field o_website_form_required_custom">
+                        <label class="col-md-3 col-sm-4 control-label" for="doctor_name">Doctor name</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="doctor_name"
+                                   required=""/>
+                        </div>
+                        <label class="col-md-3 col-sm-4 control-label" for="doctor_license">Doctor license</label>
+                        <div class="col-md-7 col-sm-8">
+                            <input type="text" class="form-control o_website_form_input" name="doctor_license"
+                                   required=""/>
+                        </div>
+
+                        <label class="col-md-3 col-sm-4 control-label" for="issue_date">Certificate date</label>
+                        <div class="col-md-7 col-sm-8">
+
+                            <input type="date" name="issue_date" t-att-value="issue_date" id="issue_date"
+                                   class="form-control"
+                                   required="required"
+                                   data-date-format="YYYY/MM/DD"
+                                   placeholder='DD/MM/YYYY'/>
+                        </div>
+
+                        <label class="col-md-3 col-sm-4 control-label" for="certificate_image">Medical certificate
+                        </label>
+                        <div class="col-md-7 col-sm-8">
+                            <input class="form-control" id="certificate_file" type="file" name="certificate_image"
+                                   accept=".jpeg,.jpg,.png,.pdf" required=""/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                            <span id='submit' class="o_website_form_send btn btn-primary btn-lg">Submit</span>
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <span id="o_website_form_result"></span>
+                        </div>
+                    </div>
+                </form>
+
+            </t>
+
+        </template>
+
+
+
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+        <template id="portal_my_home_sale2" name="Portal My Home : sales entries" inherit_id="portal.portal_my_home"
+                  priority="20">
+            <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+                <t t-if="event_registration_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Event Reservation</t>
+                    <t t-set="url" t-value="'/my/reservations'"/>
+                    <t t-set="count" t-value="event_registration_count"/>
+                </t>
+                <t t-if="member_access_package_count" t-call="portal.portal_docs_entry">
+                    <t t-set="title">Access Packages</t>
+                    <t t-set="url" t-value="'/my/memberaccesspackages'"/>
+                    <t t-set="count" t-value="member_access_package_count"/>
+                </t>
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Medical certificates</t>
+                    <t t-set="url" t-value="'/my/medicalcertificates'"/>
+                    <t t-set="count" t-value="medical_certificate_count"/>
+                </t>
+                 <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Memberships</t>
+                    <t t-set="url" t-value="'/my/membermemberships'"/>
+                    <t t-set="count" t-value="member_membership_count"/>
+                </t>
+            </xpath>
+        </template>
+
+
+
+
+    </data>
+</odoo>

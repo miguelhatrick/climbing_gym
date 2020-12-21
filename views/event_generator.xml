@@ -39,15 +39,27 @@
                                     <group string="General">
                                         <field name="month"/>
                                         <field name="year"/>
-                                        <field name="templates" widget="many2many_tags"/>
+                                    </group>
+                                    <group string="Monthly events">
+                                        <field name="generate_monthly_reservation"/>
+                                        <field name="event_monthly_group_id"/>
+                                        <field name="require_active_membership"/>
+                                        <field name="require_active_medical_certificate"/>
+                                        <field name="require_tags" widget="many2many_tags"/>
                                     </group>
 
                                 </group>
-                                 <group string="Events">
-                                        <field name="events" nolabel="1"/>
-                                        <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
-                                    </group>
+                                <group string="Templates">
+                                    <field name="templates" options="{'no_create': True}"  nolabel="1"/>
+                                </group>
                             </page>
+                            <page string="Events">
+                                <group string="Events">
+                                    <field name="events" nolabel="1"/>
+                                    <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
+                                </group>
+                            </page>
+
                         </notebook>
                     </sheet>
                     <div class="oe_chatter">

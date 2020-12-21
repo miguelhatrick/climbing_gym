@@ -32,7 +32,7 @@ class ResPartner(models.Model):
         readonly=False, track_visibility="onchange")
 
     climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date', compute='update_certificate_due_date', store=True)
-    climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid', compute='update_certificate_status', store=True)
+    climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid', compute='update_certificate_status')
 
     @api.one
     @api.depends('climbing_gym_medical_certificate_due_date')

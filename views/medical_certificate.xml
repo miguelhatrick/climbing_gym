@@ -45,10 +45,7 @@
                                         <field name="doctor_name"/>
                                     </group>
                                     <group string="Files">
-                                        <field name="certificate_pdf_file" filename="pdf_filename"/>
-                                        <field name="pdf_filename" invisible="1"/>
-                                        <field name="certificate_image" widget='image'/>
-                                        <!-- <field name="certificate_image_small" widget='image' options='{"preview_image": "certificate_image_small"}'/> -->
+                                        <field name="attachment_ids" widget="many2many_binary" string="Files"/>
                                     </group>
                                 </group>
                             </page>

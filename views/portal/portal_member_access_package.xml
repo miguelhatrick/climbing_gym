@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+         <template id="portal_my_member_access_packages" name="My member access packages">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Member access packages</t>
+                </t>
+                <t t-if="not member_access_packages">
+                    <p>There are currently no event member_access_packages.</p>
+                </t>
+                <t t-if="member_access_packages" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th>Description</th>
+                            <th class="text-right">Total credits/Available credits</th>
+                            <th class="text-right">Date start/finish</th>
+                            <th class="text-right">Status</th>
+                            <th class="text-right"></th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="member_access_packages" t-as="member_access_package">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="member_access_package.access_package.name"/>
+                            </td>
+                            <td class="text-right"><span t-field="member_access_package.access_credits"/>/
+                                <span t-field="member_access_package.remaining_credits"/>
+                            </td>
+                            <td class="text-right"><span t-field="member_access_package.date_start"/>/
+                                <span t-field="member_access_package.date_finish"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="member_access_package.state"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-if="member_access_package.state == 'cancel'"
+                                      class="badge badge-pill badge-secondary">
+                                    <i class="fa fa-fw fa-remove"/>
+                                    Cancelled
+                                </span>
+                            </td>
+
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
