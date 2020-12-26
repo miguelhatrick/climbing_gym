@@ -13,10 +13,18 @@
                     <t t-set="url" t-value="'/my/memberaccesspackages'"/>
                     <t t-set="count" t-value="member_access_package_count"/>
                 </t>
+
+
                 <t t-call="portal.portal_docs_entry">
                     <t t-set="title">Medical certificates</t>
                     <t t-set="url" t-value="'/my/medicalcertificates'"/>
                     <t t-set="count" t-value="medical_certificate_count"/>
+                </t>
+
+                <t t-call="portal.portal_docs_entry">
+                    <t t-set="title">Monthly access to climbing wall</t>
+                    <t t-set="url" t-value="'/my/monthlyeventgroups'"/>
+                    <t t-set="count" t-value="monthly_event_groups_count"/>
                 </t>
                  <t t-call="portal.portal_docs_entry">
                     <t t-set="title">Memberships</t>

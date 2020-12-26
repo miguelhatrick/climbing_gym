@@ -42,12 +42,20 @@ class CustomerPortal(CustomerPortal):
             # ('state', 'in', ['sale', 'done'])
         ])
 
+        _monthly_event_group = request.env['climbing_gym.event_monthly_group']
+        _monthly_event_group_count = _monthly_event_group.search_count([
+            ('state', 'in', ['active']),
+            # ('state', 'in', ['sale', 'done'])
+        ])
+
+
 
         values.update({
             'event_registration_count': event_registration_count,
             'member_access_package_count': member_access_package_count,
             'medical_certificate_count': medical_certificate_count,
             'member_membership_count': member_membership_count,
+            'monthly_event_groups_count': _monthly_event_group_count,
         })
         return values
 

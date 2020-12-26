@@ -10,6 +10,16 @@ class EventMonthly(models.Model):
     _description = 'List of events that can be reserved monthly'
     _inherit = ['mail.thread']
 
+    months_choices = []
+    years_choices = []
+    currentYear = datetime.now().year
+
+    for i in range(1, 13):
+        months_choices.append((i, date(currentYear, i, 1).strftime('%B')))
+
+    for i in range(currentYear, currentYear + 5):
+        years_choices.append((i, str(i)))
+
     name = fields.Char("Name", required=True)
     title = fields.Char(string='Title for the event', required=True, default='')
     description = fields.Text(string='Description of the current template')
@@ -33,16 +43,6 @@ class EventMonthly(models.Model):
 
     location = fields.Many2one('res.partner', string='Event location', readonly=False, required=True)
 
-    months_choices = []
-    years_choices = []
-    currentYear = datetime.now().year
-
-    for i in range(1, 13):
-        months_choices.append((i, date(currentYear, i, 1).strftime('%B')))
-
-    for i in range(currentYear, currentYear + 5):
-        years_choices.append((i, str(i)))
-
     month = fields.Selection(months_choices, 'Month', required=True)
     year = fields.Selection(years_choices, 'Year', required=True)
 
@@ -54,6 +54,8 @@ class EventMonthly(models.Model):
                                default=lambda self: self.env.user.tz or 'UTC')
 
     seats_availability = fields.Integer("Maximum Attendees", required=True)
+
+    seats_available = fields.Integer("Available seats", compute='_current_available_seats')
 
     state = fields.Selection(status_selection, 'Status', default='pending')
 
@@ -72,3 +74,7 @@ class EventMonthly(models.Model):
     @api.model
     def _tz_get(self):
         return [(x, x) for x in pytz.all_timezones]
+
+    def _current_available_seats(self):
+        for em in self:
+            em.seats_available = em.seats_availability - em.event_content_ids.search_count([('event_monthly_id', '=', em.id), ('state', '=', 'confirmed')])

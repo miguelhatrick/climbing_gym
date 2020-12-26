@@ -1,0 +1,141 @@
+<odoo>
+    <data>
+        <template id="portal_my_monthly_event_groups" name="Monthly access to climbing wall">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Monthly access to climbing wall</t>
+                </t>
+
+
+                <t t-if="not monthly_event_groups">
+                    <p>There are currently no Monthly access to climbing wall.</p>
+                </t>
+                <t t-if="monthly_event_groups" t-call="portal.portal_table">
+                    <thead>
+                        <tr class="active">
+                            <th class="text-right">Name</th>
+                            <th class="text-right">Selected date</th>
+                            <th class="text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <t t-foreach="monthly_event_groups" t-as="event_monthly_group">
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="event_monthly_group.name"/>
+                            </td>
+
+                            <td class="text-right">
+                                <t t-foreach="event_monthly_group.event_content_ids" t-as="event_group_content">
+                                    <t t-if="event_group_content.member_membership_id in cur_memberships">
+                                        <span t-field="event_group_content.event_monthly_id.title"/>
+                                        -
+                                        <span t-field="event_group_content.state"/>
+                                    </t>
+                                </t>
+                            </td>
+                            <td class="text-right">
+                                <t t-if="not cur_partner.climbing_gym_member_membership_membership_active">
+                                    <span class="badge badge-pill badge-danger">
+                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Paid" role="img"></i>
+                                        <span class="d-none d-md-inline">You have no active memberships</span>
+                                    </span>
+                                </t>
+                                <t t-if="not cur_partner.climbing_gym_medical_certificate_valid">
+                                    <span class="badge badge-pill badge-danger">
+                                        <i class="fa fa-fw fa-check" aria-label="Paid" title="Paid" role="img"></i>
+                                        <span class="d-none d-md-inline">You have no active medical certificates</span>
+                                    </span>
+                                </t>
+                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and cur_partner.climbing_gym_medical_certificate_valid">
+                                    <form id="event_monthly_select"
+                                          t-attf-action="/my/monthlyeventgroups/select/{{event_monthly_group.id}}"
+                                          method="post"
+                                          class="card">
+                                        <div class="float-left">
+                                            <button type="submit" class="btn btn-primary btn-lg btn-block a-submit">
+                                                Select
+                                            </button>
+                                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                        </div>
+                                    </form>
+                                </t>
+                            </td>
+                        </tr>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="portal_my_event_monthly_group_form" name="My monthly event group form">
+            <t t-call="portal.portal_layout">
+                <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+                <t t-set="additional_title">Select event group</t>
+
+                <t t-call="portal.portal_searchbar">
+                    <t t-set="title">Select event group</t>
+                </t>
+
+
+                <t t-if="errors_found">
+                    <t t-foreach="error_arr" t-as="error">
+                        <span class="badge badge-pill badge-danger">
+                            <i class="fa fa-fw fa-check" aria-label="Paid" title="error" role="img"></i>
+                            <span class="d-none d-md-inline">
+                                <t t-raw="error"/>
+                            </span>
+                        </span>
+                    </t>
+                </t>
+
+                <t t-if="not errors_found">
+
+                    <h2><t t-esc="event_monthly_group.name"/></h2>
+
+
+
+                    <form action="/website_form/"
+                          method="post"
+                          data-model_name="climbing_gym.event_monthly_group"
+                          data-success_page="/my/monthlyeventgroups"
+                          data-force_action="shop.climbing_gym.event_monthly_group"
+                          class="s_website_form form-horizontal container-fluid mt32"
+                          enctype="multipart/form-data">
+
+                        <h2>Select monthly event group</h2>
+                        <div class="form-group form-field o_website_form_required_custom">
+                            <label class="col-md-3 col-sm-4 control-label" for="doctor_name">Selected event</label>
+                            <div class="col-md-7 col-sm-8">
+
+                                <select class="form-control" name="event_monthly">
+                                    <t t-foreach="event_monthly_group_content" t-as="egc">
+                                        <option t-attf-value="#{egc.id}"
+                                                t-att-selected="WHATEVER_CATEGORY_ID_YOU_WANT_TO_HAVE_SELECTED">
+                                            <t t-esc="egc.title"/> ( <t t-esc="egc.seats_available"/> available /  <t t-esc="egc.seats_availability"/> total)
+                                        </option>
+                                    </t>
+                                </select>
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                <span id='submit' class="o_website_form_send btn btn-primary btn-lg">Submit</span>
+                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                <input type="hidden" name="event_group_id" t-att-value="event_monthly_group.id"/>
+                                <span id="o_website_form_result"></span>
+                            </div>
+                        </div>
+                    </form>
+                </t>
+
+            </t>
+
+        </template>
+
+
+    </data>
+</odoo>

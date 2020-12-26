@@ -39,8 +39,8 @@
                                     <field name="weekday" options="{'no_quick_create':True,'no_create_edit':True}"/>
                                     <field name="time_range"/>
                                     <field name="date_tz"/>
-
                                     <field name="seats_availability"/>
+                                    <field name="seats_available"/>
                                 </group>
                                 <group colspan="4">
                                     <field name="event_ids" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
@@ -64,6 +64,7 @@
                     <field name="title"/>
                     <field name="location"/>
                     <field name="seats_availability"/>
+                    <field name="seats_available"/>
                     <field name="state"/>
                 </tree>
             </field>

@@ -36,7 +36,26 @@
                                 <span t-field="mm.current_due_date"/>
                             </td>
                             <td class="text-center">
-                               <span t-field="mm.state"/>
+
+                                <t t-if="mm.state == 'cancel'">
+                                     <span class="badge badge-pill badge-danger">
+                                            <i class="fa fa-fw fa-times" aria-label="Paid" title="Active" role="img"></i>
+                                            <span class="d-none d-md-inline"> <span t-field="mm.state"/></span>
+                                     </span>
+                                </t>
+                                <t t-if="mm.state == 'pending' or mm.state == 'overdue'">
+                                     <span class="badge badge-pill badge-warning">
+                                            <i class="fa fa-fw fa-times" aria-label="Paid" title="Pending" role="img"></i>
+                                            <span class="d-none d-md-inline"> <span t-field="mm.state"/></span>
+                                     </span>
+                                </t>
+
+                                <t t-if="mm.state == 'active'">
+                                     <span class="badge badge-pill badge-success">
+                                            <i class="fa fa-fw fa-check" aria-label="Paid" title="Active" role="img"></i>
+                                            <span class="d-none d-md-inline"> <span t-field="mm.state"/></span>
+                                     </span>
+                                </t>
                             </td>
 
                         </tr>

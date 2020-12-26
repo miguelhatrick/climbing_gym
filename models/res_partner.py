@@ -31,6 +31,10 @@ class ResPartner(models.Model):
         'climbing_gym.member_membership', inverse_name='partner_id', string='Memberships',
         readonly=False, track_visibility="onchange")
 
+    climbing_gym_member_membership_membership_active = fields.Boolean(
+                                                        string='Current partner has an active membership',
+                                                        compute='_get_current_partner_membership_status')
+
     climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date', compute='update_certificate_due_date', store=True)
     climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid', compute='update_certificate_status')
 
@@ -56,8 +60,14 @@ class ResPartner(models.Model):
             if self.climbing_gym_medical_certificate_due_date is False or self.climbing_gym_medical_certificate_due_date < _certificate.due_date:
                 self.climbing_gym_medical_certificate_due_date = _certificate.due_date
 
-        # pdb.set_trace()
+    def _get_current_partner_membership_status(self):
+        for _partner in self:
+            for _membership in _partner.climbing_gym_member_membership_ids:
+                if _membership.state == 'active':
+                    _partner.climbing_gym_member_membership_membership_active = True
+                    return
 
+            _partner.climbing_gym_member_membership_membership_active = False
 
     # FOR CALCULATING THE LAST CERT
     # last_id = self.env['table.name'].search([], order='id desc')[0].id

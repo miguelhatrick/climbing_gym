@@ -39,6 +39,7 @@
         'views/portal/portal_medical_certificate.xml',
         'views/portal/portal_member_access_package.xml',
         'views/portal/portal_member_membership.xml',
+        'views/portal/portal_monthly_event_group.xml',
         'views/portal/portal_reservation.xml',
         'views/portal/event_website_sale_templates.xml',
         'views/portal/website_event_templates.xml',

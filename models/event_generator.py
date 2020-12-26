@@ -219,6 +219,11 @@ class EventGenerator(models.Model):
                         time_from.zfill(5),
                         time_to.zfill(5))
 
+                    _em_name_short = '%s %s %s' % (
+                        day.strftime('%A'),
+                        time_from.zfill(5),
+                        time_to.zfill(5))
+
                     _em = self.env['climbing_gym.event_monthly'].create({
                         'name': _em_name,
                         'title': _em_name,

@@ -14,13 +14,15 @@ class EventMonthlyGroup(models.Model):
     title = fields.Char(string='Title for the description base', required=True, default='')
     description = fields.Text(string='Description of the current template')
 
-    status_selection = [('pending', "Pending"), ('active', "Active"), ('cancel', "Disabled")]
+    status_selection = [('pending', "Pending"), ('active', "Active"), ('closed', "Closed"), ('cancel', "Disabled")]
 
     event_monthly_ids = fields.One2many('climbing_gym.event_monthly',
                                         inverse_name='event_monthly_group_id',
                                         string='Monthly events',
                                         readonly=False,
                                         track_visibility=True)
+
+
 
     months_choices = []
     years_choices = []
@@ -48,6 +50,10 @@ class EventMonthlyGroup(models.Model):
                                         readonly=True,
                                         track_visibility=False)
 
+    current_partner_event_content_ids = fields.One2many('climbing_gym.event_monthly_content',
+                                                        string='Logged Partner Monthly events contents',
+                                                        compute='_get_current_partner_event_content_ids')
+
     state = fields.Selection(status_selection, 'Status', default='pending')
 
     @api.multi
@@ -69,3 +75,10 @@ class EventMonthlyGroup(models.Model):
     @api.model
     def _tz_get(self):
         return [(x, x) for x in pytz.all_timezones]
+
+    @api.one
+    def _get_current_partner_event_content_ids(self):
+        _partner_id = self.env.user.partner_id
+        _member_membership = self.sudo().env['climbing_gym.member_membership']
+        _member_membership_ids = _member_membership.search([('partner_id', '=', _partner_id.id)])
+        self.current_partner_event_content_ids = self.event_content_ids.search([('member_membership_id', 'in', _member_membership_ids)])
