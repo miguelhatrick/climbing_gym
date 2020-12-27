@@ -45,7 +45,7 @@
         'views/portal/portal_user_menu.xml',
         'views/portal/website_event_templates.xml',
 
-        'views/report/member_membership_report.xml',
+        # 'views/report/member_membership_report.xml',
 
 
         'views/access_package.xml',
