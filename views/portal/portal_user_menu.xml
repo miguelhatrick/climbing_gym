@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="my_new_ticket" name="Link to frontend portal" inherit_id="portal.frontend_layout">
+            <xpath expr="//a[@id='o_logout']" position="before">
+                <a href="/new/ticket" role="menuitem" class="dropdown-item">New Ticket</a>
+            </xpath>
+        </template>
+    </data>
+</odoo>

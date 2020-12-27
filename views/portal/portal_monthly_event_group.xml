@@ -25,26 +25,39 @@
                             <td class="text-right">
                                 <span t-field="event_monthly_group.name"/>
                             </td>
-
                             <td class="text-right">
                                 <t t-foreach="event_monthly_group.event_content_ids" t-as="event_group_content">
                                     <t t-if="event_group_content.member_membership_id in cur_memberships">
                                         <span t-field="event_group_content.event_monthly_id.title"/>
-                                        -
-                                        <span t-field="event_group_content.state"/>
+                                        <t t-if="event_group_content.state == 'cancel'">
+                                            <t t-set="badgeclass" t-value="'badge-danger'"/>
+                                            <t t-set="faimage" t-value="'fa-times'"/>
+                                        </t>
+                                        <t t-if="event_group_content.state == 'pending'">
+                                            <t t-set="badgeclass" t-value="'badge-warning'"/>
+                                            <t t-set="faimage" t-value="'fa-times'"/>
+                                        </t>
+                                        <t t-if="event_group_content.state == 'confirmed'">
+                                            <t t-set="badgeclass" t-value="'badge-success'"/>
+                                            <t t-set="faimage" t-value="'fa-check'"/>
+                                        </t>
+                                        <span t-attf-class="badge badge-pill {{badgeclass}}">
+                                            <i t-attf-class="fa fa-fw {{faimage}}" aria-label="Paid" t-attf-title="{{event_group_content.state}}" role="img"></i>
+                                            <span class="d-none d-md-inline"> <span t-field="event_group_content.state"/></span>
+                                        </span>
                                     </t>
                                 </t>
                             </td>
                             <td class="text-right">
                                 <t t-if="not cur_partner.climbing_gym_member_membership_membership_active">
                                     <span class="badge badge-pill badge-danger">
-                                        <i class="fa fa-fw fa-times" aria-label="Paid" title="Paid" role="img"></i>
+                                        <i class="fa fa-fw fa-times" role="img"></i>
                                         <span class="d-none d-md-inline">You have no active memberships</span>
                                     </span>
                                 </t>
                                 <t t-if="not cur_partner.climbing_gym_medical_certificate_valid">
                                     <span class="badge badge-pill badge-danger">
-                                        <i class="fa fa-fw fa-check" aria-label="Paid" title="Paid" role="img"></i>
+                                        <i class="fa fa-fw fa-check" role="img"></i>
                                         <span class="d-none d-md-inline">You have no active medical certificates</span>
                                     </span>
                                 </t>
@@ -109,7 +122,7 @@
                             <label class="col-md-3 col-sm-4 control-label" for="doctor_name">Selected event</label>
                             <div class="col-md-7 col-sm-8">
 
-                                <select class="form-control" name="event_monthly">
+                                <select class="form-control" name="monthly_event">
                                     <t t-foreach="event_monthly_group_content" t-as="egc">
                                         <option t-attf-value="#{egc.id}"
                                                 t-att-selected="WHATEVER_CATEGORY_ID_YOU_WANT_TO_HAVE_SELECTED">

@@ -4,7 +4,6 @@ import datetime
 import json
 import pdb
 
-
 from addons.website_form.controllers.main import WebsiteForm
 from odoo import fields, http, _
 from odoo.addons.base.models.ir_qweb_fields import nl2br
@@ -59,7 +58,7 @@ class CustomerPortal(CustomerPortal):
         )
         # search the count to display, according to the pager data
         _monthly_event_groups = _monthlyEventGroup.sudo().search(domain, order=sort_order, limit=self._items_per_page,
-                                                          offset=pager['offset'])
+                                                                 offset=pager['offset'])
 
         request.session['my_monthlyeventgroups_history'] = _monthly_event_groups.ids[:100]
 
@@ -80,8 +79,9 @@ class CustomerPortal(CustomerPortal):
         })
         return request.render("climbing_gym.portal_my_monthly_event_groups", values)
 
-    @http.route(['/my/monthlyeventgroups/select', '/my/monthlyeventgroups/select/<int:group_id>'], type='http', auth="user", methods=['POST'], website=True)
-    def portal_my_monthly_event_form(self, group_id,  **kw):
+    @http.route(['/my/monthlyeventgroups/select', '/my/monthlyeventgroups/select/<int:group_id>'], type='http',
+                auth="user", methods=['POST'], website=True)
+    def portal_my_monthly_event_form(self, group_id, **kw):
         values = self._prepare_portal_layout_values()
         partner = request.env.user.partner_id
         _errors = []
@@ -90,7 +90,7 @@ class CustomerPortal(CustomerPortal):
         _monthlyEventGroup_id = request.env['climbing_gym.event_monthly_group'].search([('id', '=', group_id)])
 
         if not _monthlyEventGroup_id or len(_monthlyEventGroup_id) == 0:
-            _errors.append('Invalid monthly event')
+            _errors.append('Invalid monthly event group')
 
         # check if the current partner can access this
         if not partner.climbing_gym_member_membership_membership_active:
@@ -109,11 +109,11 @@ class CustomerPortal(CustomerPortal):
             'error_arr': _errors,
             'errors_found': True if len(_errors) > 0 else False,
             'event_monthly_group': _monthlyEventGroup_id,
-            'event_monthly_group_content': _monthlyEventGroup_id.event_monthly_ids.filtered(lambda _evc: _evc.state == 'active')
+            'event_monthly_group_content': _monthlyEventGroup_id.event_monthly_ids.filtered(
+                lambda _evc: _evc.state == 'active')
         })
 
         return request.render("climbing_gym.portal_my_event_monthly_group_form", values)
-
 
 
 class CustomerPortalForm(WebsiteForm):
@@ -121,56 +121,66 @@ class CustomerPortalForm(WebsiteForm):
                 website=True)
     def website_form_event_monthly_group(self, **kwargs):
         partner = request.env.user.partner_id
-        model_record = request.env.ref('climbing_gym.model_climbing_gym_event_monthly_group')
 
-        # date
-        issue_date = datetime.datetime.strptime(kwargs['issue_date'], "%Y-%m-%d").date()
-        kwargs['issue_date'] = issue_date.strftime("%d/%m/%Y")
+        _eventMonthlyGroup = request.env['climbing_gym.event_monthly_group']
+        _eventMonthlyContent = request.env['climbing_gym.event_monthly_content']
+
+        _eventMonthlyGroup_id = _eventMonthlyGroup.search([('id', '=', kwargs['event_group_id'])])
+        _eventMonthly_id = request.env['climbing_gym.event_monthly'].search(
+            [('id', '=', kwargs['monthly_event'])])
+
+        _errors = []
+
+        # perform checks
+        if not _eventMonthlyGroup_id or len(_eventMonthlyGroup_id) == 0:
+            _errors.append('Invalid monthly event group')
+
+        if not _eventMonthly_id or len(_eventMonthly_id) == 0:
+            _errors.append('Invalid monthly event')
+
+            # check if the current partner can access this
+        if not partner.climbing_gym_member_membership_membership_active:
+            _errors.append('No active membership')
+
+        if not partner.climbing_gym_medical_certificate_valid:
+            _errors.append('No valid medical certificate')
+
+            # check if is not over
+        if not _eventMonthlyGroup_id.state == 'active':
+            _errors.append('Monthly event group is not active')
+
+        if len(_errors) > 0:
+            return json.dumps({'error_fields': _errors[0]})
 
         try:
-            data = self.extract_data(model_record, kwargs)
+            _partnerMemberships_ids = partner.climbing_gym_member_membership_ids.filtered(
+                lambda pm: pm.state == 'active')
+
+            # Delete Old
+            _monthlyEventContent_ids = _eventMonthlyContent.sudo().search([
+                ('member_membership_id', 'in', partner.climbing_gym_member_membership_ids.ids),
+                ('event_monthly_group_id', '=', _eventMonthlyGroup_id.id)])
+
+            for _e in _monthlyEventContent_ids:
+                _e.unlink()
+
+
+
+            # create new
+            _mec = _eventMonthlyContent.sudo().create({
+                'member_membership_id': _partnerMemberships_ids[0].id,
+                'event_monthly_id': _eventMonthly_id.id,
+                'event_monthly_group_id': _eventMonthlyGroup_id.id,
+                'state': 'pending'
+            }
+            )
+
+            # If we have a spot confirm it, first recalculate
+            _eventMonthly_id.calculate_current_available_seats()
+            if _eventMonthly_id.seats_available > 0:
+                _mec.state = 'confirmed'
+
         except ValidationError as e:
             return json.dumps({'error_fields': e.args[0]})
 
-
-
-        # borrar viejo
-
-        # crear nuevo
-
-
-
-
-
-
-
-        _medicalCertificate = request.env['climbing_gym.medical_certificate']
-
-        _mc = _medicalCertificate.create({
-                'partner_id': partner.id,
-                'issue_date': issue_date,
-                'doctor_name': kwargs['doctor_name'],
-                'doctor_license': kwargs['doctor_license']
-            }
-        )
-
-        if data['custom']:
-            values = {
-                'body': nl2br(data['custom']),
-                'model': 'climbing_gym.medical_certificate',
-                'message_type': 'comment',
-                'no_auto_thread': False,
-                'res_id': _mc.id,
-            }
-            request.env['mail.message'].sudo().create(values)
-
-        if data['attachments']:
-            _id = self.insert_attachment(model_record, _mc.id, data['attachments'])
-
-        _at_ids = request.env['ir.attachment'].search([('res_model', '=', 'climbing_gym.medical_certificate'),
-                                                             ('res_id', '=', _mc.id)])
-
-        for _id in _at_ids:
-            _mc.attachment_ids = [(4, _id.id)]
-
-        return json.dumps({'id': _mc.id})
+        return json.dumps({'id': _mec.id})

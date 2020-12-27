@@ -55,7 +55,7 @@ class EventMonthly(models.Model):
 
     seats_availability = fields.Integer("Maximum Attendees", required=True)
 
-    seats_available = fields.Integer("Available seats", compute='_current_available_seats')
+    seats_available = fields.Integer("Available seats", compute='calculate_current_available_seats')
 
     state = fields.Selection(status_selection, 'Status', default='pending')
 
@@ -75,6 +75,6 @@ class EventMonthly(models.Model):
     def _tz_get(self):
         return [(x, x) for x in pytz.all_timezones]
 
-    def _current_available_seats(self):
+    def calculate_current_available_seats(self):
         for em in self:
             em.seats_available = em.seats_availability - em.event_content_ids.search_count([('event_monthly_id', '=', em.id), ('state', '=', 'confirmed')])

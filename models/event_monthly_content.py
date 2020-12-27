@@ -4,12 +4,13 @@ import pdb
 from dateutil.relativedelta import relativedelta
 
 from odoo import models, fields, api
-from odoo.exceptions import ValidationError
+from odoo.exceptions import ValidationError, UserError
 from odoo.tools import image_resize_images, image_resize_image, base64, logging
 import pytz
 from datetime import datetime
 
 _logger = logging.getLogger(__name__)
+
 
 class EventMonthlyContent(models.Model):
     """Month event content"""
@@ -32,8 +33,6 @@ class EventMonthlyContent(models.Model):
 
     state = fields.Selection(status_selection, 'Status', default='pending')
 
-    currentYear = datetime.now().year
-
     @api.multi
     def action_pending(self):
         self.write({'state': 'pending'})
@@ -51,11 +50,9 @@ class EventMonthlyContent(models.Model):
                 raise ValidationError("Medical certificate missing / overdue")
 
         # Do we have space?
-        _confirmed_attendants = self.sudo().env['climbing_gym.event_monthly_content'].search_count([
-            ('event_monthly_id', '=', self.event_monthly_id.id),
-            ('state', 'in', ["confirmed"])
-        ])
-        if self.event_monthly_id.seats_availability <= _confirmed_attendants:
+        self.event_monthly_id.calculate_current_available_seats()
+
+        if self.event_monthly_id.seats_available <= 0:
             raise ValidationError("All available places have been taken")
 
         # TODO: Implement tag control
@@ -101,12 +98,14 @@ class EventMonthlyContent(models.Model):
         else:
             self.event_monthly_group_id = None
 
-
-
-
     @api.onchange('event_monthly_group_id')
     def _onchange_event_monthly_group_id(self):
         res = {'domain': {'event_monthly_id': [('event_monthly_group_id', '=', self.event_monthly_group_id.id)]}}
         return res
 
-
+    @api.multi
+    def unlink(self):
+        for _content in self:
+            if _content.event_monthly_group_id.state == 'closed':
+                raise UserError(_('You cannot delete a content of a closed group '))
+        return super(EventMonthlyContent, self).unlink()

@@ -67,6 +67,10 @@ class EventMonthlyGroup(models.Model):
         self.event_monthly_ids.action_active()
 
     @api.multi
+    def action_close(self):
+        self.write({'state': 'closed'})
+
+    @api.multi
     def action_cancel(self):
         self.write({'state': 'cancel'})
         self.event_monthly_ids.action_cancel()

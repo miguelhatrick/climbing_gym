@@ -42,7 +42,11 @@
         'views/portal/portal_monthly_event_group.xml',
         'views/portal/portal_reservation.xml',
         'views/portal/event_website_sale_templates.xml',
+        'views/portal/portal_user_menu.xml',
         'views/portal/website_event_templates.xml',
+
+        'views/report/member_membership_report.xml',
+
 
         'views/access_package.xml',
         'views/event_event_views.xml',
