@@ -106,7 +106,7 @@ class CustomerPortalForm(WebsiteForm):
 
         _medicalCertificate = request.env['climbing_gym.medical_certificate']
 
-        _mc = _medicalCertificate.create({
+        _mc = _medicalCertificate.sudo().create({
                 'partner_id': partner.id,
                 'issue_date': issue_date,
                 'doctor_name': kwargs['doctor_name'],
@@ -127,7 +127,7 @@ class CustomerPortalForm(WebsiteForm):
         if data['attachments']:
             _id = self.insert_attachment(model_record, _mc.id, data['attachments'])
 
-        _at_ids = request.env['ir.attachment'].search([('res_model', '=', 'climbing_gym.medical_certificate'),
+        _at_ids = request.env['ir.attachment'].sudo().search([('res_model', '=', 'climbing_gym.medical_certificate'),
                                                              ('res_id', '=', _mc.id)])
 
         for _id in _at_ids:
