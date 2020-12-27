@@ -2,11 +2,10 @@
 <odoo>
 
     <data>
-          <record id="model_climbing_gym_medical_certificate" model="ir.model">
-             <field name="website_form_access" eval="True"/>
+        <record id="model_climbing_gym_medical_certificate" model="ir.model">
+            <field name="website_form_access" eval="True"/>
             <field name="website_form_label">Sales Order</field>
         </record>
-
 
         <function model="ir.model.fields" name="formbuilder_whitelist">
             <value>climbing_gym.medical_certificate</value>
@@ -14,18 +13,8 @@
                 'doctor_name',
                 'doctor_license',
                 'issue_date',
-                'certificate_image',
-
+                'certificate_image'
                ]"/>
         </function>
-
-
-
-
-
-
-
     </data>
-
-
 </odoo>
