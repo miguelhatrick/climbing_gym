@@ -68,3 +68,18 @@ class MedicalCertificate(models.Model):
         # pdb.set_trace()
         for _map in self:
             _map.name = "MC-%s" % (_map.id if _map.id else '')
+
+    #
+    # def add_approve_follower(self):
+    #     vals = {}
+    #     partner_id = []
+    #     ptn = self.env['res.partner'].search([('email', '=', self.manager_id.user_id.email)]) # get partner  id by email
+    #     if not ptn: return vals # if get fail return {}
+    #     for x in self.message_follower_ids:
+    #         if x.partner_id.id == ptn.id:
+    #             return vals # if already added in followers   return {}
+    #     partner_id.append(ptn.id)
+    #     vals['message_follower_ids'] = [(0, 0, {
+    #         'res_model': 'jj_loan.jj_loan',
+    #         'partner_id': pid}) for pid in partner_id]
+    #     return vals; // return message_follower_ids
