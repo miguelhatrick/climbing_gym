@@ -5,7 +5,7 @@ import json
 import pdb
 
 
-from addons.website_form.controllers.main import WebsiteForm
+from odoo.addons.website_form.controllers.main import WebsiteForm
 from odoo import fields, http, _
 from odoo.addons.base.models.ir_qweb_fields import nl2br
 from odoo.exceptions import AccessError, MissingError, ValidationError
