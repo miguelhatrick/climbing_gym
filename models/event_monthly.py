@@ -77,4 +77,5 @@ class EventMonthly(models.Model):
 
     def calculate_current_available_seats(self):
         for em in self:
-            em.sudo().seats_available = em.seats_availability - em.event_content_ids.sudo().search_count([('event_monthly_id', '=', em.id), ('state', '=', 'confirmed')])
+            em.seats_available = em.seats_availability - self.sudo().env['climbing_gym.event_monthly_content'].search_count(
+                [('event_monthly_id', '=', em.id), ('state', '=', 'confirmed')])

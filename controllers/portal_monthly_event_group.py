@@ -120,11 +120,11 @@ class CustomerPortalForm(WebsiteForm):
     def website_form_event_monthly_group(self, **kwargs):
         partner = request.env.user.partner_id
 
-        _eventMonthlyGroup = request.env['climbing_gym.event_monthly_group']
-        _eventMonthlyContent = request.env['climbing_gym.event_monthly_content']
+        _eventMonthlyGroup = request.env['climbing_gym.event_monthly_group'].sudo()
+        _eventMonthlyContent = request.env['climbing_gym.event_monthly_content'].sudo()
 
         _eventMonthlyGroup_id = _eventMonthlyGroup.search([('id', '=', kwargs['event_group_id'])])
-        _eventMonthly_id = request.env['climbing_gym.event_monthly'].search(
+        _eventMonthly_id = request.env['climbing_gym.event_monthly'].sudo().search(
             [('id', '=', kwargs['monthly_event'])])
 
         _errors = []
