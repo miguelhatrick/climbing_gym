@@ -13,8 +13,7 @@
                     <t t-call="web.external_layout">
                         <div class="header">CABA</div>
                         <div class="page">
-                            <h1>Listado de Acceso al CENARD</h1>
-                            <h2>Centro Andino Buenos Aires</h2>
+                            <h2>Listado de Acceso al CENARD</h2>
                             <h3><span t-field="meg.name"/> - <span t-field="meg.year"/> / <span t-field="meg.month"/></h3>
 
                             <table class="table table-condensed" style="border: 1px solid #9999">
@@ -72,7 +71,7 @@
                                             <span t-field="cont.member_membership_id.partner_id.climbing_gym_medical_certificate_latest.doctor_license"/>
                                         </td>
                                         <td>
-                                            <span t-field="cont.event_monthly_id.name"/>
+                                            <span t-field="cont.event_monthly_id.weekday.localized_name"/> <span t-field="cont.event_monthly_id.time_range.name"/>
                                         </td>
 
 

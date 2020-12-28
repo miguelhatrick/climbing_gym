@@ -29,7 +29,7 @@
                                 <t t-foreach="event_monthly_group.event_content_ids" t-as="event_group_content">
 
                                     <t t-if="event_group_content.member_membership_id in cur_memberships">
-                                        <span>
+                                        <p>
                                             <span t-field="event_group_content.event_monthly_id.title"/>
                                             <t t-if="event_group_content.state == 'cancel'">
                                                 <t t-set="badgeclass" t-value="'badge-danger'"/>
@@ -50,7 +50,7 @@
                                                     <span t-field="event_group_content.state"/>
                                                 </span>
                                             </span>
-                                        </span>
+                                        </p>
                                     </t>
                                 </t>
                             </td>
