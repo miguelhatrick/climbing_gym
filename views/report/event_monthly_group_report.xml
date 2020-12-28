@@ -1,7 +1,7 @@
 <odoo>
     <data>
         <report id="report_event_monthly_group"
-                string="Reporte CENARD"
+                string="Reporte CENARD PDF"
                 model="climbing_gym.event_monthly_group"
                 report_type="qweb-pdf"
                 name="climbing_gym.report_event_monthly_group_template"
@@ -45,7 +45,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr t-foreach="meg.event_content_ids.sorted(key=lambda r: r.event_monthly_id)" t-as="cont">
+                                    <tr t-foreach="meg.event_content_ids.sorted(key=lambda r: r.event_monthly_id.name)" t-as="cont">
 
                                         <td>
                                             <span>C.A.B.A.</span>
@@ -71,7 +71,7 @@
                                             <span t-field="cont.member_membership_id.partner_id.climbing_gym_medical_certificate_latest.doctor_license"/>
                                         </td>
                                         <td>
-                                            <span t-field="cont.event_monthly_id.weekday.localized_name"/> <span t-field="cont.event_monthly_id.time_range.name"/>
+                                            <span t-field="cont.event_monthly_id.name"/>
                                         </td>
 
 
