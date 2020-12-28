@@ -32,11 +32,17 @@ class ResPartner(models.Model):
         readonly=False, track_visibility="onchange")
 
     climbing_gym_member_membership_membership_active = fields.Boolean(
-                                                        string='Current partner has an active membership',
-                                                        compute='_get_current_partner_membership_status')
+        string='Current partner has an active membership',
+        compute='_get_current_partner_membership_status')
 
-    climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date', compute='update_certificate_due_date', store=True)
-    climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid', compute='update_certificate_status')
+    climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date',
+                                                            compute='update_certificate_due_date', store=True)
+    climbing_gym_medical_certificate_valid = fields.Boolean('Medical certificate valid',
+                                                            compute='update_certificate_status')
+
+    climbing_gym_medical_certificate_latest = fields.Many2one('climbing_gym.medical_certificate',
+                                                              'Latest confirmed certificate',
+                                                              compute='_get_latest_certificate')
 
     @api.one
     @api.depends('climbing_gym_medical_certificate_due_date')
@@ -56,7 +62,7 @@ class ResPartner(models.Model):
         for _certificate in self.climbing_gym_medical_certificates:
             if _certificate.state != 'confirmed':
                 continue
-            #self.climbing_gym_medical_certificate_due_date = certi.due_date
+            # self.climbing_gym_medical_certificate_due_date = certi.due_date
             if self.climbing_gym_medical_certificate_due_date is False or self.climbing_gym_medical_certificate_due_date < _certificate.due_date:
                 self.climbing_gym_medical_certificate_due_date = _certificate.due_date
 
@@ -69,12 +75,15 @@ class ResPartner(models.Model):
 
             _partner.climbing_gym_member_membership_membership_active = False
 
+    def _get_latest_certificate(self):
+        for _partner in self:
+            _partner.climbing_gym_medical_certificate_latest = self.sudo().env['climbing_gym.medical_certificate']. \
+                search([('partner_id', '=', _partner.id),
+                        ('state', '=', 'confirmed')], order='issue_date desc', limit=1)
+
     # FOR CALCULATING THE LAST CERT
     # last_id = self.env['table.name'].search([], order='id desc')[0].id
 
-
-
     # climbing_gym_image = fields.Binary("LAla Image", help="Select image here")
 
-    #climbing_gym_association_id = fields.Date("AssociationDate")
-
+    # climbing_gym_association_id = fields.Date("AssociationDate")

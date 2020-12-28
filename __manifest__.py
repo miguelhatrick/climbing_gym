@@ -46,7 +46,7 @@
         'views/portal/website_event_templates.xml',
 
         # 'views/report/member_membership_report.xml',
-
+        'views/report/event_monthly_group_report.xml',
 
         'views/access_package.xml',
         'views/event_event_views.xml',

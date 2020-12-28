@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        <report id="report_event_monthly_group"
+                string="Reporte CENARD"
+                model="climbing_gym.event_monthly_group"
+                report_type="qweb-pdf"
+                name="climbing_gym.report_event_monthly_group_template"
+        />
+
+        <template id="report_event_monthly_group_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="meg">
+                    <t t-call="web.external_layout">
+                        <div class="header">CABA</div>
+                        <div class="page">
+                            <h1>Listado de Acceso al CENARD</h1>
+                            <h2>Centro Andino Buenos Aires</h2>
+                            <h3><span t-field="meg.name"/> - <span t-field="meg.year"/> / <span t-field="meg.month"/></h3>
+
+                            <table class="table table-condensed" style="border: 1px solid #9999">
+                                <tbody>
+                                    <tr class="border-black">
+                                        <td>
+                                            <strong>Entidad</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Nombre</strong>
+                                        </td>
+                                        <td>
+                                            <strong>DNI</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Nacimiento</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Función</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Fecha de Apto Físico</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Medico firmante</strong>
+                                        </td>
+                                        <td>
+                                            <strong>Dia seleccionado</strong>
+                                        </td>
+                                    </tr>
+
+                                    <tr t-foreach="meg.event_content_ids.sorted(key=lambda r: r.event_monthly_id)" t-as="cont">
+
+                                        <td>
+                                            <span>C.A.B.A.</span>
+                                        </td>
+
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.main_id_number"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.birthdate_date"/>
+                                        </td>
+                                        <td>
+                                            <span>Deportista</span>
+                                        </td>
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.climbing_gym_medical_certificate_latest.issue_date"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.climbing_gym_medical_certificate_latest.doctor_name"/>
+                                            <span t-field="cont.member_membership_id.partner_id.climbing_gym_medical_certificate_latest.doctor_license"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="cont.event_monthly_id.name"/>
+                                        </td>
+
+
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                        <div class="footer">
+                            <p>Generado: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M')"/></p>
+                            <small>Centro Andino Buenos Aires</small>
+                        </div>
+                    </t>
+                </t>
+            </t>
+
+
+        </template>
+    </data>
+</odoo>
