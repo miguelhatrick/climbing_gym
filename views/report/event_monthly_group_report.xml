@@ -7,6 +7,13 @@
                 name="climbing_gym.report_event_monthly_group_template"
         />
 
+        <report id="report_event_monthly_group_web"
+                string="Reporte CENARD WEB"
+                model="climbing_gym.event_monthly_group"
+                report_type="qweb-html"
+                name="climbing_gym.report_event_monthly_group_template"
+        />
+
         <template id="report_event_monthly_group_template">
             <t t-call="web.html_container">
                 <t t-foreach="docs" t-as="meg">
