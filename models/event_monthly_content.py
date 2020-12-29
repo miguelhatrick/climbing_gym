@@ -38,6 +38,27 @@ class EventMonthlyContent(models.Model):
         self.write({'state': 'pending'})
 
     @api.multi
+    def action_confirm_administrator(self):
+        _logger.info('Trying to confirm %s ...' % self.name)
+
+        if self.event_monthly_group_id.require_active_medical_certificate:
+            if not self.member_membership_id.partner_id.climbing_gym_medical_certificate_valid:
+                raise ValidationError("Medical certificate missing / overdue")
+
+        # Do we have space?
+        self.event_monthly_id.calculate_current_available_seats()
+
+        if self.event_monthly_id.seats_available <= 0:
+            raise ValidationError("All available places have been taken")
+
+        # TODO: Implement tag control
+
+        self.write({'state': 'confirmed'})
+
+
+
+
+    @api.multi
     def action_confirm(self):
         _logger.info('Trying to confirm %s ...' % self.name)
 
