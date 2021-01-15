@@ -109,5 +109,20 @@
         </record>
 
 
+        <act_window name="Send Email"
+                res_model="mail.compose.message"
+                src_model="climbing_gym.member_membership"
+                view_mode="form"
+                multi="True"
+                target="new"
+                key2="client_action_multi"
+                id="action_partner_mass_mail"
+                context="{
+                            'default_composition_mode': 'mass_mail',
+                            'default_partner_to': '${object.partner_id.id or \'\'}',
+                            'default_use_template': True,
+                        }"/>
+
+      
     </data>
 </odoo>
