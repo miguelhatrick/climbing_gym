@@ -1,4 +1,5 @@
 import pdb
+from datetime import datetime
 
 from odoo import fields, models, api
 from odoo.exceptions import ValidationError
@@ -46,7 +47,7 @@ class EventRegistration(models.Model):
         result = super(EventRegistration, self).create(vals)
 
         # recalculate after save
-        if not _map:
+        if not _map: # TODO: <-- is this ok?
             _map.calculate_remaining_credits()
 
         return result
@@ -63,3 +64,24 @@ class EventRegistration(models.Model):
                     raise ValidationError('The member package has no more credits (EventRegistration)')
 
         return result
+
+    @api.one
+    def button_reg_cancel(self):
+        """Extension of the event cancellation to reactivate the linked MAP"""
+        result = super(EventRegistration, self).button_reg_cancel()
+
+        if self.member_access_package_id:
+            _map = self.member_access_package_id
+
+            # Recalculate with the new canceled registration
+            _map.calculate_remaining_credits()
+
+            # If the event date is in the future and we have credits revive if completed.
+            if self.event_begin_date > datetime.now() and _map.remaining_credits > 0:
+                if _map.state == 'completed':
+
+                    # If it's a single credit MAP we set it to pending. Else we leave the due date untouched
+                    if _map.access_credits == 1:
+                        _map.action_revive() # modifies due date
+                    else:
+                        _map.state = 'active'
