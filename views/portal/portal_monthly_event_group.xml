@@ -172,9 +172,7 @@
                                                    t-attf-name="emshift#{egc.id}">
                                                 <t t-esc="egc.title"/>(
                                                 <t t-esc="egc.seats_available"/>
-                                                available /
-                                                <t t-esc="egc.seats_availability"/>
-                                                total)
+                                                available )
                                             </label>
                                         </div>
                                     </t>
@@ -207,9 +205,7 @@
                                                    t-attf-name="emshift#{egc.id}">
                                                 <t t-esc="egc.title"/>(
                                                 <t t-esc="egc.seats_available"/>
-                                                available /
-                                                <t t-esc="egc.seats_availability"/>
-                                                total)
+                                                available )
                                             </label>
                                         </div>
                                     </t>

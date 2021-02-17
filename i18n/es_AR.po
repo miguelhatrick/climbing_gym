@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 03:24+0000\n"
-"PO-Revision-Date: 2021-02-17 00:29-0300\n"
+"POT-Creation-Date: 2021-02-17 13:13+0000\n"
+"PO-Revision-Date: 2021-02-17 10:21-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Listado de paquetes de acceso"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.access_package
 msgid "Access packages"
-msgstr "Paquetes de acceso"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_access_package
@@ -2372,8 +2372,8 @@ msgstr "Debe iniciar sesión para poder regitrase en este evento."
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "available /"
-msgstr "disponible /"
+msgid "available )"
+msgstr "disponible/s )"
 
 #. module: climbing_gym
 #: model:ir.actions.server,name:climbing_gym.action_server
@@ -2404,11 +2404,6 @@ msgstr "turno/s para los días de semana"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
 msgid "shift/s for the weekends"
 msgstr "turno/s para el fin de semana"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "total)"
-msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
