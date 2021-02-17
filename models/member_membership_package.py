@@ -22,7 +22,8 @@ class MemberMembershipPackage(models.Model):
     status_selection = [('pending', "Pending"), ('active', "Active"), ('cancel', "Cancelled")]
     interval_selection = [('days', "Days"), ('months', "Months"), ('years', "Years")]
 
-    member_membership_id = fields.Many2one('climbing_gym.member_membership', string='Member membership', required=True, track_visibility=True)
+    member_membership_id = fields.Many2one('climbing_gym.member_membership', string='Member membership', required=True,
+                                           track_visibility=True)
 
     obs = fields.Text('Observations')
 
@@ -42,7 +43,7 @@ class MemberMembershipPackage(models.Model):
     interval_length = fields.Integer('Interval length', required=True, track_visibility=True)
     interval_unit = fields.Selection(interval_selection, string='Interval unit', required=True, track_visibility=True)
 
-    state = fields.Selection(status_selection, 'Status', default='pending' , track_visibility=True)
+    state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
     def action_revive(self):
@@ -160,6 +161,8 @@ class MemberMembershipPackage(models.Model):
             _message = 'No membership available for SALE %s Partner: "%s"' % (sale_line.order_id.name, partner_id.name)
             _message += '\r\n a MMP must be generated manually!'
             _logger.info(_message)
+
+            # TODO: Create a ticket instead of a message
 
             self.env['mail.message'].create({
                 'email_from': self.env.user.partner_id.email,  # add the sender email

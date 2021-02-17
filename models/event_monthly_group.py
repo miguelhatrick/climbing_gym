@@ -22,8 +22,6 @@ class EventMonthlyGroup(models.Model):
                                         readonly=False,
                                         track_visibility=True)
 
-
-
     months_choices = []
     years_choices = []
     currentYear = datetime.now().year
@@ -43,6 +41,11 @@ class EventMonthlyGroup(models.Model):
                                                         default=True)
 
     require_tags = fields.Many2many('res.partner.category', string='Required tags')
+
+    weekday_reservations_allowed = fields.Integer(string='Reservations allowed for weekdays', default=1, required=True,
+                                                  track_visibility=True)
+    weekend_reservations_allowed = fields.Integer(string='Reservations allowed for weekends', default=1, required=True,
+                                                  track_visibility=True)
 
     event_content_ids = fields.One2many('climbing_gym.event_monthly_content',
                                         inverse_name='event_monthly_group_id',

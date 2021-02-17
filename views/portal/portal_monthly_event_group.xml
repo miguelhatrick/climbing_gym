@@ -55,6 +55,14 @@
                                 </t>
                             </td>
                             <td class="text-right">
+                                <t t-if="event_monthly_group.state == 'closed'">
+                                    <span class="badge badge-pill badge-info">
+                                        <i class="fa fa-fw fa-times" role="img"></i>
+                                        <span class="d-none d-md-inline">Registration for this event is now closed</span>
+                                    </span>
+                                </t>
+
+
                                 <t t-if="not cur_partner.climbing_gym_member_membership_membership_active">
                                     <span class="badge badge-pill badge-danger">
                                         <i class="fa fa-fw fa-times" role="img"></i>
@@ -67,7 +75,7 @@
                                         <span class="d-none d-md-inline">You have no active medical certificates</span>
                                     </span>
                                 </t>
-                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and cur_partner.climbing_gym_medical_certificate_valid">
+                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and cur_partner.climbing_gym_medical_certificate_valid and event_monthly_group.state == 'active'">
                                     <form id="event_monthly_select"
                                           t-attf-action="/my/monthlyeventgroups/select/{{event_monthly_group.id}}"
                                           method="post"
@@ -124,37 +132,110 @@
                           class="s_website_form form-horizontal container-fluid mt32"
                           enctype="multipart/form-data">
 
-                        <h2>Select monthly event group</h2>
-                        <div class="form-group form-field o_website_form_required_custom">
-                            <label class="col-md-3 col-sm-4 control-label" for="doctor_name">Selected event</label>
-                            <div class="col-md-7 col-sm-8">
-
-                                <select class="form-control" name="monthly_event">
-                                    <t t-foreach="event_monthly_group_content" t-as="egc">
-                                        <option t-attf-value="#{egc.id}"
-                                                t-att-selected="WHATEVER_CATEGORY_ID_YOU_WANT_TO_HAVE_SELECTED">
-                                            <t t-esc="egc.title"/>
-                                            (
-                                            <t t-esc="egc.seats_available"/>
-                                            available /
-                                            <t t-esc="egc.seats_availability"/>
-                                            total)
-                                        </option>
-                                    </t>
-                                </select>
-
-
-                            </div>
+                        <div class="alert alert-success alert-dismissable d-print-none" role="status">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">&amp;times;
+                            </button>
+                            <strong>Allowed</strong>
+                            <br/>
+                            <h4>
+                                <t t-esc="event_monthly_group.weekday_reservations_allowed"/>
+                                shift/s for the weekdays
+                            </h4>
+                            <h4>
+                                <t t-esc="event_monthly_group.weekend_reservations_allowed"/>
+                                shift/s for the weekends
+                            </h4>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
-                                <span id='submit' class="o_website_form_send btn btn-primary btn-lg">Submit</span>
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                <input type="hidden" name="event_group_id" t-att-value="event_monthly_group.id"/>
-                                <span id="o_website_form_result"></span>
+                        <div t-attf-class="card pb-5">
+                            <h2>Select shifts Weekday</h2>
+                            <strong>(Max <t t-esc="event_monthly_group.weekday_reservations_allowed"/>)</strong>
+                            <div class="form-group form-field o_website_form_required_custom">
+
+                                <div class="col-md-7 col-sm-8">
+
+                                    <t t-foreach="event_monthly_group_events" t-as="egc">
+
+                                        <div t-if="egc.weekday.id in range(1,6)">
+
+                                            <t t-if="egc.id in registered_event_ids">
+                                                <input type="checkbox" t-attf-id="emshift#{egc.id}"
+                                                       t-attf-name="emshift#{egc.id}" t-attf-value="#{egc.id}"
+                                                       t-attf-checked="checked"/>
+                                            </t>
+                                            <t t-if="egc.id not in registered_event_ids">
+                                                <input type="checkbox" t-attf-id="emshift#{egc.id}"
+                                                       t-attf-name="emshift#{egc.id}" t-attf-value="#{egc.id}"/>
+                                            </t>
+
+
+                                            <label t-attf-for="emshift#{egc.id}" class="control-label"
+                                                   t-attf-name="emshift#{egc.id}">
+                                                <t t-esc="egc.title"/>(
+                                                <t t-esc="egc.seats_available"/>
+                                                available /
+                                                <t t-esc="egc.seats_availability"/>
+                                                total)
+                                            </label>
+                                        </div>
+                                    </t>
+                                </div>
                             </div>
+
+
+
+                            <h2>Select shifts Weekend</h2>
+                            <strong>(Max <t t-esc="event_monthly_group.weekend_reservations_allowed"/>)</strong>
+                            <div class="form-group form-field o_website_form_required_custom">
+
+                                <div class="col-md-7 col-sm-8">
+
+                                    <t t-foreach="event_monthly_group_events" t-as="egc">
+                                        <div  t-if="egc.weekday.id in range(6,8)">
+
+                                            <t t-if="egc.id in registered_event_ids">
+                                                <input type="checkbox" t-attf-id="emshift#{egc.id}"
+                                                       t-attf-name="emshift#{egc.id}" t-attf-value="#{egc.id}"
+                                                       t-attf-checked="checked"/>
+                                            </t>
+                                            <t t-if="egc.id not in registered_event_ids">
+                                                <input type="checkbox" t-attf-id="emshift#{egc.id}"
+                                                       t-attf-name="emshift#{egc.id}" t-attf-value="#{egc.id}"/>
+                                            </t>
+
+
+                                            <label t-attf-for="emshift#{egc.id}" class="control-label"
+                                                   t-attf-name="emshift#{egc.id}">
+                                                <t t-esc="egc.title"/>(
+                                                <t t-esc="egc.seats_available"/>
+                                                available /
+                                                <t t-esc="egc.seats_availability"/>
+                                                total)
+                                            </label>
+                                        </div>
+                                    </t>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-3 col-sm-offset-4 col-sm-8 col-md-7">
+                                    <div>If you select more shifts than the allowed the system will return an error and
+                                        it will NOT SAVE ANY SHIFT
+                                    </div>
+                                    <span id='submit' class="o_website_form_send btn btn-primary btn-lg">Submit</span>
+                                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                                    <input type="hidden" name="event_group_id" t-att-value="event_monthly_group.id"/>
+                                    <span id="o_website_form_result"></span>
+                                </div>
+                            </div>
+
                         </div>
                     </form>
+
+
                 </t>
 
             </t>

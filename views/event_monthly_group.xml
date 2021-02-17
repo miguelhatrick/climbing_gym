@@ -36,6 +36,9 @@
                                     <field name="month"/>
                                     <field name="year"/>
 
+                                    <field name="weekday_reservations_allowed"/>
+                                    <field name="weekend_reservations_allowed"/>
+
                                     <field name="require_active_membership"/>
                                     <field name="require_active_medical_certificate"/>
                                     <field name="require_tags" widget="many2many_tags"/>
