@@ -52,7 +52,7 @@
                                         </td>
                                     </tr>
 
-                                    <tr t-foreach="meg.event_content_ids.sorted(key=lambda r: r.event_monthly_id.name)" t-as="cont">
+                                    <tr t-foreach="meg.event_content_ids_active.sorted(key=lambda r: r.event_monthly_id.name)" t-as="cont">
 
                                         <td>
                                             <span>C.A.B.A.</span>
@@ -66,6 +66,9 @@
                                         </td>
                                         <td>
                                             <span t-field="cont.member_membership_id.partner_id.birthdate_date"/>
+                                            <t t-if="not cont.member_membership_id.partner_id.birthdate_date">
+                                                <span t-field="cont.member_membership_id.partner_id.mobile"/>
+                                            </t>
                                         </td>
                                         <td>
                                             <span>Deportista</span>
