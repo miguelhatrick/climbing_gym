@@ -21,6 +21,8 @@ class EventMonthly(models.Model):
         years_choices.append((i, str(i)))
 
     name = fields.Char("Name", required=True)
+
+    # TODO: Make the title shorter
     title = fields.Char(string='Title for the event', required=True, default='')
     description = fields.Text(string='Description of the current template')
 
@@ -79,3 +81,4 @@ class EventMonthly(models.Model):
         for em in self:
             em.seats_available = em.seats_availability - self.sudo().env['climbing_gym.event_monthly_content'].search_count(
                 [('event_monthly_id', '=', em.id), ('state', '=', 'confirmed')])
+

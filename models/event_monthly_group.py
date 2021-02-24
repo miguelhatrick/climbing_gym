@@ -98,6 +98,6 @@ class EventMonthlyGroup(models.Model):
     def _get_event_content_ids_active(self):
 
         _emc = self.sudo().env['climbing_gym.event_monthly_content']
-        self.event_content_ids_active = _emc.search([('state', '=', 'confirmed'), ('event_monthly_id', '=', self.id)])
+        self.event_content_ids_active = _emc.search([('state', '=', 'confirmed'), ('event_monthly_group_id', '=', self.id)])
 
 
