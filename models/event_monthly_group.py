@@ -4,7 +4,7 @@ from datetime import datetime, timedelta, date, timezone
 import pytz
 
 from odoo.exceptions import ValidationError
-
+from tzlocal import get_localzone # $ pip install tzlocal
 
 class EventMonthlyGroup(models.Model):
     """Monthly events group"""
@@ -123,10 +123,12 @@ class EventMonthlyGroup(models.Model):
 
     @api.model
     def get_registration_available(self, _partner):
-        _now = datetime.now()
+        _tz = get_localzone()
+        _now = _tz.localize(datetime.now())
+
         for _self in self:
 
-            if _self.register_end_date and _now >= _self.register_end_date:
+            if _self.register_end_date and _now >= pytz.utc.localize(_self.register_end_date):
                 return False
 
             if _self.state != 'active':
@@ -138,32 +140,35 @@ class EventMonthlyGroup(models.Model):
 
             # It belongs to the partner group?
             if _self.partner_group_tag in _partner.category_id and _self.register_start_date_partner_group_tag:
-                if _now >= _self.register_start_date_partner_group_tag:
+                if _now >= pytz.utc.localize(_self.register_start_date_partner_group_tag):
                     return True
             else:
-                if _now >= _self.register_start_date:
+                if _now >= pytz.utc.localize(_self.register_start_date):
                     return True
 
             return False
 
     @api.model
     def get_registration_start_date(self, _partner):
-        _now = datetime.now()
-        for _self in self:
+        _tz = get_localzone()
 
+        for _self in self:
             # if no dates exist
             if not _self.register_start_date and not _self.register_start_date_partner_group_tag:
                 return ''
 
             # It belongs to the partner group?
             if _self.partner_group_tag in _partner.category_id and _self.register_start_date_partner_group_tag:
-                return _self.register_start_date_partner_group_tag.strftime("%Y/%m/%d, %H:%M:%S")
+                return pytz.utc.localize(_self.register_start_date_partner_group_tag).astimezone(_tz).strftime("%Y/%m/%d, %H:%M:%S")
             else:
-                return _self.register_start_date.strftime("%Y/%m/%d, %H:%M:%S")
+                return pytz.utc.localize(_self.register_start_date).astimezone(_tz).strftime("%Y/%m/%d, %H:%M:%S")
 
     @api.model
     def get_registration_end_date(self):
         if not self.register_end_date:
             return ''
 
-        return self.register_end_date.strftime("%Y/%m/%d, %H:%M:%S")
+        _tz = get_localzone()
+        _cd = pytz.utc.localize(self.register_end_date).astimezone(_tz)
+
+        return _cd.strftime("%Y/%m/%d, %H:%M:%S")
