@@ -38,11 +38,20 @@
 
                                     <field name="weekday_reservations_allowed"/>
                                     <field name="weekend_reservations_allowed"/>
+                                </group>
 
+                                <group  col="4" colspan="4" string="Requirements">
                                     <field name="require_active_membership"/>
                                     <field name="require_active_medical_certificate"/>
                                     <field name="require_tags" widget="many2many_tags"/>
                                 </group>
+                                <group col="4" colspan="4" string="Registration dates">
+                                    <field name="register_start_date"/>
+                                    <field name="register_end_date"/>
+                                    <field name="partner_group_tag"/>
+                                    <field name="register_start_date_partner_group_tag"/>
+                                </group>
+
                                 <group colspan="4">
                                     <field name="event_monthly_ids" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
                                 </group>

@@ -102,6 +102,10 @@ class CustomerPortal(CustomerPortal):
         if not _monthlyEventGroup_id.state == 'active':
             _errors.append('Monthly event group is not active')
 
+        # check if is not over
+        if not _monthlyEventGroup_id.get_registration_available(partner):
+            _errors.append('Registration for this event is not available right now')
+
         _eventMonthlyContent = request.env['climbing_gym.event_monthly_content'].sudo()
 
         _monthlyEventContent_ids = _eventMonthlyContent.sudo().search([
@@ -150,6 +154,10 @@ class CustomerPortalForm(WebsiteForm):
         # check if is not over
         if not _eventMonthlyGroup_id.state == 'active':
             _errors.append('Monthly event group is not active')
+
+        # check if is not over
+        if not _eventMonthlyGroup_id.get_registration_available(partner):
+            _errors.append('Registration for this event is not available right now')
 
         # check if the current partner can access this
         if not partner.climbing_gym_member_membership_membership_active:

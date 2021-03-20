@@ -31,7 +31,7 @@ class EventMonthlyContent(models.Model):
     event_monthly_group_id = fields.Many2one('climbing_gym.event_monthly_group', string='Monthly event group',
                                              track_visibility=True, required=True)
 
-    state = fields.Selection(status_selection, 'Status', default='pending')
+    state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
     @api.multi
     def action_pending(self):

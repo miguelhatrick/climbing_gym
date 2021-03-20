@@ -55,10 +55,25 @@
                                 </t>
                             </td>
                             <td class="text-right">
+
+                                <t t-set="registration_available" t-value="event_monthly_group.get_registration_available(cur_partner)"/>
+                                <t t-set="registration_start_date" t-value="event_monthly_group.get_registration_start_date(cur_partner)"/>
+                                <t t-set="registration_end_date" t-value="event_monthly_group.get_registration_end_date()"/>
+
                                 <t t-if="event_monthly_group.state == 'closed'">
                                     <span class="badge badge-pill badge-info">
                                         <i class="fa fa-fw fa-times" role="img"></i>
                                         <span class="d-none d-md-inline">Registration for this event is now closed</span>
+                                    </span>
+                                </t>
+
+                                <t t-if="event_monthly_group.state == 'active' and not registration_available">
+                                    <span class="badge badge-info">
+                                        <span class="d-none d-md-inline">
+                                            <p>Registration</p>
+                                            <p>Start: <b t-esc="registration_start_date"/></p>
+                                            <p>End: <b t-esc="registration_end_date"/></p>
+                                        </span>
                                     </span>
                                 </t>
 
@@ -75,7 +90,12 @@
                                         <span class="d-none d-md-inline">You have no active medical certificates</span>
                                     </span>
                                 </t>
-                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and cur_partner.climbing_gym_medical_certificate_valid and event_monthly_group.state == 'active'">
+
+
+                                <t t-if="cur_partner.climbing_gym_member_membership_membership_active and
+                                        cur_partner.climbing_gym_medical_certificate_valid and registration_available
+                                        ">
+
                                     <form id="event_monthly_select"
                                           t-attf-action="/my/monthlyeventgroups/select/{{event_monthly_group.id}}"
                                           method="post"

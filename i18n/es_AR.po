@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-17 13:13+0000\n"
-"PO-Revision-Date: 2021-02-17 10:21-0300\n"
+"POT-Creation-Date: 2021-03-20 03:23+0000\n"
+"PO-Revision-Date: 2021-03-20 00:38-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -270,7 +270,7 @@ msgstr "Listado de paquetes de acceso"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.access_package
 msgid "Access packages"
-msgstr ""
+msgstr "Päquetes de acceso"
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_access_package
@@ -331,6 +331,11 @@ msgstr "Fecha de activación"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_search_view
 msgid "Active"
 msgstr "Activo"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__event_content_ids_active
+msgid "Active contents"
+msgstr "Contenidos activos"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
@@ -592,7 +597,7 @@ msgstr "Confirmar"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_form_view
 msgid "Confirm (administrator)"
-msgstr ""
+msgstr "Confirmar (admin)"
 
 #. module: climbing_gym
 #: selection:climbing_gym.access_package,state:0
@@ -835,6 +840,11 @@ msgid "End time"
 msgstr "Fecha de finalización"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
+msgid "End:"
+msgstr "Fin:"
+
+#. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_event_event
 #: model:ir.ui.menu,name:climbing_gym.event_menu
 msgid "Event"
@@ -911,7 +921,7 @@ msgstr "Tipo de evento"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_week_template
 msgid "Event week templates"
-msgstr ""
+msgstr "Plantilla de evento semanal"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_weekday_list_action
@@ -1259,7 +1269,7 @@ msgstr "Última actualización el"
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_medical_certificate_latest
 #: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_medical_certificate_latest
 msgid "Latest confirmed certificate"
-msgstr ""
+msgstr "Último certificado confirmado"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__pos_order_line
@@ -1871,6 +1881,11 @@ msgid "Paid"
 msgstr "Pagado"
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__partner_group_tag
+msgid "Partner group defined by tag"
+msgstr "Grupo de miembros definido por ETIQUETA"
+
+#. module: climbing_gym
 #: selection:climbing_gym.access_package,state:0
 #: selection:climbing_gym.event_generator,state:0
 #: selection:climbing_gym.event_monthly,state:0
@@ -1924,6 +1939,31 @@ msgid "Register Now"
 msgstr "Registrar Ahora"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
+msgid "Registration"
+msgstr "Registro"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_group_form_view
+msgid "Registration dates"
+msgstr "Fecha de registro"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_end_date
+msgid "Registration end date"
+msgstr "Fecha de fin de registro"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_start_date
+msgid "Registration start date"
+msgstr "Fecha de inicio de registro"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_start_date_partner_group_tag
+msgid "Registration start date for partners defined by TAG"
+msgstr "Fecha de inicio de registro para grupo definido por ETIQUETA"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__remaining_credits
 msgid "Remaining access credits"
 msgstr "Créditos de acceso restantes"
@@ -1967,6 +2007,11 @@ msgid "Required tags"
 msgstr "Etiquetas requeridas"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_group_form_view
+msgid "Requirements"
+msgstr "Requerimientos"
+
+#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
 msgid "Reservations"
 msgstr "Reservas"
@@ -1985,7 +2030,7 @@ msgstr "Reservas permitidas para el fin de semana"
 #: code:addons/climbing_gym/controllers/portal_reservation.py:32
 #, python-format
 msgid "Reserve Date"
-msgstr "Reservar turno"
+msgstr "Fecha de reserva"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.menu_2
@@ -2074,7 +2119,7 @@ msgstr "Tienda"
 #: code:addons/climbing_gym/controllers/portal_reservation.py:33
 #, python-format
 msgid "Stage"
-msgstr ""
+msgstr "Estado"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
@@ -2085,6 +2130,11 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_time_range__time_start
 msgid "Start time"
 msgstr "Hora de inicio"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
+msgid "Start:"
+msgstr "Inicio:"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__state
@@ -2185,7 +2235,7 @@ msgstr "Zona horaria"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__title
 msgid "Title for the description base"
-msgstr ""
+msgstr "Titulo para la descripción base"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly__title
@@ -2373,7 +2423,7 @@ msgstr "Debe iniciar sesión para poder regitrase en este evento."
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
 msgid "available )"
-msgstr "disponible/s )"
+msgstr "disponible /"
 
 #. module: climbing_gym
 #: model:ir.actions.server,name:climbing_gym.action_server

@@ -32,6 +32,9 @@
                                         <td>
                                             <strong>Nombre</strong>
                                         </td>
+                                         <td>
+                                            <strong>Apellido</strong>
+                                        </td>
                                         <td>
                                             <strong>DNI</strong>
                                         </td>
@@ -59,8 +62,12 @@
                                         </td>
 
                                         <td>
-                                            <span t-field="cont.member_membership_id.partner_id.name"/>
+                                            <span t-field="cont.member_membership_id.partner_id.firstname"/>
                                         </td>
+                                        <td>
+                                            <span t-field="cont.member_membership_id.partner_id.lastname"/>
+                                        </td>
+
                                         <td>
                                             <span t-field="cont.member_membership_id.partner_id.main_id_number"/>
                                         </td>
