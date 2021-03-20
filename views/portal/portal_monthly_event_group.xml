@@ -63,17 +63,16 @@
                                 <t t-if="event_monthly_group.state == 'closed'">
                                     <span class="badge badge-pill badge-info">
                                         <i class="fa fa-fw fa-times" role="img"></i>
-                                        <span class="d-none d-md-inline">Registration for this event is now closed</span>
+                                        <p>Registration for this event is now closed</p>
                                     </span>
                                 </t>
 
                                 <t t-if="event_monthly_group.state == 'active' and not registration_available">
                                     <span class="badge badge-info">
-                                        <span class="d-none d-md-inline">
                                             <p>Registration</p>
                                             <p>Start: <b t-esc="registration_start_date"/></p>
                                             <p>End: <b t-esc="registration_end_date"/></p>
-                                        </span>
+
                                     </span>
                                 </t>
 
@@ -81,13 +80,13 @@
                                 <t t-if="not cur_partner.climbing_gym_member_membership_membership_active">
                                     <span class="badge badge-pill badge-danger">
                                         <i class="fa fa-fw fa-times" role="img"></i>
-                                        <span class="d-none d-md-inline">You have no active memberships</span>
+                                        <p>You have no active memberships</p>
                                     </span>
                                 </t>
                                 <t t-if="not cur_partner.climbing_gym_medical_certificate_valid">
                                     <span class="badge badge-pill badge-danger">
                                         <i class="fa fa-fw fa-check" role="img"></i>
-                                        <span class="d-none d-md-inline">You have no active medical certificates</span>
+                                        <p>You have no active medical certificates</p>
                                     </span>
                                 </t>
 
