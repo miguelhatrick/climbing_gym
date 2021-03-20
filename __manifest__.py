@@ -20,7 +20,7 @@
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Administration',
-    'version': '0.6.1',
+    'version': '0.6.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base',
@@ -33,7 +33,6 @@
                 'event_registration_partner_unique',
                 'portal',
                 'partner_firstname'],
-
     # always loaded
     'data': [
         'data/cron_jobs.xml',
