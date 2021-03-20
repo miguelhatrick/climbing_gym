@@ -107,6 +107,7 @@
                                             <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                                         </div>
                                     </form>
+                                    <p>Closes on <b t-esc="registration_end_date"/></p>
                                 </t>
                             </td>
                         </tr>

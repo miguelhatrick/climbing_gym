@@ -50,6 +50,7 @@
                                     <field name="register_end_date"/>
                                     <field name="partner_group_tag"/>
                                     <field name="register_start_date_partner_group_tag"/>
+                                    <field name="date_tz"/>
                                 </group>
 
                                 <group colspan="4">
