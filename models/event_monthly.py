@@ -28,6 +28,8 @@ class EventMonthly(models.Model):
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('cancel', "Disabled")]
 
+    type_selection = [('public', "Public"), ('private', "Private")]
+
     event_monthly_group_id = fields.Many2one('climbing_gym.event_monthly_group', string='Monthly Group')
 
     event_ids = fields.One2many('event.event',
@@ -58,6 +60,8 @@ class EventMonthly(models.Model):
     seats_availability = fields.Integer("Maximum Attendees", required=True)
 
     seats_available = fields.Integer("Available seats", compute='calculate_current_available_seats')
+
+    event_type = fields.Selection(type_selection, 'Type', default='public')
 
     state = fields.Selection(status_selection, 'Status', default='pending')
 

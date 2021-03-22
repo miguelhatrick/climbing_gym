@@ -57,6 +57,7 @@
                     <field name="member_membership_id"/>
                     <field name="event_monthly_id"/>
                     <field name="event_monthly_group_id"/>
+                    <field name="event_type"/>
                     <field name="state"/>
                 </tree>
             </field>
@@ -74,9 +75,14 @@
                     <filter string='Confirmed' name='filter_confirmed' domain="[('state','=','confirmed')]"/>
                     <group expand="0" string="Group By">
                         <filter name="group_confirmed" string="Status" context="{'group_by':'state'}"/>
+                        <filter name="group_event_type" string="Event type" context="{'group_by':'event_type'}"/>
+                        <filter name="group_membership" string="Membership" context="{'group_by':'member_membership_id'}"/>
+                        <filter name="group_event_monthly" string="Event monthly" context="{'group_by':'event_monthly_id'}"/>
+                        <filter name="group_event_monthly_group_id" string="Event monthly group" context="{'group_by':'event_monthly_group_id'}"/>
                     </group>
                 </search>
             </field>
         </record>
+
     </data>
 </odoo>

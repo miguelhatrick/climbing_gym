@@ -119,7 +119,7 @@ class CustomerPortal(CustomerPortal):
             'errors_found': True if len(_errors) > 0 else False,
             'event_monthly_group': _monthlyEventGroup_id,
             'event_monthly_group_events': _monthlyEventGroup_id.event_monthly_ids.filtered(
-                lambda _evc: _evc.state == 'active'),
+                lambda _evc: _evc.state == 'active' and _evc.event_type == 'public'),
             'registered_event_ids': [x.event_monthly_id.id for x in _monthlyEventContent_ids]
 
         })
@@ -140,7 +140,7 @@ class CustomerPortalForm(WebsiteForm):
         _eventMonthlyGroup_id = _eventMonthlyGroup.search([('id', '=', kwargs['event_group_id'])])
 
         _tempIds = {k: v for k, v in kwargs.items() if k.startswith('emshift')}.values()
-        _eventMonthly_ids = _eventMonthly.search([('id', 'in', list(_tempIds)), ('event_monthly_group_id', 'in', _eventMonthlyGroup_id.ids)])
+        _eventMonthly_ids = _eventMonthly.search([('id', 'in', list(_tempIds)), ('event_monthly_group_id', 'in', _eventMonthlyGroup_id.ids), ('event_type', 'in', ['public'])])
 
         _weekend_count = len(_eventMonthly_ids.filtered(lambda pm: pm.weekday.id in [6, 7]))
         _weekday_count = len(_eventMonthly_ids) - _weekend_count
@@ -181,15 +181,15 @@ class CustomerPortalForm(WebsiteForm):
             # Delete Old
             _monthlyEventContent_ids = _eventMonthlyContent.sudo().search([
                 ('member_membership_id', 'in', partner.climbing_gym_member_membership_ids.ids),
-                ('event_monthly_group_id', '=', _eventMonthlyGroup_id.id)])
+                ('event_monthly_group_id', '=', _eventMonthlyGroup_id.id),
+
+            ])
 
             for _e in _monthlyEventContent_ids:
-                _e.unlink()
-
-
+                if _e.event_monthly_id.event_type == 'public':
+                    _e.unlink()
 
             # create new
-
             for _eventMonthly_id in _eventMonthly_ids:
 
                 _mec = _eventMonthlyContent.sudo().create({

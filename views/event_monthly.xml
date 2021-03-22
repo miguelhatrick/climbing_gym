@@ -41,6 +41,8 @@
                                     <field name="date_tz"/>
                                     <field name="seats_availability"/>
                                     <field name="seats_available"/>
+                                    <field name="event_type"/>
+
                                 </group>
                                 <group colspan="4">
                                     <field name="event_ids" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
@@ -82,6 +84,7 @@
                     <filter string='Confirmed' name='filter_active' domain="[('state','=','active')]"/>
                     <group expand="0" string="Group By">
                         <filter name="group_confirmed" string="Status" context="{'group_by':'state'}"/>
+                        <filter name="group_event_monthly" string="Event monthly group" context="{'group_by':'event_monthly_group_id'}"/>
                     </group>
                 </search>
             </field>
