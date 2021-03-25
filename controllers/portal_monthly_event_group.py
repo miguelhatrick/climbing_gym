@@ -106,6 +106,14 @@ class CustomerPortal(CustomerPortal):
         if not _monthlyEventGroup_id.get_registration_available(partner):
             _errors.append('Registration for this event is not available right now')
 
+        # TODO: Check this functionality and copy it to the function save
+        # Check for required TAG
+        if len(_monthlyEventGroup_id.require_tags) > 0:
+            if  _monthlyEventGroup_id.require_tags not in partner.category_id :
+                _errors.append('Missing access category: %s' % _monthlyEventGroup_id.require_tags)
+
+            _errors.append('Monthly event group is not active')
+
         _eventMonthlyContent = request.env['climbing_gym.event_monthly_content'].sudo()
 
         _monthlyEventContent_ids = _eventMonthlyContent.sudo().search([
