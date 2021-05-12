@@ -162,7 +162,7 @@ class MemberMembershipPackage(models.Model):
             _message += '\r\n a MMP must be generated manually!'
             _logger.info(_message)
 
-            # TODO: Create a ticket instead of a message
+
 
             self.env['mail.message'].create({
                 'email_from': self.env.user.partner_id.email,  # add the sender email
@@ -177,6 +177,26 @@ class MemberMembershipPackage(models.Model):
                 'res_id': self.env.ref('climbing_gym.channel_climbing_gym_group').id,
                 # here    add the channel you  created.
             })
+
+            # TODO: Remove fixed string for channel, team and category search
+
+            _ticket_values = {
+                'company_id': None,
+                'category_id': self.env['helpdesk.ticket.category'].sudo().search(
+                    [('name', '=', 'Membresías / Cuotas')]).id,
+
+                'partner_name': partner_id.name,
+                'partner_email': partner_id.email,
+
+                'description': _message,
+                'name': 'No Membership available!',
+                'attachment_ids': False,
+                'channel_id': self.env['helpdesk.ticket.channel'].sudo().search([('name', '=', 'Web')]).id,
+                'partner_id': partner_id.id,
+                'team_id': self.env['helpdesk.ticket.team'].sudo().search([('name', '=', 'Secretaria')]).id,
+            }
+            new_ticket = self.env['helpdesk.ticket'].sudo().create(_ticket_values)
+
             return
 
         _now = datetime.now()
