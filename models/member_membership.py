@@ -16,6 +16,7 @@ class MemberMembership(models.Model):
     """Member membership"""
     _name = 'climbing_gym.member_membership'
     _description = 'Member membership'
+    _description = 'Member membership'
     _inherit = ['mail.thread']
 
     status_selection = [('pending', "Pending"), ('active', "Active"), ('overdue', "Overdue"), ('cancel', "Cancelled")]

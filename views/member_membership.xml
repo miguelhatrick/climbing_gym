@@ -108,6 +108,22 @@
             </field>
         </record>
 
+        <record model="ir.ui.view" id="member_membership_graph">
+            <field name="name">climbing_gym.member_membership.graph</field>
+            <field name="model">climbing_gym.member_membership</field>
+            <field name="arch" type="xml">
+
+                <graph string="Memberships graph" type="bar">
+                    <field name="membership_id"/>
+                    <field name="state" />
+
+
+
+                </graph>
+            </field>
+        </record>
+
+
 
         <act_window name="Send Email"
                 res_model="mail.compose.message"

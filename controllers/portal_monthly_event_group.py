@@ -109,10 +109,8 @@ class CustomerPortal(CustomerPortal):
         # TODO: Check this functionality and copy it to the function save
         # Check for required TAG
         if len(_monthlyEventGroup_id.require_tags) > 0:
-            if  _monthlyEventGroup_id.require_tags not in partner.category_id :
+            if _monthlyEventGroup_id.require_tags not in partner.category_id :
                 _errors.append('Missing access category: %s' % _monthlyEventGroup_id.require_tags)
-
-            _errors.append('Monthly event group is not active')
 
         _eventMonthlyContent = request.env['climbing_gym.event_monthly_content'].sudo()
 
@@ -128,7 +126,8 @@ class CustomerPortal(CustomerPortal):
             'event_monthly_group': _monthlyEventGroup_id,
             'event_monthly_group_events': _monthlyEventGroup_id.event_monthly_ids.filtered(
                 lambda _evc: _evc.state == 'active' and _evc.event_type == 'public'),
-            'registered_event_ids': [x.event_monthly_id.id for x in _monthlyEventContent_ids]
+            'registered_event_ids': [x.event_monthly_id.id for x in _monthlyEventContent_ids],
+
 
         })
 

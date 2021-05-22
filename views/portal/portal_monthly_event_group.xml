@@ -60,6 +60,15 @@
                                 <t t-set="registration_start_date" t-value="event_monthly_group.get_registration_start_date(cur_partner)"/>
                                 <t t-set="registration_end_date" t-value="event_monthly_group.get_registration_end_date()"/>
 
+                                <t t-set="tags_ok" t-value="True"/>
+
+                                 <t t-if="len(event_monthly_group.require_tags) > 0">
+                                     <t t-if="event_monthly_group.require_tags not in cur_partner.category_id">
+                                         <t t-set="tags_ok" t-value="False"/>
+                                     </t>
+                                 </t>
+
+
                                 <t t-if="event_monthly_group.state == 'closed'">
                                     <span class="badge badge-pill badge-info">
                                         <i class="fa fa-fw fa-times" role="img"></i>
@@ -90,10 +99,16 @@
                                     </span>
                                 </t>
 
+                                <t t-if="not tags_ok">
+                                    <span class="badge badge-pill badge-danger">
+                                        <i class="fa fa-fw fa-check" role="img"></i>
+                                        <p>You don't have the required permissions</p>
+                                    </span>
+                                </t>
 
                                 <t t-if="cur_partner.climbing_gym_member_membership_membership_active and
                                         cur_partner.climbing_gym_medical_certificate_valid and registration_available
-                                        ">
+                                        and tags_ok">
 
                                     <form id="event_monthly_select"
                                           t-attf-action="/my/monthlyeventgroups/select/{{event_monthly_group.id}}"

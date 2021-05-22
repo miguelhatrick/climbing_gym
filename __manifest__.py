@@ -24,6 +24,7 @@
 
     # any module necessary for this one to work correctly
     'depends': ['base',
+                'board',
                 'mail',
                 'contacts',
                 'website',
@@ -37,6 +38,7 @@
     'data': [
         'data/cron_jobs.xml',
         'data/data_weekday.xml',
+
         'data/message_group.xml',
         'data/user_groups.xml',
         'data/medical_certificate_form.xml',
@@ -57,6 +59,7 @@
         'views/report/event_monthly_group_report.xml',
 
         'views/access_package.xml',
+
         'views/event_event_views.xml',
         'views/event_generator.xml',
         'views/event_monthly.xml',
@@ -73,7 +76,7 @@
         'views/member_membership_package.xml',
         'views/res_partner.xml',
         'views/sale_order.xml',
-        'views/menu.xml',
+        'views/menu.xml'
     ],
     # only loaded in demonstration mode
     'demo': [
