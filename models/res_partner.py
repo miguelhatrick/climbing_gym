@@ -87,3 +87,18 @@ class ResPartner(models.Model):
     # climbing_gym_image = fields.Binary("LAla Image", help="Select image here")
 
     # climbing_gym_association_id = fields.Date("AssociationDate")
+
+    def update_main_membership(self):
+        """
+        Updates the main membership based on status
+        :return: None
+        """
+
+        for _partner in self:
+            for _membership in _partner.climbing_gym_member_membership_ids:
+                if _membership.get_state_valid():
+                    _partner.climbing_gym_main_member_membership_id = _membership
+                    return
+
+            # if we got here, disable
+            _partner.climbing_gym_main_member_membership_id = None

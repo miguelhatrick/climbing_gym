@@ -16,10 +16,12 @@ class MemberMembership(models.Model):
     """Member membership"""
     _name = 'climbing_gym.member_membership'
     _description = 'Member membership'
-    _description = 'Member membership'
     _inherit = ['mail.thread']
 
-    status_selection = [('pending', "Pending"), ('active', "Active"), ('overdue', "Overdue"), ('cancel', "Cancelled")]
+    status_selection = [('pending', "Pending"), ('pending_payment', "Pending payment"), ('active', "Active"), ('overdue', "Overdue"), ('cancel', "Cancelled")]
+
+    # these are the valid states for a membership to consider it 'active'
+    _valid_status_list = ['active', 'overdue', 'pending_payment']
 
     name = fields.Char('Name', compute='_generate_name', store=True)
 
@@ -59,6 +61,13 @@ class MemberMembership(models.Model):
                                           self.member_internal_id,
                                           self.partner_id.name)
 
+    def get_state_valid(self):
+        """
+        Retrieves whatever if the current states should be considered as an 'Active'
+        :return: bool
+        """
+        return self.state in self._valid_status_list
+
     @api.onchange('membership_id')
     def _get_last_membership_id(self):
         """Retrieves the last ID from the DB and does a + 1"""
@@ -81,6 +90,7 @@ class MemberMembership(models.Model):
     def action_revive(self):
         for _map in self:
             _map.state = 'pending'
+            _map.partner_id.update_main_membership()
 
     @api.multi
     def action_overdue(self):
@@ -105,7 +115,8 @@ class MemberMembership(models.Model):
             _map.state = 'active'
 
             #Set the current as main membership for the contact
-            _map.partner_id.climbing_gym_main_member_membership_id = _map
+            _map.partner_id.update_main_membership()
+            # _map.partner_id.climbing_gym_main_member_membership_id = _map
 
             # recalculate just in case
             _map.calculate_due_date()
@@ -116,6 +127,7 @@ class MemberMembership(models.Model):
             today = datetime.now()
             _map.canceled_date = today
             _map.state = 'cancel'
+            _map.partner_id.update_main_membership()
 
     def calculate_status_due_date(self):
         # pdb.set_trace()
@@ -242,7 +254,9 @@ class MemberMembership(models.Model):
 
             _overdue_member_ids = self.sudo().env['climbing_gym.member_membership'].search([
                 ('state', 'in', ['overdue']),
-                ('current_due_date', '<', _kill_date)])
+                ('current_due_date', '<', _kill_date),
+                ('membership_id', '=', _m.id)
+            ])
 
             _logger.info('Found %d memberships that need to be cancelled, processing ... ' % (len(_overdue_member_ids)))
 

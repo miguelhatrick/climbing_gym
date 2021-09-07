@@ -41,19 +41,8 @@
 
         'data/message_group.xml',
         'data/user_groups.xml',
-        'data/medical_certificate_form.xml',
 
         'security/ir.model.access.csv',
-
-        'views/portal/portal_my_documents.xml',
-        'views/portal/portal_medical_certificate.xml',
-        'views/portal/portal_member_access_package.xml',
-        'views/portal/portal_member_membership.xml',
-        'views/portal/portal_monthly_event_group.xml',
-        'views/portal/portal_reservation.xml',
-        'views/portal/event_website_sale_templates.xml',
-        'views/portal/portal_user_menu.xml',
-        'views/portal/website_event_templates.xml',
 
         # 'views/report/member_membership_report.xml',
         # 'views/report/event_monthly_group_report.xml',
