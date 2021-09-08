@@ -18,7 +18,8 @@ class MedicalCertificate(models.Model):
 
     name = fields.Char('Name', compute='_generate_name')
 
-    partner_id = fields.Many2one('res.partner', string='Climbing gym member', readonly=False, required=True, track_visibility=True)
+    partner_id = fields.Many2one('res.partner', string='Climbing gym member', readonly=False, required=True,
+                                 track_visibility=True)
 
     issue_date = fields.Date("Issue date", required=True, track_visibility=True)
     due_date = fields.Date("Due date", compute='_get_due_date', store=True, readonly=True)
@@ -26,7 +27,8 @@ class MedicalCertificate(models.Model):
     doctor_name = fields.Char(required=True)
     doctor_license = fields.Char(required=True)
 
-    attachment_ids= fields.Many2many('ir.attachment', 'medical_certificates_rel', 'medical_certificate_id', 'attachment_id', 'Attachments')
+    attachment_ids = fields.Many2many('ir.attachment', 'medical_certificates_rel', 'medical_certificate_id',
+                                      'attachment_id', 'Attachments')
 
     obs = fields.Text()
 
