@@ -18,7 +18,8 @@ class MemberMembership(models.Model):
     _description = 'Member membership'
     _inherit = ['mail.thread']
 
-    status_selection = [('pending', "Pending"), ('pending_payment', "Pending payment"), ('active', "Active"), ('overdue', "Overdue"), ('cancel', "Cancelled")]
+    status_selection = [('pending', "Pending"), ('pending_payment', "Pending payment"), ('active', "Active"),
+                        ('overdue', "Overdue"), ('cancel', "Cancelled")]
 
     # these are the valid states for a membership to consider it 'active'
     _valid_status_list = ['active', 'overdue', 'pending_payment']
@@ -114,7 +115,7 @@ class MemberMembership(models.Model):
 
             _map.state = 'active'
 
-            #Set the current as main membership for the contact
+            # Set the current as main membership for the contact
             _map.partner_id.update_main_membership()
             # _map.partner_id.climbing_gym_main_member_membership_id = _map
 
@@ -225,6 +226,9 @@ class MemberMembership(models.Model):
 
         _due_member_ids.calculate_due_date()
 
+    def update_name(self):
+        self._generate_name()
+
     def cron_due_date_update_all(self):
         """Calculates the due date of the membership and updates the corresponding fields / All / Used once a day"""
 
@@ -237,6 +241,9 @@ class MemberMembership(models.Model):
         _logger.info('Found %d memberships, processing ... ' % (len(_member_ids)))
 
         _member_ids.calculate_due_date()
+
+        for _mm in _member_ids:
+            _mm.update_name()
 
     def cron_auto_cancel(self):
         """Calculates the auto cancel for the old memberships"""
@@ -264,14 +271,11 @@ class MemberMembership(models.Model):
             # _overdue_member_ids.cancelled_reason += '\r\nCancelled automatically due to long overdue'
 
             for _mm in _overdue_member_ids:
-
-                #pdb.set_trace()
+                # pdb.set_trace()
 
                 _mm.action_cancel()
-                _mm.cancelled_reason = '%s\r\nCancelled automatically due to long overdue' % (_mm.cancelled_reason if _mm.cancelled_reason else '')
-
-
-
+                _mm.cancelled_reason = '%s\r\nCancelled automatically due to long overdue' % (
+                    _mm.cancelled_reason if _mm.cancelled_reason else '')
 
     # TODO: Mass email overdue members
     #
