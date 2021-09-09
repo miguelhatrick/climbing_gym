@@ -58,7 +58,7 @@ class MemberMembership(models.Model):
         if not self.membership_id or not self.member_internal_id or not self.partner_id:
             self.name = ''
         else:
-            self.name = "(%s-%05d) %s" % (self.membership_id.code,
+            self.name = "%s-%05d %s" % (self.membership_id.code,
                                           self.member_internal_id,
                                           self.partner_id.name)
 
