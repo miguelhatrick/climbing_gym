@@ -22,6 +22,6 @@ This function is used to block users from adding a product to a non member
                     _partner_id.climbing_gym_main_member_membership_id) == 0:
                 raise ValidationError('Product only available for climbing gym members: %s' % self.product_id.name)
 
-            if self.product_id.climbing_gym_only_active_members and _partner_id.climbing_gym_main_member_membership_id.state is not 'active':
+            if self.product_id.climbing_gym_only_active_members and _partner_id.climbing_gym_main_member_membership_id.state in ['active']:
                 raise ValidationError(
                     'Product only available for ACTIVE climbing gym members: %s' % self.product_id.name)
