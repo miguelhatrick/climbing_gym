@@ -63,6 +63,7 @@
         'views/member_access_package.xml',
         'views/member_membership.xml',
         'views/member_membership_package.xml',
+        'views/product_product.xml',
         'views/res_partner.xml',
         'views/sale_order.xml',
         'views/menu.xml'

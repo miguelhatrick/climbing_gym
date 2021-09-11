@@ -83,9 +83,7 @@ class ResPartner(models.Model):
 
     # FOR CALCULATING THE LAST CERT
     # last_id = self.env['table.name'].search([], order='id desc')[0].id
-
     # climbing_gym_image = fields.Binary("LAla Image", help="Select image here")
-
     # climbing_gym_association_id = fields.Date("AssociationDate")
 
     def update_main_membership(self):

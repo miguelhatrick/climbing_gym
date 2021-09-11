@@ -41,10 +41,10 @@ class MemberAccessPackage(models.Model):
                                  track_visibility=True)
     product = fields.Many2one('product.product', string='Products linked')
 
-    sale_order = fields.Many2one('sale.order', compute='_get_sale_order', store=True)
+    sale_order = fields.Many2one('sale.order', compute='_get_sale_order')
     sale_order_line = fields.Many2one('sale.order.line', string='Linked Sale order line')
 
-    pos_order = fields.Many2one('pos.order', string='POS order', compute='_get_pos_order', store=True)
+    pos_order = fields.Many2one('pos.order', string='POS order', compute='_get_pos_order')
     pos_order_line = fields.Many2one('pos.order.line', string='Linked POS order line')
 
     access_package = fields.Many2one('climbing_gym.access_package', string='Linked access package', required=True)

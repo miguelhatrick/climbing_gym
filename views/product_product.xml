@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_extend" model="ir.ui.view">
+        <field name="name">product.template.common.form.climbing_gym</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="after">
+                <page name="climbing_gym_data" string="Climbing gym">
+                    <group name="container_row_2">
+                        <group string="Membership status" name="membership_status_info" priority="1">
+                            <!--fields here-->
+                            <field name='climbing_gym_only_members'/>
+                            <field name='climbing_gym_only_active_members'
+                                   attrs="{'readonly':[('climbing_gym_only_members', '=', False)]}"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_template_list_view_extend" model="ir.ui.view">
+        <field name="name">product.template.common.tree.climbing_gym</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="climbing_gym_only_members"/>
+                <field name="climbing_gym_only_active_members"/>
+            </xpath>
+        </field>
+    </record>
+
+
+</odoo>

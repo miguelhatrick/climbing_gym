@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
-     Copyright 2015 Grupo ESOC Ingeniería de Servicios, S.L.U. -->
-
 <odoo>
     <record id="contact_view_extend" model="ir.ui.view">
         <field name="name">res.partner.form</field>
@@ -33,16 +30,10 @@
                     </group>
                 </page>
                  <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">
-
                     <group string="Access Packages"  name="medical-certificates" priority="2" col="4">
                         <field name='member_access_packages'  nolabel="1"/>
                     </group>
-
                 </page>
-
-
-
-
             </xpath>
         </field>
     </record>
