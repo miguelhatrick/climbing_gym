@@ -9,8 +9,8 @@ _logger = logging.getLogger(__name__)
 class ProductExtension(models.Model):
     _inherit = 'product.product'
 
-    climbing_gym_only_members = fields.Boolean(string='Only members', required=True, default=False)
-    climbing_gym_only_active_members = fields.Boolean(string='Force active memberships', required=True, default=False)
+    climbing_gym_only_members = fields.Boolean(string='Only members', default=False)
+    climbing_gym_only_active_members = fields.Boolean(string='Force active memberships', default=False)
 
     @api.onchange('climbing_gym_only_members')
     def _value_pc(self):
