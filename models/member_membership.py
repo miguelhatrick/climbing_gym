@@ -94,6 +94,13 @@ class MemberMembership(models.Model):
             _map.partner_id.update_main_membership()
 
     @api.multi
+    def action_pending_payment(self):
+        for _map in self:
+            _map.state = 'pending_payment'
+            _map.partner_id.update_main_membership()
+
+
+    @api.multi
     def action_overdue(self):
         for _map in self:
             _map.state = 'overdue'
