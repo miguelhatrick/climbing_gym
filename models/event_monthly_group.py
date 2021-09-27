@@ -36,7 +36,8 @@ class EventMonthlyGroup(models.Model):
     month = fields.Selection(months_choices, 'Month', required=True, track_visibility=True)
     year = fields.Selection(years_choices, 'Year', required=True, track_visibility=True)
 
-    require_active_membership = fields.Boolean(string="Require active membership", required=True, default=True, track_visibility=True)
+    require_active_membership = fields.Boolean(string="Require active membership", required=True, default=True,
+                                               track_visibility=True)
 
     require_active_medical_certificate = fields.Boolean(string="Require active medical certificate", required=True,
                                                         default=True, track_visibility=True)
@@ -55,26 +56,35 @@ class EventMonthlyGroup(models.Model):
                                         track_visibility=False)
 
     event_content_ids_active = fields.One2many('climbing_gym.event_monthly_content',
-                                                        string='Active contents',
-                                                        compute='_get_event_content_ids_active')
+                                               string='Active contents',
+                                               compute='_get_event_content_ids_active')
 
     current_partner_event_content_ids = fields.One2many('climbing_gym.event_monthly_content',
                                                         string='Logged Partner Monthly events contents',
                                                         compute='_get_current_partner_event_content_ids')
 
-    partner_group_tag = fields.Many2one('res.partner.category', string='Partner group defined by tag', track_visibility=True)
+    partner_group_tag = fields.Many2one('res.partner.category', string='Partner group defined by tag',
+                                        track_visibility=True)
 
-    register_start_date = fields.Datetime('Registration start date',track_visibility=True)
-    register_start_date_partner_group_tag = fields.Datetime('Registration start date for partners defined by TAG',track_visibility=True)
+    register_start_date = fields.Datetime('Registration start date', track_visibility=True)
+    register_start_date_partner_group_tag = fields.Datetime('Registration start date for partners defined by TAG',
+                                                            track_visibility=True)
 
     register_end_date = fields.Datetime('Registration end date', track_visibility=True)
 
     date_tz = fields.Selection('_tz_get', string='Timezone', required=True,
                                default=lambda self: self.env.user.tz or 'UTC')
 
+    available_spots = fields.Integer(string="Available spots", readonly=True,
+                                     compute='_calculate_available')
+
+    taken_spots = fields.Integer(string="Taken spots", readonly=True,
+                                 compute='_calculate_taken')
+
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
 
-    @api.constrains('register_start_date', 'register_start_date_partner_group_tag', 'partner_group_tag', 'register_end_date')
+    @api.constrains('register_start_date', 'register_start_date_partner_group_tag', 'partner_group_tag',
+                    'register_end_date')
     def _check_available(self):
         for _er in self:
             if _er.register_start_date_partner_group_tag and not _er.register_start_date:
@@ -115,13 +125,26 @@ class EventMonthlyGroup(models.Model):
         _partner_id = self.env.user.partner_id
         _member_membership = self.sudo().env['climbing_gym.member_membership']
         _member_membership_ids = _member_membership.search([('partner_id', '=', _partner_id.id)])
-        self.current_partner_event_content_ids = self.event_content_ids.search([('member_membership_id', 'in', _member_membership_ids)])
+        self.current_partner_event_content_ids = self.event_content_ids.search(
+            [('member_membership_id', 'in', _member_membership_ids)])
 
     @api.one
     def _get_event_content_ids_active(self):
 
         _emc = self.sudo().env['climbing_gym.event_monthly_content']
-        self.event_content_ids_active = _emc.search([('state', '=', 'confirmed'), ('event_monthly_group_id', '=', self.id)])
+        self.event_content_ids_active = _emc.search(
+            [('state', '=', 'confirmed'), ('event_monthly_group_id', '=', self.id)])
+
+    def _calculate_available(self):
+        for _c in self:
+            _c.available_spots = 0
+            for em in _c.event_monthly_ids:
+                _c.available_spots += em.seats_availability
+
+    def _calculate_taken(self):
+        for _c in self:
+            _c.taken_spots = _c.event_content_ids.search_count(
+                [('state', 'in', ['confirmed']), ('event_monthly_group_id', '=', _c.id)])
 
     @api.model
     def get_registration_available(self, _partner):
@@ -162,7 +185,8 @@ class EventMonthlyGroup(models.Model):
 
             # It belongs to the partner group?
             if _self.partner_group_tag in _partner.category_id and _self.register_start_date_partner_group_tag:
-                return pytz.utc.localize(_self.register_start_date_partner_group_tag).astimezone(_tz).strftime("%Y/%m/%d, %H:%M:%S")
+                return pytz.utc.localize(_self.register_start_date_partner_group_tag).astimezone(_tz).strftime(
+                    "%Y/%m/%d, %H:%M:%S")
             else:
                 return pytz.utc.localize(_self.register_start_date).astimezone(_tz).strftime("%Y/%m/%d, %H:%M:%S")
 

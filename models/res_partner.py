@@ -31,9 +31,14 @@ class ResPartner(models.Model):
         'climbing_gym.member_membership', inverse_name='partner_id', string='Memberships',
         readonly=False, track_visibility="onchange")
 
-    climbing_gym_member_membership_membership_active = fields.Boolean(
+    climbing_gym_member_membership_active = fields.Boolean(
         string='Current partner has an active membership',
-        compute='_get_current_partner_membership_status')
+        compute='_get_current_partner_membership_active')
+
+    climbing_gym_member_membership_valid = fields.Boolean(
+        string='Current partner has a VALID membership (overdue, active, pending payment)',
+        compute='_get_current_partner_membership_valid')
+
 
     climbing_gym_medical_certificate_due_date = fields.Date('Medical Certificate due date',
                                                             compute='update_certificate_due_date', store=True)
@@ -66,14 +71,26 @@ class ResPartner(models.Model):
             if self.climbing_gym_medical_certificate_due_date is False or self.climbing_gym_medical_certificate_due_date < _certificate.due_date:
                 self.climbing_gym_medical_certificate_due_date = _certificate.due_date
 
-    def _get_current_partner_membership_status(self):
+    def _get_current_partner_membership_active(self):
         for _partner in self:
+            _partner.climbing_gym_member_membership_active = False
             for _membership in _partner.climbing_gym_member_membership_ids:
                 if _membership.state == 'active':
-                    _partner.climbing_gym_member_membership_membership_active = True
-                    return
+                    _partner.climbing_gym_member_membership_active = True
+                    break
 
-            _partner.climbing_gym_member_membership_membership_active = False
+
+    def _get_current_partner_membership_valid(self):
+        for _partner in self:
+            _partner.climbing_gym_member_membership_valid = False
+            for _membership in _partner.climbing_gym_member_membership_ids:
+                if _membership.get_state_valid():
+                    _partner.climbing_gym_member_membership_valid = True
+                    break
+
+
+
+
 
     def _get_latest_certificate(self):
         for _partner in self:

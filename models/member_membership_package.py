@@ -149,7 +149,13 @@ class MemberMembershipPackage(models.Model):
 
         # look for an active membership
         mm_id = self.sudo().env['climbing_gym.member_membership'].search(
-            [('partner_id', '=', partner_id.id), ('state', 'in', ['active', 'overdue'])])
+            [('partner_id', '=', partner_id.id), ('state', 'in', ['active', 'overdue', 'pending_payment'])])
+
+        # If pending payment we need to activate it and set the start date to none so it gets update to today
+        if mm_id is not None and mm_id.state == 'pending_payment':
+            mm_id.initial_due_date = None
+            mm_id.action_active()
+
 
         # if none found look for inactive
         if len(mm_id) < 1:

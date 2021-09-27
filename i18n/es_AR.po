@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-22 02:23+0000\n"
-"PO-Revision-Date: 2021-05-21 23:30-0300\n"
+"POT-Creation-Date: 2021-09-27 14:36+0000\n"
+"PO-Revision-Date: 2021-09-27 11:40-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,24 +16,6 @@ msgstr ""
 "Plural-Forms: \n"
 "Language: es_AR\n"
 "X-Generator: Poedit 2.4.3\n"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_login_required
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "&amp;times;"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "(Free)"
-msgstr "(Gratis)"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "(Max"
-msgstr ""
 
 #. module: climbing_gym
 #: selection:climbing_gym.event_generator,year:0
@@ -71,139 +53,6 @@ msgid "2025"
 msgstr ""
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
-msgid "<i class=\"fa fa-fw fa-check\" aria-label=\"Paid\" title=\"Active\" role=\"img\"/>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "<i class=\"fa fa-fw fa-check\" aria-label=\"Paid\" title=\"error\" role=\"img\"/>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid ""
-"<i class=\"fa fa-fw fa-remove\"/>\n"
-"                                    Cancelled"
-msgstr ""
-"<i class=\"fa fa-fw fa-remove\"/>\n"
-"                                    Cancelado"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
-msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Active\" role=\"img\"/>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
-msgid "<i class=\"fa fa-fw fa-times\" aria-label=\"Paid\" title=\"Pending\" role=\"img\"/>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<small>Centro Andino Buenos Aires</small>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "<span id=\"submit\" class=\"o_website_form_send btn btn-primary btn-lg\">Submit</span>"
-msgstr "<span id=\"submit\" class=\"o_website_form_send btn btn-primary btn-lg\">Enviar</span>"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<span>C.A.B.A.</span>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<span>Deportista</span>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "<strong> You ordered more tickets than available seats</strong>"
-msgstr "<strong> Desea reservar más espacios que los disponibles</strong>"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid ""
-"<strong>Allowed</strong>\n"
-"                            <br/>"
-msgstr ""
-"<strong>Permitido</strong>\n"
-"                            <br/>"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Apellido</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "<strong>Confirm reservation</strong>"
-msgstr "<strong>Confirmar reserva</strong>"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>DNI</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Dia seleccionado</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "<strong>Email</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Entidad</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Fecha de Apto Físico</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Función</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Medico firmante</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Nacimiento</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "<strong>Name</strong>"
-msgstr "<strong>Nombre</strong>"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "<strong>Nombre</strong>"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "<strong>Phone</strong>"
-msgstr "<strong>Teléfono</strong>"
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__locations
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__locations
 msgid "Access Locations"
@@ -213,7 +62,6 @@ msgstr "Ubicaciones de acceso"
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__member_access_packages
 #: model:ir.model.fields,field_description:climbing_gym.field_res_users__member_access_packages
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_home_sale2
 msgid "Access Packages"
 msgstr "Paquetes de acceso"
 
@@ -240,17 +88,12 @@ msgstr "Listado de paquetes de acceso"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.access_package
 msgid "Access packages"
-msgstr ""
+msgstr "Paquetes de acceso"
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_access_package
 msgid "Access packages for members"
 msgstr "Paquetes de acceso para miembros"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Action"
-msgstr "Acción"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__message_needaction
@@ -308,20 +151,9 @@ msgid "Active contents"
 msgstr "Contenidos activos"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "Add medical certificate"
-msgstr "Agregar certificado médico"
-
-#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "Affected products"
 msgstr "Productos afectados"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
-msgid "Already enrolled"
-msgstr "Ya inscrito"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__access_credits
@@ -378,11 +210,6 @@ msgid "Attachments"
 msgstr "Adjuntos"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "Attendee #%s"
-msgstr "Asistente #%s"
-
-#. module: climbing_gym
 #: selection:climbing_gym.event_generator,month:0
 #: selection:climbing_gym.event_monthly,month:0
 #: selection:climbing_gym.event_monthly_group,month:0
@@ -400,20 +227,15 @@ msgid "Available seats"
 msgstr "Lugares disponibles"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_template
-msgid "Available seats:"
-msgstr "Lugares disponibles:"
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__available_spots
+msgid "Available spots"
+msgstr "Lugares disponibles"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__birthdate_date
 #: model:ir.model.fields,field_description:climbing_gym.field_res_users__birthdate_date
 msgid "Birthdate"
 msgstr "Fecha de nacimiento"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "CABA"
-msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.access_package_form_view
@@ -429,7 +251,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -476,11 +297,6 @@ msgid "Certificate"
 msgstr "Certificado"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "Certificate date"
-msgstr "Fecha del certificado"
-
-#. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.menu_root
 msgid "Climbing Gym"
 msgstr "Club de Escalada"
@@ -491,29 +307,34 @@ msgid "Climbing generator"
 msgstr ""
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.product_template_form_view_extend
+msgid "Climbing gym"
+msgstr "Club de escalada"
+
+#. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_manager
 msgid "Climbing gym Manager"
-msgstr ""
+msgstr "Administrador de club de escalada"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Climbing gym data"
-msgstr ""
+msgstr "Información de club de escalada"
 
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_user
 msgid "Climbing gym employee"
-msgstr ""
+msgstr "Empleado de club de escalada"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__partner_id
 msgid "Climbing gym member"
-msgstr ""
+msgstr "Miembro de club de escalada"
 
 #. module: climbing_gym
 #: model:ir.module.category,name:climbing_gym.cg_module_management
 msgid "Climbing gym security"
-msgstr ""
+msgstr "Seguridad de club de escalada"
 
 #. module: climbing_gym
 #: model:mail.channel,name:climbing_gym.channel_climbing_gym_group
@@ -522,11 +343,6 @@ msgstr "Usuarios club de escalada"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_group_form_view
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_login_required
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
 msgid "Close"
 msgstr "Cerrar"
 
@@ -534,11 +350,6 @@ msgstr "Cerrar"
 #: selection:climbing_gym.event_monthly_group,state:0
 msgid "Closed"
 msgstr "Cerrado"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Closes on"
-msgstr "Cierra el"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__code
@@ -565,7 +376,6 @@ msgstr "Configuración"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -636,34 +446,21 @@ msgid "Created on"
 msgstr "Creado el"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:78
-#: code:addons/climbing_gym/controllers/portal.py:131
-#: code:addons/climbing_gym/controllers/portal_medical_certificate.py:32
-#: code:addons/climbing_gym/controllers/portal_monthly_event_group.py:34
-#, python-format
-msgid "Creation date"
-msgstr "Fecha de creación"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
-msgid "Credits required"
-msgstr "Se precisan créditos"
-
-#. module: climbing_gym
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__current_due_date
 msgid "Current due date is recalculated using the initial due date and the purchased membership packages"
 msgstr "La fecha de vencimiento actual es calculada usando la fecha de vencimiento inicial y los paquetes de membresía adquiridos"
 
 #. module: climbing_gym
-#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_member_membership_membership_active
-#: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_member_membership_membership_active
-msgid "Current partner has an active membership"
-msgstr "El usuario actual no posee una membresía activa"
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_member_membership_valid
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_member_membership_valid
+msgid "Current partner has a VALID membership (overdue, active, pending payment)"
+msgstr "El cliente tiene una membresía VALIDA (vencido, activo, pendiente pago)"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "DD/MM/YYYY"
-msgstr ""
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_member_membership_active
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_member_membership_active
+msgid "Current partner has an active membership"
+msgstr "El usuario actual no posee una membresía activa"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.access_package_form_view
@@ -681,31 +478,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "Data"
 msgstr "Datos"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "Date due"
-msgstr "Fecha de vencimiento"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid "Date end"
-msgstr "Fecha de finalización"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "Date issue"
-msgstr "Fecha de emisión"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid "Date start"
-msgstr "Fecha de inicio"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-msgid "Date start/finish"
-msgstr "Fecha de inicio/finalización"
 
 #. module: climbing_gym
 #: selection:climbing_gym.member_membership_package,interval_unit:0
@@ -726,8 +498,6 @@ msgstr "Diciembre"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_generator__description
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__description
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__description
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
 msgid "Description"
 msgstr "Descripción"
 
@@ -765,11 +535,6 @@ msgid "Display Name"
 msgstr "Nombre mostrado"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "Doctor"
-msgstr ""
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__doctor_license
 msgid "Doctor License"
 msgstr "Matrícula médica"
@@ -777,16 +542,6 @@ msgstr "Matrícula médica"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__doctor_name
 msgid "Doctor Name"
-msgstr "Nombre del médico"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "Doctor license"
-msgstr "Matrícula médica"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "Doctor name"
 msgstr "Nombre del médico"
 
 #. module: climbing_gym
@@ -815,11 +570,6 @@ msgid "End time"
 msgstr "Fecha de finalización"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "End:"
-msgstr "Fin:"
-
-#. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_event_event
 #: model:ir.ui.menu,name:climbing_gym.event_menu
 msgid "Event"
@@ -841,21 +591,10 @@ msgid "Event Registration"
 msgstr "Registro de eventos"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_home_sale2
-msgid "Event Reservation"
-msgstr "Reserva de eventos"
-
-#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_time_range_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_form_view
 msgid "Event Time Range"
 msgstr "Rango de horas del evento"
-
-#. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal_reservation.py:31
-#, python-format
-msgid "Event date"
-msgstr "Fecha del evento"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
@@ -881,13 +620,13 @@ msgstr "Ubicación del evento"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_search_view
 msgid "Event monthly"
-msgstr ""
+msgstr "Evento mensual"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_search_view
 msgid "Event monthly group"
-msgstr ""
+msgstr "Grupo de evento mensual"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
@@ -909,7 +648,7 @@ msgstr "Tipo de evento"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_week_template
 msgid "Event week templates"
-msgstr ""
+msgstr "Plantilla de evento semanal"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_weekday_list_action
@@ -996,9 +735,9 @@ msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "Generado:"
-msgstr ""
+#: model:ir.model.fields,field_description:climbing_gym.field_product_product__climbing_gym_only_active_members
+msgid "Force active memberships"
+msgstr "Requerir membresía ACTIVA"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
@@ -1075,13 +814,7 @@ msgstr "Grupo de eventos que pueden ser reservados mensualmente"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__id
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
 msgid "ID"
-msgstr ""
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "Id"
 msgstr ""
 
 #. module: climbing_gym
@@ -1135,15 +868,6 @@ msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
 #: model:ir.model.fields,help:climbing_gym.field_event_event__website_require_login
 msgid "If set, a user must be logged in to be able to register attendees from the website."
 msgstr "Si está establecido, el usuario deberá iniciar sesión para registrar asistentes desde el sito web."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid ""
-"If you select more shifts than the allowed the system will return an error and\n"
-"                                        it will NOT SAVE ANY SHIFT"
-msgstr ""
-"Si selecciona más turnos de los permitidos el formulario devolverá un error y\n"
-"NO GUARDARÁ  NINGÚN TURNO"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_search_view
@@ -1297,34 +1021,14 @@ msgid "List of events that can be reserved monthly"
 msgstr "Lista de eventos que pueden ser reservados mensualmente"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.report_event_monthly_group_template
-msgid "Listado de Acceso al CENARD"
-msgstr ""
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_weekday__localized_name
 msgid "Localized weekday"
 msgstr ""
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid "Location"
-msgstr "Ubicación"
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__current_partner_event_content_ids
 msgid "Logged Partner Monthly events contents"
 msgstr "Contenido miembros - eventos mensuales"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_login_required
-msgid "Login"
-msgstr "Usuario"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_login_required
-msgid "Login required"
-msgstr "Inicio de sesión requerido"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__message_main_attachment_id
@@ -1380,11 +1084,6 @@ msgid "Medical Certificates"
 msgstr "Certificados médicos"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificate_form
-msgid "Medical certificate"
-msgstr "Certificado médico"
-
-#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
 msgid "Medical certificate form"
 msgstr "Formulario certificado médico"
@@ -1402,8 +1101,6 @@ msgstr "Certificado medico válido"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.medical_cert
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_home_sale2
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
 msgid "Medical certificates"
 msgstr "Certificados médicos"
 
@@ -1448,7 +1145,6 @@ msgstr "Lista Paquete de acceso de miembro"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.member_access_package
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
 msgid "Member access packages"
 msgstr "Paquetes de acceso de miembros"
 
@@ -1508,7 +1204,6 @@ msgstr "Miembros"
 #: model:ir.ui.menu,name:climbing_gym.membership_menu
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
 msgid "Membership"
 msgstr "Miembro"
 
@@ -1519,13 +1214,11 @@ msgstr "Id interno de membresía"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__current_due_date
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
 msgid "Membership due date"
 msgstr "Fecha de vencimiento de membresía"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__initial_due_date
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
 msgid "Membership due date start"
 msgstr "Fecha de inicio de vencimiento"
 
@@ -1553,19 +1246,21 @@ msgid "Membership start date"
 msgstr "Fecha inicio membresía"
 
 #. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.product_template_form_view_extend
+msgid "Membership status"
+msgstr "Estado de membresías"
+
+#. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_membership
 msgid "Membership types"
 msgstr "Tipos de membresía"
 
 #. module: climbing_gym
-#: model:ir.actions.act_window,name:climbing_gym.act_member_memberships
 #: model:ir.actions.act_window,name:climbing_gym.membership_list_action
 #: model:ir.model.fields,field_description:climbing_gym.field_res_partner__climbing_gym_member_membership_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_res_users__climbing_gym_member_membership_ids
 #: model:ir.ui.menu,name:climbing_gym.membership
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_home_sale2
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
 msgid "Memberships"
 msgstr "Membresías"
 
@@ -1638,12 +1333,6 @@ msgstr "Eventos mensuales"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly__event_monthly_group_id
 msgid "Monthly Group"
 msgstr "Grupo mensual"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_home_sale2
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Monthly access to climbing wall"
-msgstr "Acceso mensual a palestra"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_monthly_list_action
@@ -1722,14 +1411,8 @@ msgstr "Meses"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__name
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
 msgid "Name"
 msgstr "Nombre"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.my_new_ticket
-msgid "New Ticket"
-msgstr "Nuevo Ticket"
 
 #. module: climbing_gym
 #: model_terms:ir.actions.act_window,help:climbing_gym.access_package_list_action
@@ -1845,6 +1528,11 @@ msgid "October"
 msgstr "Octubre"
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_product_product__climbing_gym_only_members
+msgid "Only members"
+msgstr "Solo socios"
+
+#. module: climbing_gym
 #: selection:climbing_gym.member_membership,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 msgid "Overdue"
@@ -1881,11 +1569,6 @@ msgid "Package start date"
 msgstr "Fecha de inicio del paquete"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Paid"
-msgstr "Pagado"
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__partner_group_tag
 msgid "Partner group defined by tag"
 msgstr "Grupo de miembros definido por ETIQUETA"
@@ -1907,9 +1590,19 @@ msgid "Pending"
 msgstr "Pendiente"
 
 #. module: climbing_gym
+#: selection:climbing_gym.member_membership,state:0
+msgid "Pending payment"
+msgstr "Pendiente de pago"
+
+#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Personal information"
 msgstr "Información personal"
+
+#. module: climbing_gym
+#: model:ir.model,name:climbing_gym.model_pos_order_line
+msgid "Point of Sale Order Lines"
+msgstr "Líneas de Orden de Punto de Venta"
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_pos_order
@@ -1922,9 +1615,15 @@ msgid "Private"
 msgstr "Privado"
 
 #. module: climbing_gym
+#: model:ir.model,name:climbing_gym.model_product_product
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 msgid "Product"
 msgstr "Producto"
+
+#. module: climbing_gym
+#: model:ir.model,name:climbing_gym.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__products
@@ -1949,16 +1648,6 @@ msgid "Recalculate due date"
 msgstr "Recalcular fecha vencimiento"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_template
-msgid "Register Now"
-msgstr "Registrar Ahora"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Registration"
-msgstr "Registro"
-
-#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_group_form_view
 msgid "Registration dates"
 msgstr "Fecha de registro"
@@ -1967,11 +1656,6 @@ msgstr "Fecha de registro"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_end_date
 msgid "Registration end date"
 msgstr "Fecha de fin de registro"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Registration for this event is now closed"
-msgstr "El registro a este evento está ahora cerrado"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_start_date
@@ -1992,16 +1676,6 @@ msgstr "Créditos de acceso restantes"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
 msgid "Remaining credits"
 msgstr "Créditos remanentes"
-
-#. module: climbing_gym
-#: model:ir.actions.report,name:climbing_gym.report_event_monthly_group
-msgid "Reporte CENARD PDF"
-msgstr ""
-
-#. module: climbing_gym
-#: model:ir.actions.report,name:climbing_gym.report_event_monthly_group_web
-msgid "Reporte CENARD WEB"
-msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_generator__require_active_medical_certificate
@@ -2032,11 +1706,6 @@ msgid "Requirements"
 msgstr "Requerimientos"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid "Reservations"
-msgstr "Reservas"
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__weekday_reservations_allowed
 msgid "Reservations allowed for weekdays"
 msgstr "Reservas permitidas para los días de la semana"
@@ -2045,12 +1714,6 @@ msgstr "Reservas permitidas para los días de la semana"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__weekend_reservations_allowed
 msgid "Reservations allowed for weekends"
 msgstr "Reservas permitidas para el fin de semana"
-
-#. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal_reservation.py:32
-#, python-format
-msgid "Reserve Date"
-msgstr "Fecha de reserva"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.menu_2
@@ -2085,29 +1748,9 @@ msgid "Sale order"
 msgstr "Orden de venta"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Select"
-msgstr "Seleccionar"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "Select event group"
-msgstr "Seleccionar grupo de eventos"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "Select shifts Weekday"
-msgstr "Seleccionar turnos para la semana"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "Select shifts Weekend"
-msgstr "Seleccionar turnos para el fin de semana"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Selected date"
-msgstr "Fecha seleccionada"
+#: model:ir.model,name:climbing_gym.model_sale_order_line
+msgid "Sales Order Line"
+msgstr "Línea de pedido de venta"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.action_partner_mass_mail
@@ -2127,21 +1770,6 @@ msgid "Set completed"
 msgstr "Marcar completada"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
-msgid "Shop"
-msgstr "Tienda"
-
-#. module: climbing_gym
-#: code:addons/climbing_gym/controllers/portal.py:79
-#: code:addons/climbing_gym/controllers/portal.py:132
-#: code:addons/climbing_gym/controllers/portal_medical_certificate.py:33
-#: code:addons/climbing_gym/controllers/portal_monthly_event_group.py:35
-#: code:addons/climbing_gym/controllers/portal_reservation.py:33
-#, python-format
-msgid "Stage"
-msgstr ""
-
-#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
 msgid "Start date"
 msgstr "Fecha de inicio"
@@ -2150,11 +1778,6 @@ msgstr "Fecha de inicio"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_time_range__time_start
 msgid "Start time"
 msgstr "Hora de inicio"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "Start:"
-msgstr "Inicio:"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__state
@@ -2181,10 +1804,6 @@ msgstr "Inicio:"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_search_view
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
 msgid "Status"
 msgstr "Estado"
 
@@ -2194,40 +1813,15 @@ msgid "Super Administrator"
 msgstr ""
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__taken_spots
+msgid "Taken spots"
+msgstr "Lugares ocupados"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_generator__templates
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 msgid "Templates"
 msgstr "Plantillas"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "There are currently no Monthly access to climbing wall."
-msgstr "No existen registros de acceso mensual a la palestra"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_medical_certificates
-msgid "There are currently no certificates."
-msgstr "No existen certificados médicos aún."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-msgid "There are currently no event member_access_packages."
-msgstr "No existen paquetes de acceso de usuario aún."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_reservations
-msgid "There are currently no event reservations."
-msgstr "No existen reservas aún."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_memberships
-msgid "There are currently no memberships."
-msgstr "No existen membresias médicos aún."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.registration_attendee_details
-msgid "Ticket Type #"
-msgstr "Nº de tipo de ticket"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__ticket_product
@@ -2263,11 +1857,6 @@ msgstr "Titulo para la descripción base"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__title
 msgid "Title for the event"
 msgstr "Titulo del evento"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_member_access_packages
-msgid "Total credits/Available credits"
-msgstr "Créditos totales/Disponibles"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly__event_type
@@ -2342,6 +1931,11 @@ msgstr "Actualizar estado del paquete"
 #: model:ir.module.category,description:climbing_gym.cg_module_management
 msgid "User access level for this module"
 msgstr "Nivel de acceso de usuario para este módulo"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
+msgid "Wait for payment"
+msgstr "Esperar pago"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__website
@@ -2426,45 +2020,10 @@ msgid "Years"
 msgstr "Años"
 
 #. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_already_registered
-msgid "You are already enrolled."
-msgstr "Ya está inscrito."
-
-#. module: climbing_gym
 #: code:addons/climbing_gym/models/event_monthly_content.py:133
 #, python-format
 msgid "You cannot delete a content of a closed group "
 msgstr "No se puede borrar el contenido de un grupo cerrado"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_credits_required
-msgid "You don't have any spare credits to use. Please visit the shop and purchase some."
-msgstr "No tienes créditos de acceso  para usar. Por favor, visite la tienda y compre algunos."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "You don't have the required permissions"
-msgstr "Usted no posee los permisos requeridos"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "You have no active medical certificates"
-msgstr "Usted no posee certificado médico válido"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "You have no active memberships"
-msgstr "No posee membresías activas"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.modal_attendees_registration_login_required
-msgid "You must be logged in to be able to register to this event."
-msgstr "Debe iniciar sesión para poder regitrase en este evento."
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "available )"
-msgstr "disponible )"
 
 #. module: climbing_gym
 #: model:ir.actions.server,name:climbing_gym.action_server
@@ -2485,18 +2044,3 @@ msgstr ""
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__responsible
 msgid "responsible"
 msgstr "responsable"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "shift/s for the weekdays"
-msgstr "turno/s para los días de semana"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_event_monthly_group_form
-msgid "shift/s for the weekends"
-msgstr "turno/s para el fin de semana"
-
-#. module: climbing_gym
-#: model_terms:ir.ui.view,arch_db:climbing_gym.portal_my_monthly_event_groups
-msgid "{{event_group_content.state}}"
-msgstr ""

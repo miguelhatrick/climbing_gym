@@ -20,7 +20,7 @@
                     <header>
                         <field name="state" widget="statusbar" statusbar_visible="pending,active,overdue,cancel"
                         />
-                        <button name="action_cancel" string="Cancel" states='active,pending,overdue' type="object"
+                        <button name="action_cancel" string="Cancel" states='active,pending_payment,pending,overdue' type="object"
                                 class="oe_highlight" confirm="Are you sure you want to do this?"/>
                         <button name="action_pending_payment" string="Wait for payment" states='pending' type="object"
                                 class="oe_highlight"/>
