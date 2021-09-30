@@ -11,6 +11,7 @@ _logger = logging.getLogger(__name__)
 class PosOrderLineExtension(models.Model):
     _inherit = 'pos.order.line'
 
+    @api.one
     @api.constrains('product_id')
     def _validate_product_for_members(self):
         """
