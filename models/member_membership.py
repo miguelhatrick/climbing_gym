@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import logging
-import pdb
-from datetime import datetime
 
 import odoo
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
-from datetime import *
+from datetime import datetime, timedelta
 from dateutil.relativedelta import *
 
 _logger = logging.getLogger(__name__)
@@ -70,8 +68,8 @@ class MemberMembership(models.Model):
         return self.state in self._valid_status_list
 
     @api.onchange('membership_id')
-    def _get_last_membership_id(self):
-        """Retrieves the last ID from the DB and does a + 1"""
+    def _onchange_membership_id(self):
+        """Updates the internal member number"""
 
         if isinstance(self.id, models.NewId):
             if self._origin.id:
@@ -82,10 +80,23 @@ class MemberMembership(models.Model):
         _membership_ids = self.sudo().env['climbing_gym.member_membership'].search(
             [('membership_id', 'in', self.membership_id.ids)], limit=1, order='member_internal_id desc')
 
-        self.member_internal_id = 1
+        self.member_internal_id = self.get_next_membership_id(self.membership_id)
+
+    def get_next_membership_id(self, _membership_id):
+        """
+        Retrieves the last ID from the DB and does a + 1
+        :param Membership _membership_id:
+        :return: int
+        """
+        result = 1
+
+        _membership_ids = self.sudo().env['climbing_gym.member_membership'].search(
+            [('membership_id', 'in', _membership_id.ids)], limit=1, order='member_internal_id desc')
 
         for _mem in _membership_ids:
-            self.member_internal_id = _mem.member_internal_id + 1
+            result = _mem.member_internal_id + 1
+
+        return result
 
     @api.multi
     def action_revive(self):
@@ -98,7 +109,6 @@ class MemberMembership(models.Model):
         for _map in self:
             _map.state = 'pending_payment'
             _map.partner_id.update_main_membership()
-
 
     @api.multi
     def action_overdue(self):
@@ -155,8 +165,6 @@ class MemberMembership(models.Model):
         if not self.membership_id or not self.partner_id:
             return
 
-        # pdb.set_trace()
-
         _id = 0
         _logger.info('*******')
         _logger.info('onchange_identity_ids -> ID: %s' % self.id)
@@ -165,13 +173,12 @@ class MemberMembership(models.Model):
         if isinstance(self.id, models.NewId):
             if not hasattr(self, '_origin'):
                 return
-
             _id = -1 if not self._origin.id else self._origin.id
         else:
             _id = self.id
 
         _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
-            ('state', 'in', ['active', 'overdue']),
+            ('state', 'in', self._valid_status_list),
             ('partner_id', 'in', self.partner_id.ids),
             ('membership_id', 'in', self.membership_id.ids),
             ('id', '!=', _id)])
@@ -242,8 +249,8 @@ class MemberMembership(models.Model):
         _logger.info('Begin cron_due_date Cron Job ... ')
         _now = datetime.now()
 
-        _member_ids = self.sudo().env['climbing_gym.member_membership'].search([
-            ('state', 'in', ['active', 'overdue'])])
+        _member_ids = self.sudo().env['climbing_gym.member_membership'] \
+            .search([('state', 'in', ['active', 'overdue'])])
 
         _logger.info('Found %d memberships, processing ... ' % (len(_member_ids)))
 
@@ -253,7 +260,7 @@ class MemberMembership(models.Model):
             _mm.update_name()
 
     def cron_auto_cancel(self):
-        """Calculates the auto cancel for the old memberships"""
+        """Cancels overdue memberships that have surpassed the grace period"""
 
         _logger.info('Begin cron_due_date Cron Job ... ')
         _now = datetime.now()
@@ -274,15 +281,67 @@ class MemberMembership(models.Model):
 
             _logger.info('Found %d memberships that need to be cancelled, processing ... ' % (len(_overdue_member_ids)))
 
-            # _overdue_member_ids.action_cancel
-            # _overdue_member_ids.cancelled_reason += '\r\nCancelled automatically due to long overdue'
-
             for _mm in _overdue_member_ids:
-                # pdb.set_trace()
-
                 _mm.action_cancel()
                 _mm.cancelled_reason = '%s\r\nCancelled automatically due to long overdue' % (
                     _mm.cancelled_reason if _mm.cancelled_reason else '')
 
-    # TODO: Mass email overdue members
-    #
+    def cron_send_due_date_alert(self, days_left):
+        """Sends and email to every membership owner due in N days """
+
+        _logger.info('Begin cron_send_due_date_alert Cron Job ... ')
+        due_date = datetime.now().date() + timedelta(days=days_left)
+
+        _member_ids = self.sudo().env['climbing_gym.member_membership'] \
+            .search([('state', 'in', ['active']), ('current_due_date', '=', due_date)])
+
+        _logger.info('Found %d memberships, processing ... ' % (len(_member_ids)))
+        _member_ids.send_due_warning_email()
+
+    @api.multi
+    def send_due_warning_email(self):
+
+        for _mm in self:
+
+            for user in _mm.partner_id:
+                if not user.email:
+                    _mm.message_post(
+                        body=_("Cannot send Due date email to: user %s has no email address.") % user.name,
+                        subject='Due date email',
+                        message_type='notification',
+                        subtype=None,
+                        parent_id=False,
+                        attachments=None)
+
+            template = _mm.env.ref('climbing_gym.membership_due_date_reminder_email_template')
+            current_diff = _mm.current_due_date - datetime.now().date()
+
+            template_values = {
+                'email_to': '${object.partner_id.email|safe}',
+                # 'email_from': 'dont@reply.com',
+                'model': 'climbing_gym.member_membership',
+                'email_cc': False,
+                'membership_due_date': _('Due date: %s') % _mm.current_due_date,
+                'days_to_due': current_diff.days,
+
+
+                'partner_name': _mm.partner_id.name,
+                'subject': _('Your membership is due in %d days') % current_diff.days,
+                'explanation': _('Your membership due date is coming soon'),
+                'title_1': _('Your membership'),
+                'go_review': _('Please go to https://shop.caba.org.ar/my/home and review it.'),
+
+                'thanks': _('Thank you')
+
+
+            }
+
+            template.write(template_values)
+
+            template.with_context(template_values).send_mail(_mm.id, force_send=True, raise_exception=True)
+            _mm.message_post(body=_("Due date email sent to: %s") % _mm.partner_id.email,
+                             subject='Due date email',
+                             message_type='notification',
+                             subtype=None,
+                             parent_id=False,
+                             attachments=None)

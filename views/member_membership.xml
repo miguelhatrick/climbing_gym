@@ -31,7 +31,8 @@
                                 groups="climbing_gym.group_manager"/>
                         <button name="calculate_due_date" string="Recalculate due date" states='active,overdue' type="object"
                                 class="oe_highlight"/>
-
+                        <button name="send_due_warning_email" string="Send due date email" states='active,overdue' type="object"
+                                class="oe_highlight"/>
                     </header>
                     <sheet>
                         <h1>

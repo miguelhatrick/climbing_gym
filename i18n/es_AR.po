@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-27 14:36+0000\n"
-"PO-Revision-Date: 2021-09-27 11:40-0300\n"
+"POT-Creation-Date: 2022-12-11 17:13+0000\n"
+"PO-Revision-Date: 2022-12-11 14:16-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -18,10 +18,9 @@ msgstr ""
 "X-Generator: Poedit 2.4.3\n"
 
 #. module: climbing_gym
-#: selection:climbing_gym.event_generator,year:0
-#: selection:climbing_gym.event_monthly,year:0
-#: selection:climbing_gym.event_monthly_group,year:0
-msgid "2021"
+#: model:mail.template,subject:climbing_gym.medical_certificate_due_date_reminder
+#: model:mail.template,subject:climbing_gym.membership_due_date_reminder_email_template
+msgid "${ctx.get('subject')}"
 msgstr ""
 
 #. module: climbing_gym
@@ -51,6 +50,343 @@ msgstr ""
 #: selection:climbing_gym.event_monthly_group,year:0
 msgid "2025"
 msgstr ""
+
+#. module: climbing_gym
+#: selection:climbing_gym.event_generator,year:0
+#: selection:climbing_gym.event_monthly,year:0
+#: selection:climbing_gym.event_monthly_group,year:0
+msgid "2026"
+msgstr ""
+
+#. module: climbing_gym
+#: model:mail.template,body_html:climbing_gym.membership_due_date_reminder_email_template
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">${ctx.get('title_1')}</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <div>\n"
+"                                                            ${ctx.get('explanation')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('membership_due_date')}\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('go_review')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('thanks')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Powered by\n"
+"                                        <a target=\"_blank\" href=\"https://www.odoo.com?utm_source=db&amp;utm_medium=auth\" style=\"color: #875A7B;\">Odoo\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
+msgstr ""
+
+#. module: climbing_gym
+#: model:mail.template,body_html:climbing_gym.membership_due_date_reminder
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <!-- HEADER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">Your Account</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${object.name}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                        <img src=\"/logo.png?company=${object.company_id.id}\" style=\"padding: 0px; margin: 0px; height: auto; width: 80px;\" alt=\"${object.company_id.name}\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- CONTENT -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <div>\n"
+"                                                            Dear ${object.name},\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            A password reset was requested for the Odoo account linked\n"
+"                                                            to this email.\n"
+"                                                            You may change your password by following this link which\n"
+"                                                            will remain valid during 24 hours:\n"
+"                                                            <br/>\n"
+"                                                            <div style=\"margin: 16px 0px 16px 0px;\">\n"
+"                                                                <a href=\"${object.signup_url}\" style=\"background-color: #875A7B; padding: 8px 16px 8px 16px; text-decoration: none; color: #fff; border-radius: 5px; font-size:13px;\">\n"
+"                                                                    Change password\n"
+"                                                                </a>\n"
+"                                                            </div>\n"
+"                                                            If you do not expect this, you can safely ignore this email.\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            Thanks,\n"
+"                                                            <br/>\n"
+"                                                            ${user.signature | safe}\n"
+"                                                            <br/>\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <!-- FOOTER -->\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"                                                        ${object.company_id.name}\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                        ${object.company_id.phone}\n"
+"                                                        % if object.company_id.email\n"
+"                                                        |\n"
+"                                                        <a href=\"'mailto:%s' % ${object.company_id.email}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.email}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                        % if object.company_id.website\n"
+"                                                        |\n"
+"                                                        <a href=\"'%s' % ${object.company_id.website}\" style=\"text-decoration:none; color: #454748;\">\n"
+"                                                            ${object.company_id.website}\n"
+"                                                        </a>\n"
+"                                                        % endif\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <!-- POWERED BY -->\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Powered by\n"
+"                                        <a target=\"_blank\" href=\"https://www.odoo.com?utm_source=db&amp;utm_medium=auth\" style=\"color: #875A7B;\">Odoo\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
+msgstr ""
+
+#. module: climbing_gym
+#: model:mail.template,body_html:climbing_gym.medical_certificate_due_date_reminder
+msgid ""
+"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" style=\"padding-top: 16px; background-color: #F1F1F1; font-family:Verdana, Arial,sans-serif; color: #454748; width: 100%; border-collapse:separate;\">\n"
+"                    <tr>\n"
+"                        <td align=\"center\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"padding: 16px; background-color: white; color: #454748; border-collapse:separate;\">\n"
+"                                <tbody>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\">\n"
+"                                                        <span style=\"font-size: 10px;\">${ctx.get('title_1')}</span>\n"
+"                                                        <br/>\n"
+"                                                        <span style=\"font-size: 20px; font-weight: bold;\">\n"
+"                                                            ${ctx.get('partner_name')}\n"
+"                                                        </span>\n"
+"                                                    </td>\n"
+"                                                    <td valign=\"middle\" align=\"right\">\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td colspan=\"2\" style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"top\" style=\"font-size: 13px;\">\n"
+"                                                        <div>\n"
+"                                                            ${ctx.get('explanation')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('due_date')}\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('go_review')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                            ${ctx.get('thanks')}\n"
+"                                                            <br/>\n"
+"                                                            <br/>\n"
+"                                                        </div>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td style=\"text-align:center;\">\n"
+"                                                        <hr width=\"100%\" style=\"background-color:rgb(204,204,204);border:medium none;clear:both;display:block;font-size:0px;min-height:1px;line-height:0; margin: 16px 0px 16px 0px;\"/>\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                    <tr>\n"
+"                                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: white; font-size: 11px; padding: 0px 8px 0px 8px; border-collapse:separate;\">\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\">\n"
+"\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                                <tr>\n"
+"                                                    <td valign=\"middle\" align=\"left\" style=\"opacity: 0.7;\">\n"
+"                                                    </td>\n"
+"                                                </tr>\n"
+"                                            </table>\n"
+"                                        </td>\n"
+"                                    </tr>\n"
+"                                </tbody>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                    <tr>\n"
+"                        <td align=\"center\" style=\"min-width: 590px;\">\n"
+"                            <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"590\" style=\"min-width: 590px; background-color: #F1F1F1; color: #454748; padding: 8px; border-collapse:separate;\">\n"
+"                                <tr>\n"
+"                                    <td style=\"text-align: center; font-size: 13px;\">\n"
+"                                        Powered by\n"
+"                                        <a target=\"_blank\" href=\"https://www.odoo.com?utm_source=db&amp;utm_medium=auth\" style=\"color: #875A7B;\">Odoo\n"
+"                                        </a>\n"
+"                                    </td>\n"
+"                                </tr>\n"
+"                            </table>\n"
+"                        </td>\n"
+"                    </tr>\n"
+"                </table>\n"
+"            "
+msgstr ""
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
+msgid "Accept"
+msgstr "Aceptar"
+
+#. module: climbing_gym
+#: selection:climbing_gym.member_membership_request,state:0
+msgid "Accepted"
+msgstr "Aceptado"
+
+#. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.menu_4_access_list
+#: model:ir.ui.menu,name:climbing_gym.menu_access_list
+msgid "Access List"
+msgstr "Lista de acceso"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__locations
@@ -105,9 +441,10 @@ msgstr "Paquetes de acceso para miembros"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_needaction
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_needaction
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_needaction
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_needaction
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_needaction
 msgid "Action Needed"
-msgstr "Acción Necesaria"
+msgstr "Acción requerida"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_form_view
@@ -179,6 +516,7 @@ msgstr "Abril"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.sale_view_order_form2
 msgid "Are you sure you want to do this?"
@@ -200,12 +538,14 @@ msgstr "Número de socio"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_attachment_count
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_attachment_count
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_attachment_count
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_attachment_count
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_attachment_count
 msgid "Attachment Count"
 msgstr "Conteo de archivos adjuntos"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__attachment_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__attachment_ids
 msgid "Attachments"
 msgstr "Adjuntos"
 
@@ -249,6 +589,7 @@ msgstr "Fecha de nacimiento"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "Cancel"
@@ -281,6 +622,7 @@ msgstr "Razón de cancelación"
 #: selection:climbing_gym.member_access_package,state:0
 #: selection:climbing_gym.member_membership,state:0
 #: selection:climbing_gym.member_membership_package,state:0
+#: selection:climbing_gym.member_membership_request,state:0
 #: selection:climbing_gym.membership,state:0
 #: selection:climbing_gym.membership_package,state:0
 msgid "Cancelled"
@@ -290,6 +632,13 @@ msgstr "Cancelado"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__canceled_date
 msgid "Cancelled date"
 msgstr "Fecha de cancelación"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:97
+#: code:addons/climbing_gym/models/member_membership.py:309
+#, python-format
+msgid "Cannot send Due date email to: user %s has no email address."
+msgstr "No es posible enviar un email de vencimiento a: user %s. Este no tiene una dirección de correo electrónico"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
@@ -314,27 +663,27 @@ msgstr "Club de escalada"
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_manager
 msgid "Climbing gym Manager"
-msgstr "Administrador de club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
 msgid "Climbing gym data"
-msgstr "Información de club de escalada"
+msgstr "Información del club de escalada"
 
 #. module: climbing_gym
 #: model:res.groups,name:climbing_gym.group_user
 msgid "Climbing gym employee"
-msgstr "Empleado de club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__partner_id
 msgid "Climbing gym member"
-msgstr "Miembro de club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.module.category,name:climbing_gym.cg_module_management
 msgid "Climbing gym security"
-msgstr "Seguridad de club de escalada"
+msgstr ""
 
 #. module: climbing_gym
 #: model:mail.channel,name:climbing_gym.channel_climbing_gym_group
@@ -422,6 +771,7 @@ msgstr "Crear reserva mensual"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__create_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__create_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__create_uid
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__create_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__create_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__create_uid
 msgid "Created by"
@@ -440,6 +790,7 @@ msgstr "Creado por"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__create_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__create_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__create_date
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__create_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__create_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__create_date
 msgid "Created on"
@@ -474,10 +825,16 @@ msgstr "El usuario actual no posee una membresía activa"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "Data"
 msgstr "Datos"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__date_of_birth
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
 
 #. module: climbing_gym
 #: selection:climbing_gym.member_membership_package,interval_unit:0
@@ -529,10 +886,11 @@ msgstr "Desactivado"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__display_name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__display_name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__display_name
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__display_name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__display_name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__display_name
 msgid "Display Name"
-msgstr "Nombre mostrado"
+msgstr "Nombre a mostrar"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__doctor_license
@@ -545,14 +903,33 @@ msgid "Doctor Name"
 msgstr "Nombre del médico"
 
 #. module: climbing_gym
+#: selection:climbing_gym.member_membership_request,state:0
+msgid "Draft"
+msgstr "Borrador"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_medical_certificate__due_date
 msgid "Due date"
 msgstr "Fecha vencimiento"
 
 #. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:128
+#: code:addons/climbing_gym/models/member_membership.py:342
+#, python-format
+msgid "Due date email sent to: %s"
+msgstr "Email de vencimiento enviado a: %s"
+
+#. module: climbing_gym
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__initial_due_date
 msgid "Due date to use to begin calculations. It can differ from membership due date in order to accommodate system migrations"
 msgstr "Fecha de vencimiento para usar como inicio en los cálculos. Puede ser diferente de la fecha de membresía para poder acomodar migraciones de sistema"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:113
+#: code:addons/climbing_gym/models/member_membership.py:324
+#, python-format
+msgid "Due date: %s"
+msgstr "Fecha de vencimiento: %s"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_tree_view
@@ -648,7 +1025,7 @@ msgstr "Tipo de evento"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_week_template
 msgid "Event week templates"
-msgstr "Plantilla de evento semanal"
+msgstr "Plantilla de eventos semanales"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_weekday_list_action
@@ -689,6 +1066,7 @@ msgstr "Febrero"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 msgid "Files"
 msgstr "Archivos"
 
@@ -702,6 +1080,7 @@ msgstr "Archivos"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_follower_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_follower_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_follower_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_follower_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_follower_ids
 msgid "Followers"
 msgstr "Seguidores"
@@ -716,6 +1095,7 @@ msgstr "Seguidores"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_channel_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_channel_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_channel_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_channel_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_channel_ids
 msgid "Followers (Channels)"
 msgstr "Seguidores (Canales)"
@@ -730,6 +1110,7 @@ msgstr "Seguidores (Canales)"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_partner_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_partner_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_partner_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_partner_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_partner_ids
 msgid "Followers (Partners)"
 msgstr "Seguidores (Empresas)"
@@ -745,6 +1126,7 @@ msgstr "Requerir membresía ACTIVA"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "General"
 msgstr ""
@@ -780,6 +1162,11 @@ msgid "Generated"
 msgstr "Generado"
 
 #. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.access_list_generator
+msgid "Generator"
+msgstr "Generador"
+
+#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.access_package_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_search_view
@@ -789,6 +1176,7 @@ msgstr "Generado"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_search_view
 msgid "Group By"
@@ -812,6 +1200,7 @@ msgstr "Grupo de eventos que pueden ser reservados mensualmente"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__id
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__id
 msgid "ID"
@@ -832,6 +1221,7 @@ msgstr "Id para operaciones de fecha"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_unread
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_unread
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_unread
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_unread
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_unread
 msgid "If checked new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
@@ -846,6 +1236,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_needaction
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_needaction
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_needaction
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_needaction
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_needaction
 msgid "If checked, new messages require your attention."
 msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
@@ -860,6 +1251,7 @@ msgstr "Si está marcado, hay nuevos mensajes que requieren su atención."
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_has_error
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_has_error
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_has_error
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_has_error
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_has_error
 msgid "If checked, some messages have a delivery error."
 msgstr "Si se encuentra marcado, algunos mensajes tienen error de envío."
@@ -877,7 +1269,7 @@ msgstr "En proceso"
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 msgid "Info"
-msgstr ""
+msgstr "Información"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__interval_length
@@ -903,6 +1295,7 @@ msgstr "Unidad del intervalo"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_is_follower
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_is_follower
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_is_follower
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_is_follower
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_is_follower
 msgid "Is Follower"
 msgstr "Es un seguidor"
@@ -946,6 +1339,7 @@ msgstr "Junio"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package____last_update
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership____last_update
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package____last_update
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request____last_update
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership____last_update
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package____last_update
 msgid "Last Modified on"
@@ -964,6 +1358,7 @@ msgstr "Última modificación en"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__write_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__write_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__write_uid
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__write_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__write_uid
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__write_uid
 msgid "Last Updated by"
@@ -982,6 +1377,7 @@ msgstr "Última actualización por"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__write_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__write_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__write_date
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__write_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__write_date
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__write_date
 msgid "Last Updated on"
@@ -1021,6 +1417,16 @@ msgid "List of events that can be reserved monthly"
 msgstr "Lista de eventos que pueden ser reservados mensualmente"
 
 #. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.access_list
+msgid "Lists"
+msgstr "Listas"
+
+#. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.access_list_content
+msgid "Lists contents"
+msgstr "Contenidos de listas"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_weekday__localized_name
 msgid "Localized weekday"
 msgstr ""
@@ -1040,6 +1446,7 @@ msgstr "Contenido miembros - eventos mensuales"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_main_attachment_id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_main_attachment_id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_main_attachment_id
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_main_attachment_id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_main_attachment_id
 msgid "Main Attachment"
 msgstr "Adjuntos principales"
@@ -1112,6 +1519,7 @@ msgstr "Certificados médicos para cada miembro del club de escalada"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__partner_id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__partner_id
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__partner_id
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_search_view
 msgid "Member"
 msgstr "Miembro"
@@ -1125,6 +1533,11 @@ msgstr "Paquetes de acceso de miembros"
 #: model:ir.model,name:climbing_gym.model_climbing_gym_member_access_package
 msgid "Member Access package"
 msgstr "Paquetes de acceso de miembro"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__member_membership_id
+msgid "Member Membership generated"
+msgstr "Membresía generada"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
@@ -1150,6 +1563,7 @@ msgstr "Paquetes de acceso de miembros"
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_member_membership
+#: model:ir.model,name:climbing_gym.model_climbing_gym_member_membership_request
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_content__member_membership_id
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__member_membership_id
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
@@ -1203,6 +1617,7 @@ msgstr "Miembros"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__membership_id
 #: model:ir.ui.menu,name:climbing_gym.membership_menu
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_monthly_content_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 msgid "Membership"
 msgstr "Miembro"
@@ -1223,6 +1638,11 @@ msgid "Membership due date start"
 msgstr "Fecha de inicio de vencimiento"
 
 #. module: climbing_gym
+#: model:mail.template,subject:climbing_gym.membership_due_date_reminder
+msgid "Membership due soon"
+msgstr "La membresía vence pronto"
+
+#. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_search_view
 msgid "Membership package"
@@ -1239,6 +1659,27 @@ msgstr "Listado de paquetes de membresía"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 msgid "Membership packages"
 msgstr "Paquetes de membresía"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
+msgid "Membership request"
+msgstr "Solicitud de membresía"
+
+#. module: climbing_gym
+#: model:ir.actions.act_window,name:climbing_gym.member_membership_request_list_action
+msgid "Membership request list"
+msgstr "Listado de solicitudes de membresía"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__membership_id
+msgid "Membership requested"
+msgstr "Membresía solicitada"
+
+#. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.member_membership_request
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_tree_view
+msgid "Membership requests"
+msgstr "Pedidos de membresía"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__membership_start_date
@@ -1266,6 +1707,7 @@ msgstr "Membresías"
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_graph
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_graph
 msgid "Memberships graph"
 msgstr "Gráfico de membresías"
 
@@ -1279,6 +1721,7 @@ msgstr "Gráfico de membresías"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_has_error
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_has_error
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_has_error
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_has_error
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_has_error
 msgid "Message Delivery error"
 msgstr "Error de Envío de Mensaje"
@@ -1293,6 +1736,7 @@ msgstr "Error de Envío de Mensaje"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_ids
 msgid "Messages"
 msgstr "Mensajes"
@@ -1409,6 +1853,7 @@ msgstr "Meses"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__name
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__name
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__name
 msgid "Name"
@@ -1426,6 +1871,7 @@ msgstr "Nombre"
 #: model_terms:ir.actions.act_window,help:climbing_gym.member_access_package_list_action
 #: model_terms:ir.actions.act_window,help:climbing_gym.member_membership_list_action
 #: model_terms:ir.actions.act_window,help:climbing_gym.member_membership_package_list_action
+#: model_terms:ir.actions.act_window,help:climbing_gym.member_membership_request_list_action
 #: model_terms:ir.actions.act_window,help:climbing_gym.membership_package_list_action
 msgid "No records yet!"
 msgstr "Sin registros aún!"
@@ -1447,6 +1893,7 @@ msgstr "Noviembre"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_needaction_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_needaction_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_needaction_counter
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_needaction_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_needaction_counter
 msgid "Number of Actions"
 msgstr "Número de acciones"
@@ -1461,6 +1908,7 @@ msgstr "Número de acciones"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_has_error_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_has_error_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_has_error_counter
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_has_error_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_has_error_counter
 msgid "Number of error"
 msgstr "Número de error"
@@ -1475,6 +1923,7 @@ msgstr "Número de error"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_needaction_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_needaction_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_needaction_counter
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_needaction_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_needaction_counter
 msgid "Number of messages which requires an action"
 msgstr "Número de mensajes que requieren una acción"
@@ -1489,6 +1938,7 @@ msgstr "Número de mensajes que requieren una acción"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_has_error_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_has_error_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_has_error_counter
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_has_error_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_has_error_counter
 msgid "Number of messages with delivery error"
 msgstr "Número de mensajes con error de envío"
@@ -1503,6 +1953,7 @@ msgstr "Número de mensajes con error de envío"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__message_unread_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__message_unread_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__message_unread_counter
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__message_unread_counter
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__message_unread_counter
 msgid "Number of unread messages"
 msgstr "Número de mensajes no leidos"
@@ -1516,7 +1967,9 @@ msgstr ""
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__obs
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__obs
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__obs
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__obs
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 msgid "Observations"
 msgstr "Observaciones"
 
@@ -1536,7 +1989,7 @@ msgstr "Solo socios"
 #: selection:climbing_gym.member_membership,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 msgid "Overdue"
-msgstr "Vencimiento"
+msgstr "Vencido"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__pos_order
@@ -1583,9 +2036,11 @@ msgstr "Grupo de miembros definido por ETIQUETA"
 #: selection:climbing_gym.member_access_package,state:0
 #: selection:climbing_gym.member_membership,state:0
 #: selection:climbing_gym.member_membership_package,state:0
+#: selection:climbing_gym.member_membership_request,state:0
 #: selection:climbing_gym.membership,state:0
 #: selection:climbing_gym.membership_package,state:0
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 msgid "Pending"
 msgstr "Pendiente"
 
@@ -1600,6 +2055,13 @@ msgid "Personal information"
 msgstr "Información personal"
 
 #. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:119
+#: code:addons/climbing_gym/models/member_membership.py:332
+#, python-format
+msgid "Please go to https://shop.caba.org.ar/my/home and review it."
+msgstr "Por favor ir a https://shop.caba.org.ar/my/home y revisar."
+
+#. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_pos_order_line
 msgid "Point of Sale Order Lines"
 msgstr "Líneas de Orden de Punto de Venta"
@@ -1607,7 +2069,7 @@ msgstr "Líneas de Orden de Punto de Venta"
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_pos_order
 msgid "Point of Sale Orders"
-msgstr "Pedidos del TPV"
+msgstr "Pedidos del Punto de Venta"
 
 #. module: climbing_gym
 #: selection:climbing_gym.event_monthly,event_type:0
@@ -1619,11 +2081,6 @@ msgstr "Privado"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 msgid "Product"
 msgstr "Producto"
-
-#. module: climbing_gym
-#: model:ir.model,name:climbing_gym.model_product_template
-msgid "Product Template"
-msgstr "Plantilla de producto"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__products
@@ -1666,6 +2123,16 @@ msgstr "Fecha de inicio de registro"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly_group__register_start_date_partner_group_tag
 msgid "Registration start date for partners defined by TAG"
 msgstr "Fecha de inicio de registro para grupo definido por ETIQUETA"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
+msgid "Reject"
+msgstr "Rechazar"
+
+#. module: climbing_gym
+#: selection:climbing_gym.member_membership_request,state:0
+msgid "Rejected"
+msgstr "Rechazado"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__remaining_credits
@@ -1730,6 +2197,7 @@ msgstr "Reservas"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_form_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_form_view
 msgid "Revive"
 msgstr "Revivir"
@@ -1750,12 +2218,97 @@ msgstr "Orden de venta"
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_sale_order_line
 msgid "Sales Order Line"
-msgstr "Línea de pedido de venta"
+msgstr "Línea de Pedido de Ventas"
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.action_partner_mass_mail
 msgid "Send Email"
 msgstr "Enviar correo electrónico"
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.member_membership_cron_send_due_date_alert_01_ir_actions_server
+#: model:ir.actions.server,name:climbing_gym.member_membership_send_due_date_alert_01_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.member_membership_cron_send_due_date_alert_01
+#: model:ir.cron,cron_name:climbing_gym.member_membership_send_due_date_alert_01
+#: model:ir.cron,name:climbing_gym.member_membership_cron_send_due_date_alert_01
+#: model:ir.cron,name:climbing_gym.member_membership_send_due_date_alert_01
+msgid "Send alert whe the membership due date is in 1 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.member_membership_cron_send_due_date_alert_15_ir_actions_server
+#: model:ir.actions.server,name:climbing_gym.member_membership_send_due_date_alert_15_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.member_membership_cron_send_due_date_alert_15
+#: model:ir.cron,cron_name:climbing_gym.member_membership_send_due_date_alert_15
+#: model:ir.cron,name:climbing_gym.member_membership_cron_send_due_date_alert_15
+#: model:ir.cron,name:climbing_gym.member_membership_send_due_date_alert_15
+msgid "Send alert whe the membership due date is in 15 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.member_membership_cron_send_due_date_alert_30_ir_actions_server
+#: model:ir.actions.server,name:climbing_gym.member_membership_send_due_date_alert_30_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.member_membership_cron_send_due_date_alert_30
+#: model:ir.cron,cron_name:climbing_gym.member_membership_send_due_date_alert_30
+#: model:ir.cron,name:climbing_gym.member_membership_cron_send_due_date_alert_30
+#: model:ir.cron,name:climbing_gym.member_membership_send_due_date_alert_30
+msgid "Send alert whe the membership due date is in 30 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.member_membership_send_due_date_alert_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.member_membership_send_due_date_alert
+#: model:ir.cron,name:climbing_gym.member_membership_send_due_date_alert
+msgid "Send alert whe the membership due date is in 37 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.member_membership_cron_send_due_date_alert_07_ir_actions_server
+#: model:ir.actions.server,name:climbing_gym.member_membership_send_due_date_alert_07_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.member_membership_cron_send_due_date_alert_07
+#: model:ir.cron,cron_name:climbing_gym.member_membership_send_due_date_alert_07
+#: model:ir.cron,name:climbing_gym.member_membership_cron_send_due_date_alert_07
+#: model:ir.cron,name:climbing_gym.member_membership_send_due_date_alert_07
+msgid "Send alert whe the membership due date is in 7 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.cron_send_medical_certificate_due_date_alert_01_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.cron_send_medical_certificate_due_date_alert_01
+#: model:ir.cron,name:climbing_gym.cron_send_medical_certificate_due_date_alert_01
+msgid "Send alert when the medical certificate due date is in 1 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.cron_send_medical_certificate_due_date_alert_15_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.cron_send_medical_certificate_due_date_alert_15
+#: model:ir.cron,name:climbing_gym.cron_send_medical_certificate_due_date_alert_15
+msgid "Send alert when the medical certificate due date is in 15 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.cron_send_medical_certificate_due_date_alert_30_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.cron_send_medical_certificate_due_date_alert_30
+#: model:ir.cron,name:climbing_gym.cron_send_medical_certificate_due_date_alert_30
+msgid "Send alert when the medical certificate due date is in 30 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.cron_send_medical_certificate_due_date_alert_07_ir_actions_server
+#: model:ir.cron,cron_name:climbing_gym.cron_send_medical_certificate_due_date_alert_07
+#: model:ir.cron,name:climbing_gym.cron_send_medical_certificate_due_date_alert_07
+msgid "Send alert when the medical certificate due date is in 7 days"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.actions.server,name:climbing_gym.action_medical_certificate_due_warning_email
+msgid "Send due certificate email"
+msgstr "Enviar email de vencimiento de certificado médico"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_form_view
+msgid "Send due date email"
+msgstr "Enviar email de vencimiento"
 
 #. module: climbing_gym
 #: selection:climbing_gym.event_generator,month:0
@@ -1791,6 +2344,7 @@ msgstr "Hora de inicio"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__state
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__state
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__state
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__state
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__state
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership_package__state
 #: model_terms:ir.ui.view,arch_db:climbing_gym.access_package_search_view
@@ -1802,6 +2356,7 @@ msgstr "Hora de inicio"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.medical_certificate_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_access_package_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_search_view
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_search_view
 #: model_terms:ir.ui.view,arch_db:climbing_gym.membership_package_search_view
 msgid "Status"
@@ -1822,6 +2377,13 @@ msgstr "Lugares ocupados"
 #: model_terms:ir.ui.view,arch_db:climbing_gym.event_generator_form_view
 msgid "Templates"
 msgstr "Plantillas"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:121
+#: code:addons/climbing_gym/models/member_membership.py:334
+#, python-format
+msgid "Thank you"
+msgstr "Gracias"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__ticket_product
@@ -1859,14 +2421,14 @@ msgid "Title for the event"
 msgstr "Titulo del evento"
 
 #. module: climbing_gym
+#: model:ir.ui.menu,name:climbing_gym.menu_access_list_tool
+msgid "Tools"
+msgstr "Herramientas"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly__event_type
 msgid "Type"
 msgstr "Tipo"
-
-#. module: climbing_gym
-#: model:ir.model,name:climbing_gym.model_climbing_gym_association_type
-msgid "Type of association"
-msgstr "Tipo de asociación"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__message_unread
@@ -1878,9 +2440,10 @@ msgstr "Tipo de asociación"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_unread
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_unread
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_unread
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_unread
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_unread
 msgid "Unread Messages"
-msgstr "Mensajes por leer"
+msgstr "Mensajes sin leer"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__message_unread_counter
@@ -1892,6 +2455,7 @@ msgstr "Mensajes por leer"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__message_unread_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__message_unread_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__message_unread_counter
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__message_unread_counter
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__message_unread_counter
 msgid "Unread Messages Counter"
 msgstr "Contador de mensajes sin leer"
@@ -1912,11 +2476,8 @@ msgstr "Actualizar el estado de la membresía - Todos los miembros (Diario)"
 
 #. module: climbing_gym
 #: model:ir.actions.server,name:climbing_gym.membership_auto_cancel_ir_actions_server
-#: model:ir.actions.server,name:climbing_gym.membership_cancel_overdue_status_ir_actions_server
 #: model:ir.cron,cron_name:climbing_gym.membership_auto_cancel
-#: model:ir.cron,cron_name:climbing_gym.membership_cancel_overdue_status
 #: model:ir.cron,name:climbing_gym.membership_auto_cancel
-#: model:ir.cron,name:climbing_gym.membership_cancel_overdue_status
 msgid "Update membership status - Cancel long overdue memberships"
 msgstr "Actualizar estado de membresía - Cancelar membresías vencidas prolongadamente"
 
@@ -1952,6 +2513,7 @@ msgstr "Sitio web"
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_access_package__website_message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership__website_message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_package__website_message_ids
+#: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_member_membership_request__website_message_ids
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_membership__website_message_ids
 msgid "Website Messages"
 msgstr "Mensajes del sitio web"
@@ -1966,6 +2528,7 @@ msgstr "Mensajes del sitio web"
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_access_package__website_message_ids
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership__website_message_ids
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_package__website_message_ids
+#: model:ir.model.fields,help:climbing_gym.field_climbing_gym_member_membership_request__website_message_ids
 #: model:ir.model.fields,help:climbing_gym.field_climbing_gym_membership__website_message_ids
 msgid "Website communication history"
 msgstr "Historial de comunicaciones del sitio web"
@@ -1988,7 +2551,7 @@ msgstr "Plantilla de eventos semanales creación"
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_monthly__weekday
 msgid "Weekday"
-msgstr "Dia de la semana"
+msgstr "Día de la semana"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_weekday__name
@@ -2020,14 +2583,55 @@ msgid "Years"
 msgstr "Años"
 
 #. module: climbing_gym
-#: code:addons/climbing_gym/models/event_monthly_content.py:133
+#: code:addons/climbing_gym/models/event_monthly_content.py:125
 #, python-format
 msgid "You cannot delete a content of a closed group "
 msgstr "No se puede borrar el contenido de un grupo cerrado"
 
 #. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:118
+#, python-format
+msgid "Your medical certificate"
+msgstr "Su certificado médico"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:117
+#, python-format
+msgid "Your medical certificate due date is coming soon"
+msgstr "El vencimiento de su certificado médico se aproxima"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/medical_certificate.py:116
+#, python-format
+msgid "Your medical certificate is due in %d days"
+msgstr "Su certificado médico vencera en %d dia(s)"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/member_membership.py:331
+#, python-format
+msgid "Your membership"
+msgstr "Su membresía"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/member_membership.py:330
+#, python-format
+msgid "Your membership due date is coming soon"
+msgstr "El vencimiento de su membresía está próximo"
+
+#. module: climbing_gym
+#: code:addons/climbing_gym/models/member_membership.py:329
+#, python-format
+msgid "Your membership is due in %d days"
+msgstr "Su membresía  vencerá en %d dia(s)"
+
+#. module: climbing_gym
 #: model:ir.actions.server,name:climbing_gym.action_server
 msgid "climbing_gym server"
+msgstr ""
+
+#. module: climbing_gym
+#: model:ir.model,name:climbing_gym.model_climbing_gym_association_type
+msgid "climbing_gym.association_type"
 msgstr ""
 
 #. module: climbing_gym
@@ -2039,6 +2643,11 @@ msgstr ""
 #: model:ir.model,name:climbing_gym.model_climbing_gym_membership_package
 msgid "climbing_gym.membership_package"
 msgstr ""
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_request_search_view
+msgid "pending"
+msgstr "pendiente"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_week_template__responsible

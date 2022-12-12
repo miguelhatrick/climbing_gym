@@ -20,7 +20,7 @@
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Administration',
-    'version': '0.6.4',
+    'version': '0.6.5',
 
     # any module necessary for this one to work correctly
     'depends': ['base',
@@ -37,15 +37,18 @@
     # always loaded
     'data': [
         'data/cron_jobs.xml',
+        'data/cron_jobs_membership_due_date.xml',
+        'data/cron_jobs_medical_certificate_due_date.xml',
+
         'data/data_weekday.xml',
+
+        'data/email/membership_email_template.xml',
+        'data/email/medical_certificate_email_template.xml',
 
         'data/message_group.xml',
         'data/user_groups.xml',
 
         'security/ir.model.access.csv',
-
-        # 'views/report/member_membership_report.xml',
-        # 'views/report/event_monthly_group_report.xml',
 
         'views/access_package.xml',
 
@@ -63,6 +66,7 @@
         'views/member_access_package.xml',
         'views/member_membership.xml',
         'views/member_membership_package.xml',
+        'views/member_membership_request.xml',
         'views/product_product.xml',
         'views/res_partner.xml',
         'views/sale_order.xml',

@@ -135,11 +135,12 @@ class EventMonthlyGroup(models.Model):
         self.event_content_ids_active = _emc.search(
             [('state', '=', 'confirmed'), ('event_monthly_group_id', '=', self.id)])
 
+    # TODO: Remove this function if not used.
     def _calculate_available(self):
         for _c in self:
-            _c.available_spots = 0
+            _c.available_spots_qty = 0
             for em in _c.event_monthly_ids:
-                _c.available_spots += em.seats_availability
+                _c.available_spots_qty += em.seats_availability
 
     def _calculate_taken(self):
         for _c in self:

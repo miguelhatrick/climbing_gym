@@ -24,7 +24,8 @@
                         <button name="action_confirm" string="Confirm" states='pending' type="object"
                                 class="oe_highlight"/>
 
-                        <button name="action_confirm_administrator" string="Confirm (administrator)" groups="climbing_gym.group_manager" states='pending' type="object"
+                        <button name="action_confirm_administrator" string="Confirm (administrator)"
+                                groups="climbing_gym.group_manager" states='pending' type="object"
                                 class="oe_highlight"/>
 
                         <button name="action_pending" string="Revive" states='cancel' type="object"
@@ -37,14 +38,17 @@
                         <notebook>
                             <page string="Data">
                                 <group col="4" colspan="4">
-                                    <field name="member_membership_id" domain="[('state','in',['active','overdue'])]" options="{'no_quick_create':True,'no_create_edit':True}"/>
-                                    <field name="event_monthly_id"  widget="selection" options="{'no_quick_create':True,'no_create_edit':True}"/>
-                                    <field name="event_monthly_group_id"  widget="selection" options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    <field name="member_membership_id" domain="[('state','in',['active','overdue'])]"
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    <field name="event_monthly_id" widget="selection"
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
+                                    <field name="event_monthly_group_id" widget="selection"
+                                           options="{'no_quick_create':True,'no_create_edit':True}"/>
                                 </group>
                             </page>
                         </notebook>
                     </sheet>
-                     <div class="oe_chatter">
+                    <div class="oe_chatter">
                         <field name="message_follower_ids" widget="mail_followers"/>
                         <field name="message_ids" widget="mail_thread"/>
                     </div>
@@ -74,15 +78,19 @@
                 <search>
                     <field name="name"/>
                     <field name="member_membership_id"/>
-                    <field name="event_monthly_id" />
-                    <field name="event_monthly_group_id" />
+                    <field name="event_monthly_id"/>
+                    <field name="event_monthly_group_id"/>
                     <filter string='Confirmed' name='filter_confirmed' domain="[('state','=','confirmed')]"/>
+
                     <group expand="0" string="Group By">
                         <filter name="group_confirmed" string="Status" context="{'group_by':'state'}"/>
                         <filter name="group_event_type" string="Event type" context="{'group_by':'event_type'}"/>
-                        <filter name="group_membership" string="Membership" context="{'group_by':'member_membership_id'}"/>
-                        <filter name="group_event_monthly" string="Event monthly" context="{'group_by':'event_monthly_id'}"/>
-                        <filter name="group_event_monthly_group_id" string="Event monthly group" context="{'group_by':'event_monthly_group_id'}"/>
+                        <filter name="group_membership" string="Membership"
+                                context="{'group_by':'member_membership_id'}"/>
+                        <filter name="group_event_monthly" string="Event monthly"
+                                context="{'group_by':'event_monthly_id'}"/>
+                        <filter name="group_event_monthly_group_id" string="Event monthly group"
+                                context="{'group_by':'event_monthly_group_id'}"/>
                     </group>
                 </search>
             </field>

@@ -18,23 +18,45 @@
 
                             <field name='climbing_gym_association_id'/>
                             <field name='climbing_gym_medical_certificate_due_date'/>
-                            <field name='climbing_gym_medical_certificate_valid' />
+                            <field name='climbing_gym_medical_certificate_valid'/>
 
                         </group>
-                        <group string="Medical Certificates"  name="medical-certificates" priority="2" col="4">
-                            <field name='climbing_gym_medical_certificates'  nolabel="1"/>
+                        <group string="Medical Certificates" name="medical-certificates" priority="2" col="4">
+                            <field name='climbing_gym_medical_certificates' nolabel="1"/>
                         </group>
-                         <group string="Memberships"  name="member_memberships" priority="2" col="4">
-                            <field name='climbing_gym_member_membership_ids'  nolabel="1"/>
-                         </group>
+                        <group string="Memberships" name="member_memberships" priority="2" col="4">
+                            <field name='climbing_gym_member_membership_ids' nolabel="1"/>
+                        </group>
                     </group>
                 </page>
-                 <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">
-                    <group string="Access Packages"  name="medical-certificates" priority="2" col="4">
-                        <field name='member_access_packages'  nolabel="1"/>
+                <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">
+                    <group string="Access Packages" name="medical-certificates" priority="2" col="4">
+                        <field name='member_access_packages' nolabel="1"/>
                     </group>
                 </page>
             </xpath>
         </field>
     </record>
+
+
+
+     <record model="ir.actions.server" id="action_medical_certificate_due_warning_email">
+       <field name="name">Send due certificate email</field>
+       <field name="model_id" ref="base.model_res_partner"/>
+       <field name="binding_model_id" ref="base.model_res_partner"/>
+       <field name="state">code</field>
+       <field name="code">
+           action = records.action_send_medical()
+       </field>
+   </record>
+
+
+
+
+    <!--    <div class="oe_button_box" name="button_box">-->
+    <!--                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">-->
+    <!--                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;: &quot;archive&quot;}"/>-->
+    <!--                        </button>-->
+    <!--                    </div>-->
+
 </odoo>

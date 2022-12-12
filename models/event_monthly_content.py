@@ -7,7 +7,7 @@ from odoo import models, fields, api
 from odoo.exceptions import ValidationError, UserError
 from odoo.tools import image_resize_images, image_resize_image, base64, logging
 import pytz
-from datetime import datetime
+from datetime import datetime, timedelta
 
 _logger = logging.getLogger(__name__)
 
@@ -43,27 +43,13 @@ class EventMonthlyContent(models.Model):
     def action_confirm_administrator(self):
         _logger.info('Trying to confirm %s ...' % self.name)
 
-        if self.event_monthly_group_id.require_active_medical_certificate:
-            if not self.member_membership_id.partner_id.climbing_gym_medical_certificate_valid:
-                raise ValidationError("Medical certificate missing / overdue")
-
-        # Do we have space?
-        self.event_monthly_id.calculate_current_available_seats()
-
-        if self.event_monthly_id.seats_available <= 0:
-            raise ValidationError("All available places have been taken")
-
-        # TODO: Implement tag control
-
-        self.write({'state': 'confirmed'})
-
-
-
+        self.action_confirm()
 
     @api.multi
     def action_confirm(self):
         _logger.info('Trying to confirm %s ...' % self.name)
 
+        # TODO: Clean this
         if self.event_monthly_group_id.require_active_membership:
             if self.member_membership_id.state != 'active':
                 raise ValidationError("Membership is not active!")
@@ -78,7 +64,13 @@ class EventMonthlyContent(models.Model):
         if self.event_monthly_id.seats_available <= 0:
             raise ValidationError("All available places have been taken")
 
-        # TODO: Implement tag control
+        for _tag in self.event_monthly_group_id.require_tags:
+
+            if not self.member_membership_id or not self.member_membership_id.partner_id:
+                raise ValidationError("No member selected!")
+
+            if _tag not in self.member_membership_id.partner_id.category_id:
+                raise ValidationError("Partner has not the required tags!")
 
         self.write({'state': 'confirmed'})
 
@@ -111,7 +103,7 @@ class EventMonthlyContent(models.Model):
             ('id', '!=', _id),
             ('event_monthly_id', '=', self.event_monthly_id.id),
             ('state', 'in', ["pending", "confirmed"])
-            ])
+        ])
 
         if len(_event_monthly_ids) > 0:
             raise ValidationError("Already inscribed in this event monthly!")

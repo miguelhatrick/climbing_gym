@@ -3,9 +3,9 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 import logging
 import pdb
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from odoo import fields, models, api
+from odoo import fields, models, api, _
 
 _logger = logging.getLogger(__name__)
 
@@ -109,11 +109,6 @@ class ResPartner(models.Model):
                 search([('partner_id', '=', _partner.id),
                         ('state', '=', 'confirmed')], order='issue_date desc', limit=1)
 
-    # FOR CALCULATING THE LAST CERT
-    # last_id = self.env['table.name'].search([], order='id desc')[0].id
-    # climbing_gym_image = fields.Binary("LAla Image", help="Select image here")
-    # climbing_gym_association_id = fields.Date("AssociationDate")
-
     def update_main_membership(self):
         """
         Updates the main membership based on status
@@ -129,3 +124,20 @@ class ResPartner(models.Model):
 
             # if we got here, disable
             _partner.climbing_gym_main_member_membership_id = None
+
+    def action_send_medical(self):
+        self.cron_send_medical_certificate_due_date_alert(4)
+
+    def cron_send_medical_certificate_due_date_alert(self, days_left):
+        """Send an email to every partner which certificate is due in N days"""
+
+        _logger.info('Begin cron_send_medical_certificate_due_date_alert Cron Job ... ')
+        due_date = datetime.now().date() + timedelta(days=days_left)
+
+        _partner_ids = self.sudo().env['res.partner'] \
+            .search([('climbing_gym_medical_certificate_due_date', '=', due_date)])
+
+        _logger.info('Found %d partners, processing ... ' % (len(_partner_ids)))
+
+        for _partner_id in _partner_ids.filtered(lambda r: r.climbing_gym_medical_certificate_latest is not False):
+            _partner_id.climbing_gym_medical_certificate_latest.send_due_warning_email()

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import pdb
+import logging
 
+from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
+from odoo import models, fields, api, _
 
-from odoo import models, fields, api
-from odoo.exceptions import ValidationError
-from odoo.tools import image_resize_images, image_resize_image, base64
+_logger = logging.getLogger(__name__)
 
 
 class MedicalCertificate(models.Model):
@@ -33,6 +33,8 @@ class MedicalCertificate(models.Model):
     obs = fields.Text()
 
     state = fields.Selection(status_selection, 'Status', default='pending', track_visibility=True)
+
+    # TODO: Add Main identification number to use in the template
 
     @api.multi
     def action_pending(self):
@@ -71,17 +73,61 @@ class MedicalCertificate(models.Model):
         for _map in self:
             _map.name = "MC-%s" % (_map.id if _map.id else '')
 
-    #
-    # def add_approve_follower(self):
-    #     vals = {}
-    #     partner_id = []
-    #     ptn = self.env['res.partner'].search([('email', '=', self.manager_id.user_id.email)]) # get partner  id by email
-    #     if not ptn: return vals # if get fail return {}
-    #     for x in self.message_follower_ids:
-    #         if x.partner_id.id == ptn.id:
-    #             return vals # if already added in followers   return {}
-    #     partner_id.append(ptn.id)
-    #     vals['message_follower_ids'] = [(0, 0, {
-    #         'res_model': 'jj_loan.jj_loan',
-    #         'partner_id': pid}) for pid in partner_id]
-    #     return vals; // return message_follower_ids
+    def cron_send_due_date_alert(self, days_left):
+        """Send an email to every partner which certificate is due in N days"""
+
+        _logger.info('Begin send_due_date_alert Cron Job ... ')
+        due_date = datetime.now().date() + timedelta(days=days_left)
+
+        _certificate_ids = self.sudo().env['climbing_gym.medical_certificate'] \
+            .search([('state', 'in', ['confirmed']), ('due_date', '=', due_date)])
+
+        _logger.info('Found %d certificates, processing ... ' % (len(_certificate_ids)))
+
+        _certificate_ids.send_due_warning_email()
+
+    @api.multi
+    def send_due_warning_email(self):
+
+        for _mc in self:
+
+            for user in _mc.partner_id:
+                if not user.email:
+                    _mc.message_post(
+                        body=_("Cannot send Due date email to: user %s has no email address.") % user.name,
+                        subject='Due date email',
+                        message_type='notification',
+                        subtype=None,
+                        parent_id=False,
+                        attachments=None)
+
+            template = _mc.env.ref('climbing_gym.medical_certificate_due_date_reminder')
+            current_diff = _mc.due_date - datetime.now().date()
+
+            template_values = {
+                'email_to': '${object.partner_id.email|safe}',
+                'email_from': 'dont@reply.com',
+                'model': 'climbing_gym.medical_certificate',
+                'email_cc': False,
+
+                'due_date': _('Due date: %s') % _mc.due_date,
+                'days_to_due': current_diff.days,
+                'partner_name': _mc.partner_id.name,
+                'subject': _('Your medical certificate is due in %d days') % current_diff.days,
+                'explanation': _('Your medical certificate due date is coming soon'),
+                'title_1': _('Your medical certificate'),
+                'go_review': _('Please go to https://shop.caba.org.ar/my/home and review it.'),
+
+                'thanks': _('Thank you')
+
+            }
+
+            template.write(template_values)
+
+            template.with_context(template_values).send_mail(_mc.id, force_send=True, raise_exception=True)
+            _mc.message_post(body=_("Due date email sent to: %s") % _mc.partner_id.email,
+                             subject='Due date email',
+                             message_type='notification',
+                             subtype=None,
+                             parent_id=False,
+                             attachments=None)

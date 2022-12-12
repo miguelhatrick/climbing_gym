@@ -6,9 +6,6 @@
         <menuitem name="Climbing Gym" id="climbing_gym.menu_root"/>
 
         <!-- menu categories -->
-
-
-
         <menuitem name="Members" id="climbing_gym.menu_1" parent="climbing_gym.menu_root"/>
             <menuitem name="Members" id="climbing_gym.member_membership" parent="climbing_gym.menu_1"
                       action="member_membership_list_action"
@@ -19,7 +16,9 @@
                       action="member_access_package_list_action" sequence="2"/>
             <menuitem name="Member membership packages" id="climbing_gym.member_membership_package" parent="climbing_gym.menu_1"
                       action="member_membership_package_list_action" sequence="2"/>
-
+        <menuitem name="Membership requests" id="climbing_gym.member_membership_request" parent="climbing_gym.menu_1"
+                      action="member_membership_request_list_action"
+                      sequence="5"/>
 
         <menuitem name="Reserves" id="climbing_gym.menu_2" parent="climbing_gym.menu_root"/>
             <menuitem name="Event Generator" id="climbing_gym.event_generator" parent="climbing_gym.menu_2" action="event_generator_list_action"/>
@@ -27,12 +26,8 @@
             <menuitem name="Monthly Events" id="climbing_gym.event_monthly_menu" parent="climbing_gym.menu_2"/>
                 <menuitem name="Monthly Event Group" id="climbing_gym.event_monthly_group" parent="climbing_gym.event_monthly_menu" action="event_monthly_group_list_action"/>
                 <menuitem name="Monthly Event" id="climbing_gym.event_monthly" parent="climbing_gym.event_monthly_menu" action="event_monthly_list_action"/>
-                <menuitem name="Monthly Event Content" id="climbing_gym.event_monthly_content" parent="climbing_gym.event_monthly_menu" action="event_monthly_content_list_action"/>
 
-
-
-
-        <menuitem name="Configuration" id="climbing_gym.menu_3" parent="climbing_gym.menu_root" groups="climbing_gym.group_manager"/>
+        <menuitem name="Configuration" id="climbing_gym.menu_3" parent="climbing_gym.menu_root" groups="climbing_gym.group_manager" sequence="666"/>
             <menuitem name="Membership" id="climbing_gym.membership_menu" parent="climbing_gym.menu_3"/>
                 <menuitem name="Memberships" id="climbing_gym.membership" parent="climbing_gym.membership_menu" action="membership_list_action"/>
                 <menuitem name="Membership packages" id="climbing_gym.membership_packages" parent="climbing_gym.membership_menu" action="membership_package_list_action"/>
