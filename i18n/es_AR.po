@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 12.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-12-11 17:13+0000\n"
-"PO-Revision-Date: 2022-12-11 14:16-0300\n"
+"POT-Creation-Date: 2024-04-04 15:57+0000\n"
+"PO-Revision-Date: 2024-04-04 13:01-0300\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,20 +21,6 @@ msgstr ""
 #: model:mail.template,subject:climbing_gym.medical_certificate_due_date_reminder
 #: model:mail.template,subject:climbing_gym.membership_due_date_reminder_email_template
 msgid "${ctx.get('subject')}"
-msgstr ""
-
-#. module: climbing_gym
-#: selection:climbing_gym.event_generator,year:0
-#: selection:climbing_gym.event_monthly,year:0
-#: selection:climbing_gym.event_monthly_group,year:0
-msgid "2022"
-msgstr ""
-
-#. module: climbing_gym
-#: selection:climbing_gym.event_generator,year:0
-#: selection:climbing_gym.event_monthly,year:0
-#: selection:climbing_gym.event_monthly_group,year:0
-msgid "2023"
 msgstr ""
 
 #. module: climbing_gym
@@ -56,6 +42,20 @@ msgstr ""
 #: selection:climbing_gym.event_monthly,year:0
 #: selection:climbing_gym.event_monthly_group,year:0
 msgid "2026"
+msgstr ""
+
+#. module: climbing_gym
+#: selection:climbing_gym.event_generator,year:0
+#: selection:climbing_gym.event_monthly,year:0
+#: selection:climbing_gym.event_monthly_group,year:0
+msgid "2027"
+msgstr ""
+
+#. module: climbing_gym
+#: selection:climbing_gym.event_generator,year:0
+#: selection:climbing_gym.event_monthly,year:0
+#: selection:climbing_gym.event_monthly_group,year:0
+msgid "2028"
 msgstr ""
 
 #. module: climbing_gym
@@ -384,7 +384,6 @@ msgstr "Aceptado"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.menu_4_access_list
-#: model:ir.ui.menu,name:climbing_gym.menu_access_list
 msgid "Access List"
 msgstr "Lista de acceso"
 
@@ -424,7 +423,7 @@ msgstr "Listado de paquetes de acceso"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.access_package
 msgid "Access packages"
-msgstr "Paquetes de acceso"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_access_package
@@ -942,6 +941,24 @@ msgid "Duration interval"
 msgstr "Intervalo de duración"
 
 #. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__emergency_contact_name
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__emergency_contact_name
+msgid "Emergency contact"
+msgstr "Contacto de emergencia"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__emergency_contact_phone
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__emergency_contact_phone
+msgid "Emergency contact phone"
+msgstr "Teléfono del contacto de emergencia"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__emergency_contact_relationship
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__emergency_contact_relationship
+msgid "Emergency contact relationship"
+msgstr "Vínculo con el contacto de emergencia"
+
+#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_time_range__time_end
 msgid "End time"
 msgstr "Fecha de finalización"
@@ -1025,7 +1042,7 @@ msgstr "Tipo de evento"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_week_template
 msgid "Event week templates"
-msgstr "Plantilla de eventos semanales"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.actions.act_window,name:climbing_gym.event_weekday_list_action
@@ -1186,6 +1203,30 @@ msgstr "Agrupar por"
 #: model:ir.model,name:climbing_gym.model_climbing_gym_event_monthly_group
 msgid "Group of events that can be reserved monthly"
 msgstr "Grupo de eventos que pueden ser reservados mensualmente"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__health_insurance
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__health_insurance
+#: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
+msgid "Health insurance"
+msgstr "Seguro médico"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__health_insurance_number
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__health_insurance_number
+msgid "Health insurance affiliate number"
+msgstr "Número de afiliado"
+
+#. module: climbing_gym
+#: model_terms:ir.ui.view,arch_db:climbing_gym.contact_view_extend
+msgid "Health insurance data"
+msgstr "Información seguro médico"
+
+#. module: climbing_gym
+#: model:ir.model.fields,field_description:climbing_gym.field_res_partner__health_insurance_emergency_phone
+#: model:ir.model.fields,field_description:climbing_gym.field_res_users__health_insurance_emergency_phone
+msgid "Health insurance emergency phone"
+msgstr "Teléfono de emergencia seguro médico"
 
 #. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_access_package__id
@@ -1422,11 +1463,6 @@ msgid "Lists"
 msgstr "Listas"
 
 #. module: climbing_gym
-#: model:ir.ui.menu,name:climbing_gym.access_list_content
-msgid "Lists contents"
-msgstr "Contenidos de listas"
-
-#. module: climbing_gym
 #: model:ir.model.fields,field_description:climbing_gym.field_climbing_gym_event_weekday__localized_name
 msgid "Localized weekday"
 msgstr ""
@@ -1509,7 +1545,7 @@ msgstr "Certificado medico válido"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.medical_cert
 msgid "Medical certificates"
-msgstr "Certificados médicos"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_medical_certificate
@@ -1559,7 +1595,7 @@ msgstr "Lista Paquete de acceso de miembro"
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.member_access_package
 msgid "Member access packages"
-msgstr "Paquetes de acceso de miembros"
+msgstr ""
 
 #. module: climbing_gym
 #: model:ir.model,name:climbing_gym.model_climbing_gym_member_membership
@@ -1640,7 +1676,7 @@ msgstr "Fecha de inicio de vencimiento"
 #. module: climbing_gym
 #: model:mail.template,subject:climbing_gym.membership_due_date_reminder
 msgid "Membership due soon"
-msgstr "La membresía vence pronto"
+msgstr ""
 
 #. module: climbing_gym
 #: model_terms:ir.ui.view,arch_db:climbing_gym.member_membership_package_form_view
@@ -1757,11 +1793,6 @@ msgstr "Contenido de evento mensal"
 #: model:ir.ui.menu,name:climbing_gym.event_monthly
 msgid "Monthly Event"
 msgstr "Evento mensual"
-
-#. module: climbing_gym
-#: model:ir.ui.menu,name:climbing_gym.event_monthly_content
-msgid "Monthly Event Content"
-msgstr "Contenido de evento mensual"
 
 #. module: climbing_gym
 #: model:ir.ui.menu,name:climbing_gym.event_monthly_group

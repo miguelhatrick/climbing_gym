@@ -29,6 +29,19 @@
                         </group>
                     </group>
                 </page>
+                <page name="climbing_gym_data" string="Health insurance / emergency">
+                    <group name="container_row_2">
+                        <group string="Health insurance" name="personal-info" priority="1">
+                            <!--fields here-->
+                            <field name='health_insurance'/>
+                            <field name='health_insurance_number'/>
+                            <field name='health_insurance_emergency_phone'/>
+                            <field name='emergency_contact_name'/>
+                            <field name='emergency_contact_relationship'/>
+                            <field name='emergency_contact_phone'/>
+                        </group>
+                    </group>
+                </page>
                 <page name="climbing_gym_data_member_access_packages" string="Member Access Packages">
                     <group string="Access Packages" name="medical-certificates" priority="2" col="4">
                         <field name='member_access_packages' nolabel="1"/>

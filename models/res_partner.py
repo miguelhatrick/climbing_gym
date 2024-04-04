@@ -15,6 +15,15 @@ class ResPartner(models.Model):
     _inherit = "res.partner"
 
     birthdate_date = fields.Date("Birthdate")
+
+    health_insurance = fields.Char('Health insurance', required=False, size=50, track_visibility=True)
+    health_insurance_number = fields.Char('Health insurance affiliate number', required=False, size=30, track_visibility=True)
+    health_insurance_emergency_phone = fields.Char('Health insurance emergency phone', required=False, size=30, track_visibility=True)
+
+    emergency_contact_name = fields.Char('Emergency contact', required=False, size=100, track_visibility=True)
+    emergency_contact_relationship = fields.Char('Emergency contact relationship', required=False, size=30, track_visibility=True)
+    emergency_contact_phone = fields.Char('Emergency contact phone', required=False, size=30, track_visibility=True)
+
     # climbing_gym_association_date = fields.Date("Association Date")
     climbing_gym_association_id = fields.Char("Association ID")
 
