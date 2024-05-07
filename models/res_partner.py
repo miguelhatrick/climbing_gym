@@ -11,7 +11,7 @@ _logger = logging.getLogger(__name__)
 
 
 class ResPartner(models.Model):
-    """Partner with birth date and other shit."""
+    """Partner with birthdate and other shit."""
     _inherit = "res.partner"
 
     birthdate_date = fields.Date("Birthdate")
